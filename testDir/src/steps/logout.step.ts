@@ -1,4 +1,4 @@
-import { ParameterizedStep } from '../../../'
+import { ParameterizedStep } from 'wdio-workflo'
 
 const LogoutSteps = {
    // write empty object so that user does not have to

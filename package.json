@@ -4,7 +4,7 @@
   "description": "An example project for wdio-workflo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd node_modules/wdio-workflo && npm run-script test"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/flohil/wdio-workflo-example/issues"
   },
-  "homepage": "https://github.com/flohil/wdio-workflo-example#readme"
+  "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
+  "devDependencies": {
+    "path": "^0.12.7"
+  },
+  "dependencies": {
+    "wdio-workflo": "0.0.7"
+  }
 }

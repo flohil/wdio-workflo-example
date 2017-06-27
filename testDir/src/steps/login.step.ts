@@ -1,4 +1,4 @@
-import { ParameterizedStep } from '../../../'
+import { ParameterizedStep } from 'wdio-workflo'
 import { IUser, ICredentials, User } from '../types'
 
 const LoginSteps = {

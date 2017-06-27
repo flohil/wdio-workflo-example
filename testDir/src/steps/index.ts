@@ -1,4 +1,4 @@
-import { stepsGetter, stepsSetter } from '../../../'
+import { stepsGetter, stepsSetter } from 'wdio-workflo'
 
 ////////////////////////////////////////////////////////////////////////
 // EDIT THIS AREA IN ORDER FOR INTELLISENSE TO SUGGEST STEPS BY NAMES
