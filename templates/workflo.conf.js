@@ -11,7 +11,7 @@ module.exports = {
     height: 800
   },
   webdriver: {
-    host: '172.20.7.150',
+    host: '127.0.0.1',
     port: 4444
   },
   selenium: {
@@ -20,7 +20,7 @@ module.exports = {
   },
   capabilities: {
     maxInstances: 1,
-    browserName: 'internet explorer',
+    browserName: 'chrome',
     requireWindowFocus: true,
     nativeEvents: true,    
     unexpectedAlertBehaviour: "accept",
