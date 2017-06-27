@@ -1,4 +1,6 @@
-const testDir = __dirname + '/testDir'
+const path = require('path')
+
+const testDir = path.join(__dirname, '/testDir')
 
 module.exports = {
   testDir: testDir,

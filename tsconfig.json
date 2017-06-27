@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "outDir": "./dist",
+        "types": ["jasmine", "jasmine-expect", "node", "webdriverio"]
+    },
+    "include": [
+        "node_modules/wdio-workflo/**/*.ts",
+        "testDir/src/**/*"
+    ]
+}
