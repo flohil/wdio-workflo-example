@@ -33,11 +33,11 @@ suite("My first suite", {}, () => {
     .and(steps["logout"]({}))
     .when(steps["variable vars"]({ arg: {arg1: 44, arg2: "asdf"}, cb: () => {
 
-      /*const title = browser.getTitle()
+      const title = browser.getTitle()
       
       browser.url('https://duckduckgo.com/')
       browser.setValue('#search_form_input_homepage', 'WebdriverIO')
-      browser.click('#search_button_homepagesss')*/
+      browser.click('#search_button_homepagesss')
 
       verify({"7.0.1": [2]}, (expected = 1, actual = 2) => {
         expect(actual).toBe(expected)
