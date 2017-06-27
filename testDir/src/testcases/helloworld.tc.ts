@@ -3,45 +3,76 @@ import steps from '../steps'
 
 import { IUser, ICredentials } from '../types'
 
-let adminCredentials: ICredentials = {username: "admin", password: "password"};
+let adminCredentials: ICredentials = {username: 'admin', password: 'password'};
 
 suite("My first suite", {}, () => {
-  testcase("login test", {}, () => {
-    given(steps["login as %{username}"]({arg: adminCredentials}))
-    .when(steps["variable vars"]({ arg: {arg1: 3, arg2: "test"}, cb: () => {
-      browser.url('https://duckduckgo.com/')
-      browser.setValue('#search_form_input_homepage', 'WebdriverIO')
-      browser.click('#search_button_homepagesss')
-    }}))
-    .and(steps["logout"]({cb: () => {
+  // testcase("login test", {}, () => {
+  //   given(steps["login as %{username}"]({arg: adminCredentials, cb: () => {
+  //     browser.url('https://duckduckgo.com/')
+  //   }}))
+  //   .when(steps["variable vars"]({ arg: {arg1: 3, arg2: "test"}, cb: () => {
+  //     browser.url('https://duckduckgo.com/')
+  //     browser.setValue('#search_form_input_homepage', 'WebdriverIO')
+  //     browser.click('#search_button_homepagesss')
+  //   }}))
+  //   .and(steps["logout"]({cb: () => {
 
-      // attention, function will be executed by specs later - must ensure that passed in values are evaluated immediatly
-      // hence the default parameter notation!
-      verify({"7.1.2": 1}, (expected: string = 'asdf', actual: string = browser.getTitle()) => {
-        expect(actual).toMatch(expected)
-        expect(actual.length).toBeGreaterThan(0)
-      })
+  //     // attention, function will be executed by specs later - must ensure that passed in values are evaluated immediatly
+  //     // hence the default parameter notation!
+  //     verify({"7.1.2": 1}, (expected: string = 'asdf', actual: string = browser.getTitle()) => {
+  //       expect(actual).toMatch(expected)
+  //       expect(actual.length).toBeGreaterThan(0)
+  //     })
 
-      browser.url('https://duckduckgo.com/')
+  //     browser.url('https://duckduckgo.com/')
 
-      console.log(browser.getTitle())
-    }}))
-  })
+  //     console.log(browser.getTitle())
+  //   }}))
+  // })
 
-  testcase("logout test", {}, () => {
-    given(steps["login as %{username}"]({arg: adminCredentials}))
-    .and(steps["logout"]({}))
-    .when(steps["variable vars"]({ arg: {arg1: 44, arg2: "asdf"}, cb: () => {
+  // testcase("logout test", {}, () => {
+  //   given(steps["login as %{username}"]({arg: adminCredentials}))
+  //   .and(steps["logout"]({}))
+  //   .when(steps["variable vars"]({ arg: {arg1: 44, arg2: "asdf"}, cb: () => {
 
-      const title = browser.getTitle()
+  //     const title = browser.getTitle()
       
-      /*browser.url('https://duckduckgo.com/')
-      browser.setValue('#search_form_input_homepage', 'WebdriverIO')
-      browser.click('#search_button_homepagesss')*/
+  //     /*browser.url('https://duckduckgo.com/')
+  //     browser.setValue('#search_form_input_homepage', 'WebdriverIO')
+  //     browser.click('#search_button_homepagesss')*/
 
+  //     verify({"7.0.1": [1]}, (expected = 1, actual = 2) => {
+  //       expect(actual).toBe(expected)
+  //       expect('other').toMatch('this')
+  //     })
+  //   }}))
+  //   .and(steps["variable vars"]({ arg: {arg1: 44, arg2: "asdf"}, cb: () => {
+  //     verify({"7.0.1": [2]}, () => {
+  //       expect(true).toBe(true)
+  //     })
+  //   }}))
+  //   .and(steps["variable vars"]({ arg: {arg1: 44, arg2: "asdf"}, cb: () => {
+  //     verify({"7.0.1": [3]}, () => {
+  //       expect(true).toBe(false)
+  //     })
+  //   }}))
+  // })
+
+  testcase("both test", {}, () => {
+    given(steps["login as %{username}"]({arg: adminCredentials}))
+    .when(steps["login and logout as %{username}"]({ arg: adminCredentials, cb: () => {
+      verify({"7.0.1": [1]}, (expected = 1, actual = 2) => {
+        expect(1).toBe(2)
+        expect('other').toEqual('jolo')
+      })
       verify({"7.0.1": [2]}, (expected = 1, actual = 2) => {
-        expect(actual).toBe(expected)
-        expect('other').toMatch('this')
+        expect(true).toBe(true)
+      })
+      verify({"7.0.1": [3]}, (expected = 1, actual = 2) => {
+        expect(true).toBe(true)
+      })
+      verify({"7.0.1": [2]}, (expected = 1, actual = 2) => {
+        expect(true).toBe(false)
       })
     }}))
   })
