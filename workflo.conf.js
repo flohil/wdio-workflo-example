@@ -27,5 +27,7 @@ module.exports = {
     enablePersistentHover: true,
   },
   specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
-  testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ]
+  //specs: [],
+  //testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ]
+  testcases: [ `${testDir}/src/testcases/helloworld.tc.ts` ]
 }

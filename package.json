@@ -4,7 +4,8 @@
   "description": "An example project for wdio-workflo",
   "main": "index.js",
   "scripts": {
-    "test": "cd node_modules/wdio-workflo && npm run-script test"
+    "test": "cd node_modules/wdio-workflo && npm run-script test",
+    "report": "cd node_modules/wdio-workflo && npm run-script latest_report"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,6 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "wdio-workflo": "0.0.8"
+    "wdio-workflo": "0.0.17"
   }
 }

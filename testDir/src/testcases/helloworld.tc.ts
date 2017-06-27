@@ -35,9 +35,9 @@ suite("My first suite", {}, () => {
 
       const title = browser.getTitle()
       
-      browser.url('https://duckduckgo.com/')
+      /*browser.url('https://duckduckgo.com/')
       browser.setValue('#search_form_input_homepage', 'WebdriverIO')
-      browser.click('#search_button_homepagesss')
+      browser.click('#search_button_homepagesss')*/
 
       verify({"7.0.1": [2]}, (expected = 1, actual = 2) => {
         expect(actual).toBe(expected)
