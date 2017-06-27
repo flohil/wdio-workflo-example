@@ -6,12 +6,12 @@ import { IUser, ICredentials } from '../types'
 let adminCredentials: ICredentials = {username: "admin", password: "password"};
 
 suite("My first suite", {}, () => {
-  /*testcase("login test", {}, () => {
+  testcase("login test", {}, () => {
     given(steps["login as %{username}"]({arg: adminCredentials}))
     .when(steps["variable vars"]({ arg: {arg1: 3, arg2: "test"}, cb: () => {
       browser.url('https://duckduckgo.com/')
       browser.setValue('#search_form_input_homepage', 'WebdriverIO')
-      browser.click('#search_button_homepage')
+      browser.click('#search_button_homepagesss')
     }}))
     .and(steps["logout"]({cb: () => {
 
@@ -26,7 +26,7 @@ suite("My first suite", {}, () => {
 
       console.log(browser.getTitle())
     }}))
-  })*/
+  })
 
   testcase("logout test", {}, () => {
     given(steps["login as %{username}"]({arg: adminCredentials}))
