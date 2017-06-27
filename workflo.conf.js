@@ -1,7 +1,7 @@
-console.log("WORKFLO: ", __dirname)
+const testDir = __dirname + '/testDir'
 
 module.exports = {
-  testDir: __dirname + '/testDir',
+  testDir: testDir,
   logLevel: 'verbose',
   baseUrl: 'http://webdriver.io', // replace with anna base url
   windowSize: {
@@ -25,5 +25,7 @@ module.exports = {
     ignoreProtectedModeSettings: true,
     "disable-popup-blocking": true,
     enablePersistentHover: true,
-  }
+  },
+  specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
+  testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ]
 }
