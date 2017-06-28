@@ -61,7 +61,7 @@ suite("My first suite", {}, () => {
   testcase("both test", {}, () => {
     given(steps["login as %{username}"]({arg: adminCredentials}))
     .when(steps["login and logout as %{username}"]({ arg: adminCredentials, cb: () => {
-      verify({"7.0.1": [1]}, (expected = 1, actual = 2) => {
+      verify({"7.0.1": [2]}, (expected = 1, actual = 2) => {
         expect(1).toBe(2)
         expect('other').toEqual('jolo')
       })

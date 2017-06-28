@@ -1,5 +1,5 @@
 Feature( 'Proposal Creation', {}, () => {
-  Story( '7.0.1', 'Create a proposal', {issues: ['KBCPP-1234', 'KBCPP-1235']}, () => {
+  Story( '7.0.1', 'Create a proposal', {issues: ['KBCPP-1234', 'KBCPP-1235'], severity: 'blocker'}, () => {
     Given("an administrator opens the proposals page", () => {      
       Given("the admin is older than 18", () => {
         When("the administrator hits the create proposal button", () => {
