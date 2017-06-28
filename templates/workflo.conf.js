@@ -26,7 +26,7 @@ module.exports = {
     "disable-popup-blocking": true,
     enablePersistentHover: true,
   },
-  specs: [ `${testDir}/src/specs/**/*.tc.ts` ],
+  specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
   testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ],
   allure: {
     issueTrackerPattern: "http://hq.documatrix.com/jira/browse/%s",
