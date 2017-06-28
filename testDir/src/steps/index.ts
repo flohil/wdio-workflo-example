@@ -4,8 +4,9 @@ import { stepsGetter, stepsSetter } from 'wdio-workflo'
 // EDIT THIS AREA IN ORDER FOR INTELLISENSE TO SUGGEST STEPS BY NAMES
 ////////////////////////////////////////////////////////////////////////
 
-import LoginSteps from './login.step'
+import LoginSteps from '~/steps/login.step'
 import LogoutSteps from './logout.step'
+import * as types from '../types' // surpress error for cannot be named
 
 // create a single steps object that merges all single step definitions
 const Steps = Object.assign({}, LoginSteps, LogoutSteps)
