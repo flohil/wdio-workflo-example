@@ -1,0 +1,1 @@
+start tests with: TS_NODE_PROJECT=~/Documents/MSE/2/MPP/framework/wdio-workflo-example WORKFLO_CONFIG=~/Documents/MSE/2/MPP/framework/wdio-workflo-example/workflo.conf.js npm test

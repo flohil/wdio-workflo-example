@@ -1,6 +1,4 @@
-const path = require('path')
-
-const testDir = path.join(__dirname, 'testDir')
+const testDir = __dirname + '/testDir'
 
 module.exports = {
   testDir: testDir,
@@ -28,8 +26,10 @@ module.exports = {
     "disable-popup-blocking": true,
     enablePersistentHover: true,
   },
-  specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
-  //specs: [],
-  //testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ]
-  testcases: [ `${testDir}/src/testcases/helloworld.tc.ts` ]
+  specs: [ `${testDir}/src/specs/**/*.tc.ts` ],
+  testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ],
+  allure: {
+    issueTrackerPattern: "http://hq.documatrix.com/jira/browse/%s",
+    bugTrackerPattern: "https://bugtracker/issue-%s"
+  }
 }
