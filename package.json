@@ -2,7 +2,6 @@
   "name": "wdio-workflo-example",
   "version": "0.0.1",
   "description": "An example project for wdio-workflo",
-  "main": "index.ts",
   "scripts": {
     "test": "cd node_modules/wdio-workflo && npm run-script test",
     "report": "cd node_modules/wdio-workflo && npm run-script latest_report"
