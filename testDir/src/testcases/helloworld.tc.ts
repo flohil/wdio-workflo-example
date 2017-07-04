@@ -6,6 +6,7 @@ import { IUser, ICredentials } from '../types'
 let adminCredentials: ICredentials = {username: 'admin', password: 'password'};
 
 suite("My first suite", {}, () => {
+
   // testcase("login test", {}, () => {
   //   given(steps["login as %{username}"]({arg: adminCredentials, cb: () => {
   //     browser.url('https://duckduckgo.com/')
