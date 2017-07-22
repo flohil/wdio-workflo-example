@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "An example project for wdio-workflo",
   "scripts": {
+    "devTest": "cd node_modules/wdio-workflo && npm run-script devTest",
     "test": "cd node_modules/wdio-workflo && npm run-script test",
     "report": "cd node_modules/wdio-workflo && npm run-script latest_report"
   },

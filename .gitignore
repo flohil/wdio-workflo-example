@@ -1,4 +1,4 @@
 node_modules
-testDir/results
-testDir/logs
+system_test/results
+system_test/logs
 workflo.conf.js
