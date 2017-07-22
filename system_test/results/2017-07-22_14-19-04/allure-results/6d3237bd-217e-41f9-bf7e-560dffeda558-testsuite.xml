@@ -1,0 +1,42 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1500725976266' stop='1500725976282'>
+    <name>Homepage: 1.1 - Display correct title</name>
+    <title>Homepage: 1.1 - Display correct title</title>
+    <test-cases>
+        <test-case start='1500725976266' status='passed' stop='1500725976282'>
+            <name>Then 1: the correct page title should be displayed</name>
+            <title>Then 1: the correct page title should be displayed</title>
+            <labels>
+                <label name='feature' value='Homepage'/>
+                <label name='story' value='1.1 - Display correct title'/>
+                <label name='severity' value='normal'/>
+            </labels>
+            <parameters>
+                <parameter kind='environment-variable' name='capabilities' value='{"maxInstances":1,"browserName":"chrome","requireWindowFocus":true,"nativeEvents":true,"unexpectedAlertBehaviour":"accept","ignoreProtectedModeSettings":true,"disable-popup-blocking":true,"enablePersistentHover":true}'/>
+                <parameter kind='environment-variable' name='spec files' value='["C:\\Users\\Flo\\Documents\\MSE\\2\\MPP\\framework\\wdio-workflo-example\\system_test\\src\\specs\\homepage.spec.ts"]'/>
+            </parameters>
+            <steps>
+                <step start='1500725976282' status='passed' stop='1500725976282'>
+                    <name>Given a user opens the google homepage</name>
+                    <title>Given a user opens the google homepage</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1500725976282' status='passed' stop='1500725976282'>
+                    <name>When the user observes the page title</name>
+                    <title>When the user observes the page title</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start='1500725976282' status='passed' stop='1500725976282'>
+                    <name>Then the correct page title should be displayed</name>
+                    <title>Then the correct page title should be displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <description type='text'>my description</description>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

@@ -1,0 +1,70 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1500725965864' stop='1500725967889'>
+    <name>Homepage Suite</name>
+    <title>Homepage Suite</title>
+    <test-cases>
+        <test-case start='1500725965864' status='passed' stop='1500725967888'>
+            <name>visit homepage</name>
+            <title>visit homepage</title>
+            <labels/>
+            <parameters>
+                <parameter kind='environment-variable' name='capabilities' value='{"maxInstances":1,"browserName":"chrome","requireWindowFocus":true,"nativeEvents":true,"unexpectedAlertBehaviour":"accept","ignoreProtectedModeSettings":true,"disable-popup-blocking":true,"enablePersistentHover":true}'/>
+                <parameter kind='environment-variable' name='spec files' value='["C:\\Users\\Flo\\Documents\\MSE\\2\\MPP\\framework\\wdio-workflo-example\\system_test\\src\\testcases\\homepage.tc.ts"]'/>
+            </parameters>
+            <steps>
+                <step start='1500725965879' status='passed' stop='1500725967842'>
+                    <name>Given open homepage</name>
+                    <title>Given open homepage</title>
+                    <attachments>
+                        <attachment title='Step Arg' source='da6c7e1f-f316-4f92-a0af-b4b7bbb2fed8-attachment.json' type='application/json' size='4'/>
+                    </attachments>
+                    <steps>
+                        <step start='1500725965895' status='passed' stop='1500725967840'>
+                            <name>POST /wd/hub/session/6d57b136-e3dd-4a58-bbf5-a71e57a70bcb/url</name>
+                            <title>POST /wd/hub/session/6d57b136-e3dd-4a58-bbf5-a71e57a70bcb/url</title>
+                            <attachments>
+                                <attachment title='Request' source='c77e378b-2bdd-47f2-bd28-a7fefd4dfee8-attachment.json' type='application/json' size='39'/>
+                                <attachment title='Response' source='c3238df1-6fc4-46be-8878-dca5b07cba3d-attachment.json' type='application/json' size='196'/>
+                            </attachments>
+                            <steps/>
+                        </step>
+                    </steps>
+                </step>
+                <step start='1500725967843' status='passed' stop='1500725967887'>
+                    <name>When get title</name>
+                    <title>When get title</title>
+                    <attachments>
+                        <attachment title='Step Arg' source='132d66ba-c491-4fd4-9880-5077e1453be5-attachment.json' type='application/json' size='4'/>
+                        <attachment title='Step Result' source='da94c36a-e55b-4d5a-9e5d-afe235134209-attachment.json' type='application/json' size='10'/>
+                    </attachments>
+                    <steps>
+                        <step start='1500725967849' status='passed' stop='1500725967877'>
+                            <name>GET /wd/hub/session/6d57b136-e3dd-4a58-bbf5-a71e57a70bcb/title</name>
+                            <title>GET /wd/hub/session/6d57b136-e3dd-4a58-bbf5-a71e57a70bcb/title</title>
+                            <attachments>
+                                <attachment title='Response' source='36398959-ddfc-4b1c-88cd-12291f02684c-attachment.json' type='application/json' size='199'/>
+                            </attachments>
+                            <steps/>
+                        </step>
+                        <step start='1500725967877' status='passed' stop='1500725967885'>
+                            <name>Callback</name>
+                            <title>Callback</title>
+                            <attachments>
+                                <attachment title='Step Arg' source='09e1c6b5-1fe2-43c0-9e57-ea61284fa29e-attachment.json' type='application/json' size='10'/>
+                            </attachments>
+                            <steps>
+                                <step start='1500725967884' status='passed' stop='1500725967885'>
+                                    <name>verify: {"1.1":[1]}</name>
+                                    <title>verify: {"1.1":[1]}</title>
+                                    <attachments/>
+                                    <steps/>
+                                </step>
+                            </steps>
+                        </step>
+                    </steps>
+                </step>
+            </steps>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

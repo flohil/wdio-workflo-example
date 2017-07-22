@@ -1,0 +1,44 @@
+14:19:16.240 INFO - Selenium build info: version: '3.4.0', revision: 'unknown'
+14:19:16.255 INFO - Launching a standalone Selenium Server
+2017-07-22 14:19:16.271:INFO::main: Logging initialized @552ms to org.seleniumhq.jetty9.util.log.StdErrLog
+14:19:16.349 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+14:19:16.349 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+14:19:16.349 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+14:19:16.349 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+14:19:16.365 INFO - Driver provider org.openqa.selenium.safari.SafariDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=safari, version=, platform=MAC}] does not match the current platform WIN10
+2017-07-22 14:19:16.412:INFO:osjs.Server:main: jetty-9.4.3.v20170317
+2017-07-22 14:19:16.474:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@4501b7af{/,null,AVAILABLE}
+2017-07-22 14:19:16.664:INFO:osjs.AbstractConnector:main: Started ServerConnector@1e397ed7{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-07-22 14:19:16.664:INFO:osjs.Server:main: Started @941ms
+14:19:16.664 INFO - Selenium Server is up and running
+14:19:16.914 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+14:19:18.815 INFO - Executing: [new session: Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@4eda9d9d, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]])
+14:19:18.837 INFO - Creating a new session for Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@4eda9d9d, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]
+Starting ChromeDriver 2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41) on port 14587
+Only local connections are allowed.
+14:19:21.690 INFO - Detected dialect: OSS
+14:19:21.703 INFO - Done: [new session: Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@4eda9d9d, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]]
+14:19:22.441 INFO - Executing: [set window size])
+14:19:23.615 INFO - Done: [set window size]
+14:19:25.848 INFO - Executing: [implicit wait: 1001])
+14:19:25.864 INFO - Done: [implicit wait: 1001]
+14:19:25.895 INFO - Executing: [get: http://www.google.com/])
+14:19:27.829 INFO - Done: [get: http://www.google.com/]
+14:19:27.854 INFO - Executing: [get title])
+14:19:27.864 INFO - Done: [get title]
+14:19:27.997 INFO - Executing: [delete session: 6d57b136-e3dd-4a58-bbf5-a71e57a70bcb])
+14:19:29.080 INFO - Done: [delete session: 6d57b136-e3dd-4a58-bbf5-a71e57a70bcb]
+14:19:30.739 INFO - Executing: [new session: Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@60b145f6, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]])
+14:19:30.739 INFO - Creating a new session for Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@60b145f6, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]
+Starting ChromeDriver 2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41) on port 46605
+Only local connections are allowed.
+14:19:32.664 INFO - Detected dialect: OSS
+14:19:32.667 INFO - Done: [new session: Capabilities [{rotatable=true, disable-popup-blocking=true, enablePersistentHover=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@60b145f6, unhandledPromptBehavior=accept, handlesAlerts=true, requestOrigins={name=webdriverio-workflo, version=0.0.12}, nativeEvents=true, requireWindowFocus=true, locationContextEnabled=true, browserName=chrome, javascriptEnabled=true, maxInstances=1, ignoreProtectedModeSettings=true, unexpectedAlertBehaviour=accept}]]
+14:19:33.396 INFO - Executing: [set window size])
+14:19:34.565 INFO - Done: [set window size]
+14:19:36.251 INFO - Executing: [implicit wait: 1001])
+14:19:36.251 INFO - Done: [implicit wait: 1001]
+14:19:36.399 INFO - Executing: [delete session: beff2c09-d69a-4bf8-ae13-279295841a3e])
+14:19:37.255 INFO - Done: [delete session: beff2c09-d69a-4bf8-ae13-279295841a3e]

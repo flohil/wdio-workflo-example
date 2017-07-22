@@ -1,0 +1,6 @@
+[
+    {
+        "matcherName": "toEqual",
+        "message": "Expected 'Google' to equal 'asdf'."
+    }
+]
