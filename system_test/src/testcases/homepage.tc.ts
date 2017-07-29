@@ -8,6 +8,12 @@ suite("Homepage Suite", {}, () => {
       cb: (title) => {
         verify({"1.1": [1]}, () => {
           expect(title).toEqual("Google")
+          expect(true).toBe(false)
+          expect(1).toBe(2)
+        })
+        verify({"1.2": [1]}, () => {
+          expect(true).toBe(true)
+          expect(3).toBe(2)
         })
       }
     }))
