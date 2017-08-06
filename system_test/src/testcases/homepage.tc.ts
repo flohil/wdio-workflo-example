@@ -11,6 +11,18 @@ suite("Homepage Suite", {}, () => {
         })
         verify({"1.2": [1]}, () => {
           expect(3).toBe(2)
+          expect(4).toBe(2)
+        })
+        verify({"1.2": [2]}, () => {
+          expect(true).toBe(false)
+        })
+      }
+    }))
+    .and(steps["success"]())
+    .and(steps["failure"]({
+      cb: () => {
+        verify({"2.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
         })
       }
     }))

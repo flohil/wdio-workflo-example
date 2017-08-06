@@ -11,6 +11,16 @@ const HomePageSteps = {
   (params?: IOptStepArgs<{}, string>): IParameterizedStep =>
     new ParameterizedStep(params, (): string => {
       return browser.getTitle()
+    }),
+  "success":
+  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, (): void => {
+      const html = browser.element('//div[@id="asdfasdfasdf"]').getHTML()
+    }),
+  "failure":
+  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, (): void => {
+      browser.getUrl()
     })
 }
 

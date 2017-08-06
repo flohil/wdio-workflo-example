@@ -10,6 +10,14 @@ Feature("Homepage", {}, () => {
     Given("a user opens the google homepage", () => {
       When("the user observes the page title", () => {
         Then(1, "This spec fails")
+        Then(2, "This spec fails bla")
+      })
+    })
+  })
+  Story("2.2", "last failing story", {}, () => {
+    Given("a user opens the google homepage", () => {
+      When("the user observes the page title", () => {
+        Then(1, "This spec fails too")
       })
     })
   })
