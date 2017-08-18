@@ -28,3 +28,15 @@ suite("Homepage Suite", {}, () => {
     }))
   })
 })
+suite("Homepage Suite 2", {}, () => {
+  testcase("visit homepage 2", {}, () => {
+    given(steps["open homepage"]())
+    .when(steps["get title"]({
+      cb: (title) => {
+        verify({"1.1": [1]}, () => {
+          expect(title).toEqual("Google")
+        })
+      }
+    }))
+  })
+})
