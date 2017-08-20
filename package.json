@@ -24,7 +24,6 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "wdio-workflo": "0.0.89",
-    "wdio-workflo-spec-reporter": "0.0.5"
+    "wdio-workflo": "0.0.92"
   }
 }
