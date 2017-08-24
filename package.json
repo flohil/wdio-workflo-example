@@ -24,6 +24,8 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "wdio-workflo": "0.0.92"
+    "deasync": "^0.1.10",
+    "typescript": "^2.4.2",
+    "wdio-workflo": "0.0.96"
   }
 }

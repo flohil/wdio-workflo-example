@@ -28,8 +28,10 @@ module.exports = {
   },
   specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
   testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ],
+  manualTestcaseFiles: [ `${testDir}/src/manualTestcases/**/*.man.ts` ],
   allure: {
     issueTrackerPattern: "http://hq.documatrix.com/jira/browse/%s",
     bugTrackerPattern: "https://bugtracker/issue-%s"
-  }
+  },
+  uidStorePath: `${testDir}/data/uidStore.json`
 }
