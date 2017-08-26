@@ -44,12 +44,12 @@ export class PageElementStore {
   ) {
     return this.getGroup<
       Content,
-      PageElementGroupWalker,
+      PageElementGroupWalker<this>,
       IPageElementGroupWalkerOpts,
-      PageElementGroup<Content, PageElementGroupWalker, IPageElementGroupWalkerOpts>,
+      PageElementGroup<Content, PageElementGroupWalker<this>, IPageElementGroupWalkerOpts>,
       Pick<IPageElementGroupOpts<
         Content, 
-        PageElementGroupWalker, 
+        PageElementGroupWalker<this>, 
         IPageElementGroupWalkerOpts
       >, "content" | "walkerType" | "walkerOptions">
     > (
@@ -71,18 +71,21 @@ export class PageElementStore {
    */
   Element(
     selector: string,
-    options?: IPageElementOpts
+    options?: Pick<IPageElementOpts<this>, "timeout" | "wait">
   ) {
-    return this.get<IPageElementOpts, PageElement>(
+    return this.get<IPageElementOpts<this>, PageElement<this>>(
       selector,
       PageElement,
-      options
+      {
+        store: this,
+        ...options
+      }
     )
   } 
 
   ExistElement(
     selector: string,
-    options?: Pick<IPageElementOpts, "timeout">
+    options?: Pick<IPageElementOpts<this>, "timeout">
   ) {
     return this.Element(
       selector,
@@ -98,13 +101,13 @@ export class PageElementStore {
   ElementList(
     selector: string, 
     options?: Pick<
-      IPageElementListOpts<this, PageElement, IPageElementOpts>, 
+      IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>, 
       "wait" | "timeout" | "elementOptions" | "disableCache" | "identifier"
     >
   ) {
     return this.get<
-      IPageElementListOpts<this, PageElement, IPageElementOpts>, 
-      PageElementList<this, PageElement, IPageElementOpts>
+      IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>, 
+      PageElementList<this, PageElement<this>, IPageElementOpts<this>>
     > (
       selector,
       PageElementList,
@@ -119,13 +122,13 @@ export class PageElementStore {
   ExistElementList(
     selector: string, 
     options?: Pick<
-      IPageElementListOpts<this, PageElement, IPageElementOpts>,
+      IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>,
       "timeout" | "elementOptions" | "disableCache" | "identifier"
     >
   ) {
     return this.get<
-      IPageElementListOpts<this, PageElement, IPageElementOpts>, 
-      PageElementList<this, PageElement, IPageElementOpts>
+      IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>, 
+      PageElementList<this, PageElement<this>, IPageElementOpts<this>>
     > (
       selector,
       PageElementList,
@@ -154,7 +157,7 @@ export class PageElementStore {
     selector: string, 
     type: { new(selector: string, options: O): T }, 
     options: O = Object.create(Object.prototype)
-  ) : T & this {
+  ) : T {
     // catch: selector must not contain |
     if (selector.indexOf('|||') > -1) {
       throw new Error(`Selector must not contain character sequence '|||': ${selector}`)
@@ -164,17 +167,6 @@ export class PageElementStore {
 
     if(!(id in this.instanceCache)) {
       const result = new type(selector, options)
-
-      for ( const method of Workflo.Class.getAllMethods(this) ) {
-        if ( method.indexOf('_') !== 0 && /^[A-Z]/.test( method ) ) {
-          result[ method ] = ( _selector, _options ) => {
-            _selector = `${selector}${_selector}`
-
-            return this[ method ].apply( this, [ _selector, _options ] ) 
-          }
-        }
-      }
-
       this.instanceCache[id] = result
     }
 

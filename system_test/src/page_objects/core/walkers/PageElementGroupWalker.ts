@@ -6,7 +6,7 @@ export interface IPageElementGroupWalkerOpts {
 }
 
 // Solves a problem on all nodes inside a context recursively.
-export class PageElementGroupWalker {
+export class PageElementGroupWalker<Store extends Workflo.IPageElementStore> {
  
   constructor(options: IPageElementGroupWalkerOpts) {
     
@@ -148,7 +148,7 @@ export class PageElementGroupWalker {
   // and values taken form solved function.
   protected solveList<ValueType, ResultType>( 
     problem: Workflo.IProblem<ValueType, ResultType>,
-    list: Workflo.IPageElementList<Workflo.IPageElementStore, Workflo.IPageElement, Workflo.IPageElementOpts>, 
+    list: Workflo.IPageElementList<Workflo.IPageElementStore, Workflo.IPageElement<Store>, Workflo.IPageElementOpts<Store>>, 
     values: {[key: string] : ValueType}, 
     options: Workflo.IWalkerOptions 
   ) : {[key: string] : ResultType} {

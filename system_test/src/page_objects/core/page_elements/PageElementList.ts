@@ -2,7 +2,8 @@ import * as config from '~/config/test_config'
 import { PageNode, IPageNodeOpts } from './'
 
 export interface IPageElementListIdentifier<
-  ElementType extends Workflo.IPageElement
+  Store extends Workflo.IPageElementStore,
+  ElementType extends Workflo.IPageElement<Store>
 > {
   mappingObject: {[key: string] : string},
   func: ( element: ElementType ) => string
@@ -12,35 +13,33 @@ export interface IPageElementListIdentifier<
 // alternatively, call refresh() when the times of structure changes are known
 export interface IPageElementListOpts<
   Store extends Workflo.IPageElementStore, 
-  PageElementType extends Workflo.IPageElement,
+  PageElementType extends Workflo.IPageElement<Store>,
   PageElementOptions
-> extends IPageNodeOpts {
+> extends IPageNodeOpts<Store> {
   disableCache?: boolean,
   store: Store,
-  elementStoreFunc: (selector: string, options: PageElementOptions) => PageElementType & Store,
+  elementStoreFunc: (selector: string, options: PageElementOptions) => PageElementType,
   elementOptions?: PageElementOptions
-  identifier?: IPageElementListIdentifier<PageElementType>
+  identifier?: IPageElementListIdentifier<Store, PageElementType>
 }
 
 // holds several PageElement instances of the same type
 export class PageElementList<
   Store extends Workflo.IPageElementStore,   
-  PageElementType extends Workflo.IPageElement,
+  PageElementType extends Workflo.IPageElement<Store>,
   PageElementOptions
-> extends PageNode implements Workflo.PageNode.INode {
+> extends PageNode<Store> implements Workflo.PageNode.INode {
   protected disableCache: boolean
-  protected store: Store
-  protected elementStoreFunc: (selector: string, options: PageElementOptions) => PageElementType & Store
+  protected elementStoreFunc: (selector: string, options: PageElementOptions) => PageElementType
   protected elementOptions: PageElementOptions
   protected type: string
-  protected identifier: IPageElementListIdentifier<PageElementType>
+  protected identifier: IPageElementListIdentifier<Store, PageElementType>
   protected identifiedObjCache: {[key: string] : {[key: string] : PageElementType}}
 
   constructor( 
     protected selector: string,
     { 
       disableCache = false,
-      store,
       elementStoreFunc,
       elementOptions,
       identifier,
@@ -49,7 +48,6 @@ export class PageElementList<
   ) {
     super(selector, superOpts)
     
-    this.store = store
     this.selector = selector
     this.elementOptions = elementOptions
     this.elementStoreFunc = elementStoreFunc
@@ -57,18 +55,6 @@ export class PageElementList<
     this.identifier = identifier
     this.identifiedObjCache = {}
 
-    // add all public store methods to element for chaining
-    // these have to start with an uppercase letter
-    // obj.getAllMethods() is defined in utilityFunctions helper
-    for ( const method of Workflo.Class.getAllMethods(store) ) {
-      if ( method.indexOf('_') !== 0 && /^[A-Z]/.test( method ) ) {
-        this[ method ] = ( _selector, _options ) => {
-          _selector = `${selector}${_selector}`
-
-          return this.store[ method ].apply( this.store, [ _selector, _options ] ) 
-        }
-      }
-    }
   }
 
   get _elements() {
@@ -150,7 +136,7 @@ export class PageElementList<
     return elements
   }
 
-  setIdentifier(identifier: IPageElementListIdentifier<PageElementType>) {
+  setIdentifier(identifier: IPageElementListIdentifier<Store, PageElementType>) {
     this.identifier = identifier
 
     return this
@@ -167,9 +153,12 @@ export class PageElementList<
   // used unless resetCache is set to true.
   // This means that the returned structure of the list may reflect an earlier state,
   // while its contents are still guaranteed to be refreshed on each access!
+  //
+  // Attention: this may take a long time, try to avoid: if only single elements of list
+  // are needed, use firstByXXX instead
   identify(
     {identifier = this.identifier, resetCache = false}: 
-    {identifier?: IPageElementListIdentifier<PageElementType>, resetCache?: boolean} = {}
+    {identifier?: IPageElementListIdentifier<Store, PageElementType>, resetCache?: boolean} = {}
   ) {
     if (!identifier) {
       return undefined
@@ -225,28 +214,24 @@ export class PageElementList<
     return this.listElements.length
   }
 
-  firstByText( text: string ) : PageElementType & Store {
-    const selector = `${this.selector}[. = '${text}']`
+  firstByConstraint(selectorConstraint: string) : PageElementType & Store {
+    const selector = `${this.selector}${selectorConstraint}`
 
     return this.elementStoreFunc.apply(
       this.store, [ selector, this.elementOptions ]
     )
   }
 
-  firstByContainedText( text: string ) : PageElementType & Store {
-    const selector = `${this.selector}[contains(.,'${text}')]`
-
-    return this.elementStoreFunc.apply(
-      this.store, [ selector, this.elementOptions ]
-    )
+  firstByText( text: string ){
+    return this.firstByConstraint(`[. = '${text}']`)
   }
 
-  firstByAttr(key: string, value: string) : PageElementType & Store {
-    const selector = `(${this.selector})[@${key}='${value}']`
+  firstByContainedText( text: string ) {
+    return this.firstByConstraint(`[contains(.,'${text}')]`)
+  }
 
-    return this.elementStoreFunc.apply(
-      this.store, [ selector, this.elementOptions ]
-    )
+  firstByAttr(key: string, value: string) {
+    return this.firstByConstraint(`[@${key}='${value}']`)
   }
 
   firstById( value: string ) {

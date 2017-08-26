@@ -15,9 +15,8 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
 
   get container() {
     return this.elementStore
-      .Element(`//div[@id="app"]`)
+      .Element(`//body`)
   }
-
   // opens a page at the given url path and waits for it to load
   open(path?) {
     if (typeof path !== 'undefined') {
@@ -39,9 +38,9 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
       const pageBasePath = browser.getUrl().split('/')[3]
       return pageBasePath === this.basePath
 
-    }, this.config.timeouts.default, `Expected url to match /${this.basePath}`)
+    }, this.config.responseTimeout, `Expected url to match /${this.basePath}`)
  
-    this.container.waitExist()
+    this.container
 
     return this
   }
@@ -50,7 +49,7 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
  * Returns true if page is opened at the moment.
  */
   isOpened() {
-    return this.container.isVisible()
+    return this.container.exists()
   }
 
   eventuallyIsOpened(timeout?: number) {

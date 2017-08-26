@@ -8,62 +8,17 @@ import { data } from '../data'
 
 declare global {
   namespace PeterPan {
-
-    const enum MessageTypes {
-      info = 'info',
-      error = 'error',
-      undo = 'undo',
-      warning = 'warnings'
-    }
-
     const enum Languages {
       de = 'de',
       en = 'en'
     }
 
     const enum PageKeys {
-      dashboard = 'dashboard',
-      infoboard = 'infoboard',
-      profile = 'profile',
-      proposals = 'proposals',
-      containers = 'containers',
-      pricelists = 'pricelists'
+      google = 'google',
     }
-
-    const enum MetadataEditable {
-      NOT_EDITABLE = 0,
-      EDITABLE_USER = 1,
-      EDITABLE_ADMIN = 2,
-      EDITABLE_EMPTY = 3
-    }
-
-    interface ICredentials {
-      username: string;
-      password: string;
-    }    
 
     interface IDictionary<T> {
       [key: string] : T
-    }
-
-    interface IDefaultMetaKeys extends IDictionary<typeof data.metaData[0]> {
-      'PROPOSAL_NAME': typeof data.metaData[0],
-      'OPPORTUNITY_NUMBER': typeof data.metaData[0],
-      'CUSTOMER_NAME': typeof data.metaData[0],
-      'CUSTOMER_SALES_AREA_ID': typeof data.metaData[0],
-      'SALES_USER': typeof data.metaData[0],
-      'INTERESTED_CUSTOMER_NUMBER': typeof data.metaData[0],
-      'DEBITOR_CUSTOMER_NUMBER': typeof data.metaData[0],
-      'CUSTOMER_ASSET_NUMBER': typeof data.metaData[0],
-      'CUSTOMER_CONTRACT_NUMBER': typeof data.metaData[0],
-      'PROPOSAL_CREATED_BY': typeof data.metaData[0],
-      'PROPOSAL_CREATOR': typeof data.metaData[0],
-      'PROPOSAL_CREATED_AT': typeof data.metaData[0],
-    }
-
-    interface IAllMetaKeys extends IDefaultMetaKeys {
-      'ORIGINAL_ID': typeof data.metaData[0],
-      'VERSION': typeof data.metaData[0]
     }
   }
 
@@ -74,15 +29,15 @@ declare global {
 
     } 
 
-    interface IPageElement extends PageElement {
+    interface IPageElement<Store extends Workflo.IPageElementStore> extends PageElement<Store> {
 
     }
 
-    interface IPageElementOpts extends _IPageElementOpts {
+    interface IPageElementOpts<Store extends Workflo.IPageElementStore> extends _IPageElementOpts<Store> {
 
     }
 
-    interface IPageElementList<Store extends Workflo.IPageElementStore, PageElementType extends Workflo.IPageElement, PageElementOptions> extends PageElementList<Store, PageElementType, PageElementOptions> {
+    interface IPageElementList<Store extends Workflo.IPageElementStore, PageElementType extends Workflo.IPageElement<Store>, PageElementOptions> extends PageElementList<Store, PageElementType, PageElementOptions> {
 
     }
 
