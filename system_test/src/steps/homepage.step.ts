@@ -31,13 +31,12 @@ const HomePageSteps = {
         console.log("logo", logo.getText())
         console.log("logo selector", logo.getSelector())
 
-        const list = pages.google.list
+        /*const list = pages.google.list
 
         console.log('list length:', list.getLength())
+        console.log("list selector", list.getSelector())
 
-        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())
-
-        browser.debug()
+        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())*/
       }),
   
 }

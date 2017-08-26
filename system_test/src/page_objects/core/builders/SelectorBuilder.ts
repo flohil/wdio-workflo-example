@@ -69,10 +69,12 @@ class SelectorBuilder {
   }
 
   static build() {
-    return this._selector
+    const selector = this._selector
+    this._selector = undefined
+    return selector
   }
 }
 
 function xpath(selector: string) {
-  return SelectorBuilder.reset('selector')
+  return SelectorBuilder.reset(selector)
 }
