@@ -43,11 +43,13 @@ export class PageElementStore {
     content: Content
   ) {
     return this.getGroup<
+      this,
       Content,
       PageElementGroupWalker<this>,
       IPageElementGroupWalkerOpts,
-      PageElementGroup<Content, PageElementGroupWalker<this>, IPageElementGroupWalkerOpts>,
+      PageElementGroup<this, Content, PageElementGroupWalker<this>, IPageElementGroupWalkerOpts>,
       Pick<IPageElementGroupOpts<
+        this,
         Content, 
         PageElementGroupWalker<this>, 
         IPageElementGroupWalkerOpts
@@ -70,7 +72,7 @@ export class PageElementStore {
    * @param options 
    */
   Element(
-    selector: string,
+    selector: Workflo.Selector,
     options?: Pick<IPageElementOpts<this>, "timeout" | "wait">
   ) {
     return this.get<IPageElementOpts<this>, PageElement<this>>(
@@ -84,7 +86,7 @@ export class PageElementStore {
   } 
 
   ExistElement(
-    selector: string,
+    selector: Workflo.Selector,
     options?: Pick<IPageElementOpts<this>, "timeout">
   ) {
     return this.Element(
@@ -99,7 +101,7 @@ export class PageElementStore {
   // DEFINE YOUR ELEMENT LIST TYPE ACCESSOR FUNCTIONS HERE
 
   ElementList(
-    selector: string, 
+    selector: Workflo.Selector, 
     options?: Pick<
       IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>, 
       "wait" | "timeout" | "elementOptions" | "disableCache" | "identifier"
@@ -120,7 +122,7 @@ export class PageElementStore {
   }
 
   ExistElementList(
-    selector: string, 
+    selector: Workflo.Selector, 
     options?: Pick<
       IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>,
       "timeout" | "elementOptions" | "disableCache" | "identifier"
@@ -154,19 +156,21 @@ export class PageElementStore {
    * @param options 
    */
   protected get<O, T>(
-    selector: string, 
+    selector: Workflo.Selector, 
     type: { new(selector: string, options: O): T }, 
     options: O = Object.create(Object.prototype)
   ) : T {
+    const _selector = (typeof selector === 'string') ? selector : SelectorBuilder.build()
+
     // catch: selector must not contain |
-    if (selector.indexOf('|||') > -1) {
-      throw new Error(`Selector must not contain character sequence '|||': ${selector}`)
+    if (_selector.indexOf('|||') > -1) {
+      throw new Error(`Selector must not contain character sequence '|||': ${_selector}`)
     }
 
-    const id = `${selector}|||${type}|||${options.toString()}`
+    const id = `${_selector}|||${type}|||${options.toString()}`
 
     if(!(id in this.instanceCache)) {
-      const result = new type(selector, options)
+      const result = new type(_selector, options)
       this.instanceCache[id] = result
     }
 
@@ -174,21 +178,24 @@ export class PageElementStore {
   }
 
   protected getGroup<
+    Store extends Workflo.IPageElementStore,
     Content extends {[key: string] : Workflo.PageNode.INode},
-    WalkerType extends Workflo.IPageElementGroupWalker,
+    WalkerType extends Workflo.IPageElementGroupWalker<Store>,
     WalkerOptions extends IPageElementGroupWalkerOpts,
     GroupType extends Workflo.IPageElementGroup<
+      Store,
       Content, 
       WalkerType,
       WalkerOptions
     >,
     GroupOptions extends Pick<IPageElementGroupOpts<
+      Store,
       Content,
       WalkerType,
       WalkerOptions
     >, "content" | "walkerType" | "walkerOptions" >
   > (
-    groupType: { new(options: IPageElementGroupOpts<Content, WalkerType, WalkerOptions>): GroupType },
+    groupType: { new(options: IPageElementGroupOpts<Store, Content, WalkerType, WalkerOptions>): GroupType },
     groupOptions: GroupOptions
   ) : Content & GroupType {
 

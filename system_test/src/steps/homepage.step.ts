@@ -29,6 +29,15 @@ const HomePageSteps = {
         const logo = pages.google.logo
 
         console.log("logo", logo.getText())
+        console.log("logo selector", logo.getSelector())
+
+        const list = pages.google.list
+
+        console.log('list length:', list.getLength())
+
+        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())
+
+        browser.debug()
       }),
   
 }

@@ -1,5 +1,6 @@
 import * as config from '~/config/test_config'
 import { PageNode, IPageNodeOpts } from './'
+import { FirstByBuilder } from '../builders/FirstByBuilder'
 
 export interface IPageElementListIdentifier<
   Store extends Workflo.IPageElementStore,
@@ -35,6 +36,7 @@ export class PageElementList<
   protected type: string
   protected identifier: IPageElementListIdentifier<Store, PageElementType>
   protected identifiedObjCache: {[key: string] : {[key: string] : PageElementType}}
+  protected firstByBuilder: FirstByBuilder<Store, PageElementType, PageElementOptions>
 
   constructor( 
     protected selector: string,
@@ -214,28 +216,8 @@ export class PageElementList<
     return this.listElements.length
   }
 
-  firstByConstraint(selectorConstraint: string) : PageElementType & Store {
-    const selector = `${this.selector}${selectorConstraint}`
-
-    return this.elementStoreFunc.apply(
-      this.store, [ selector, this.elementOptions ]
-    )
-  }
-
-  firstByText( text: string ){
-    return this.firstByConstraint(`[. = '${text}']`)
-  }
-
-  firstByContainedText( text: string ) {
-    return this.firstByConstraint(`[contains(.,'${text}')]`)
-  }
-
-  firstByAttr(key: string, value: string) {
-    return this.firstByConstraint(`[@${key}='${value}']`)
-  }
-
-  firstById( value: string ) {
-    return this.firstByAttr('id', value)
+  firstBy() {
+    return this.firstByBuilder.reset()
   }
 
   // WAIT FUNCTIONS

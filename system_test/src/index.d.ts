@@ -41,11 +41,11 @@ declare global {
 
     }
 
-    interface IPageElementGroup<Content extends {[key: string] : Workflo.PageNode.INode}, WalkerType extends Workflo.IPageElementGroupWalker, WalkerOptions extends Workflo.IPageElementGroupWalkerOpts> extends PageElementGroup<Content, WalkerType, WalkerOptions> {
+    interface IPageElementGroup<Store extends Workflo.IPageElementStore, Content extends {[key: string] : Workflo.PageNode.INode}, WalkerType extends Workflo.IPageElementGroupWalker<Store>, WalkerOptions extends Workflo.IPageElementGroupWalkerOpts> extends PageElementGroup<Store, Content, WalkerType, WalkerOptions> {
 
     }
 
-    interface IPageElementGroupWalker extends PageElementGroupWalker {
+    interface IPageElementGroupWalker<Store extends Workflo.IPageElementStore> extends PageElementGroupWalker<Store> {
 
     }
 
@@ -103,6 +103,8 @@ declare global {
       text = 'text',
       value = 'value'
     }
+
+    type Selector = SelectorBuilder | string
   }
 }
 

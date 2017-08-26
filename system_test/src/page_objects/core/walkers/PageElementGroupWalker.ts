@@ -129,6 +129,7 @@ export class PageElementGroupWalker<Store extends Workflo.IPageElementStore> {
   protected solveGroup<ValueType, ResultType>( 
     problem: Workflo.IProblem<ValueType, ResultType>,
     group: Workflo.IPageElementGroup<
+      Store,
       {[key: string] : Workflo.PageNode.INode},
       this,
       IPageElementGroupWalkerOpts
