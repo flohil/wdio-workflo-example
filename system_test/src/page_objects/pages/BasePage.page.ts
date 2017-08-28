@@ -1,10 +1,11 @@
-import { Page, IPageArgs } from './'
+import { stores, core } from '?/page_objects'
+import * as config from '~/config/testConfig'
 
-export interface IBasePageArgs<Store extends Workflo.IPageElementStore> extends IPageArgs<Store> {
+export interface IBasePageArgs<Store extends Workflo.IPageElementStore> extends core.pages.IPageArgs<Store> {
   basePath: string
 }
 
-export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Store> {
+export class BasePage<Store extends Workflo.IPageElementStore> extends core.pages.Page<Store> {
   protected basePath: string
 
   constructor(args: IBasePageArgs<Store>) {
@@ -17,6 +18,7 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
     return this.elementStore
       .Element(`//body`)
   }
+
   // opens a page at the given url path and waits for it to load
   open(path?) {
     if (typeof path !== 'undefined') {
@@ -36,12 +38,10 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
 
     browser.waitUntil(() => {
       const pageBasePath = browser.getUrl().split('/')[3]
-      return pageBasePath === this.basePath
+      return pageBasePath === this.basePath && this.container.isVisible()
 
-    }, this.config.responseTimeout, `Expected url to match /${this.basePath}`)
+    }, config.timeouts.pageOpen, `Expected url to match /${this.basePath}`)
  
-    this.container
-
     return this
   }
 
@@ -49,7 +49,7 @@ export class BasePage<Store extends Workflo.IPageElementStore> extends Page<Stor
  * Returns true if page is opened at the moment.
  */
   isOpened() {
-    return this.container.exists()
+    return this.container.isVisible()
   }
 
   eventuallyIsOpened(timeout?: number) {

@@ -23,7 +23,7 @@ const HomePageSteps = {
     new ParameterizedStep(params, (): void => {
       browser.getUrl()
     }),
-  "display logo text": 
+  "test chaining functionality": 
     (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
       new ParameterizedStep(params, (): void => {
         const logo = pages.google.logo

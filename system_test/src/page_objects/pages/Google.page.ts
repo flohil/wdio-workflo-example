@@ -1,10 +1,11 @@
+import { BasePage, IBasePageArgs } from './BasePage.page'
 import { stores, core } from '?/page_objects'
 
 export interface IGooglePageArgs {
 
 }
 
-export class GooglePage extends core.pages.BasePage<core.stores.PageElementStore> {
+export class GooglePage extends BasePage<core.stores.PageElementStore> {
 
   constructor(args: IGooglePageArgs = {}) {
     super(Object.assign(args, {basePath: '', elementStore: core.stores.pageElement}))
@@ -12,25 +13,25 @@ export class GooglePage extends core.pages.BasePage<core.stores.PageElementStore
 
   get logoContainer() {
     return this.container.$.Element(
-      core.builders.xpath('//div').id('hplogo')
+      xpath('//div').id('hplogo')
     )
   }
 
   get logo() {
     return this.logoContainer.$.Element(
-      core.builders.xpath('//div').containedClass('logo-subtext').level(1)
+      xpath('//div').containedClass('logo-subtext').level(1)
     )
   }
 
   get list() {
     return this.container.$.ExistElementList(
-      core.builders.xpath('//li').class('gb_Z')
+      xpath('//li').class('gb_Z')
     )
   }
 
   get divList() {
     return this.container.$.ElementList(
-      core.builders.xpath('//div')
+      xpath('//div')
     )
   }
 
@@ -40,7 +41,7 @@ export class GooglePage extends core.pages.BasePage<core.stores.PageElementStore
     return this.elementStore.ElementGroup({
       get logo() {
         return page.logoContainer.$.Element(
-          core.builders.xpath('//div').containedClass('logo-subtext')
+          xpath('//div').containedClass('logo-subtext')
         )
       }
     })

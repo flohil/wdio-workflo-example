@@ -33,5 +33,8 @@ module.exports = {
     issueTrackerPattern: "http://hq.documatrix.com/jira/browse/%s",
     bugTrackerPattern: "https://bugtracker/issue-%s"
   },
-  uidStorePath: `${testDir}/data/uidStore.json`
+  uidStorePath: `${testDir}/data/uidStore.json`,
+  timeouts: {
+    default: 5000
+  }
 }
