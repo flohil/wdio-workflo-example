@@ -43,10 +43,6 @@ const HomePageSteps = {
 
         console.log('logoListElem: ', logoListElem.getSelector())
         console.log('logoListElem: ', logoListElem.getText())
-
-        const firstListElem = divList.firstBy().index(1).get()
-
-        console.log("firstListElem", firstListElem.getSelector())
       }),
   
 }

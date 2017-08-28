@@ -55,15 +55,6 @@ export class XPathBuilder {
     return this
   }
 
-  /**
-   * Starts with 1
-   * @param idx 
-   */
-  index(idx: number) {
-    this._selector = `(${this._selector})[${idx}]`
-    return this
-  }
-
   level(level: number) {
     this._selector = `${this._selector}[${level}]`
     return this

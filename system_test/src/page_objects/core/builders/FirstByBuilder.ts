@@ -68,15 +68,6 @@ export class FirstByBuilder<
     return this
   }
 
-  /**
-   * Starts with 1
-   * @param idx 
-   */
-  index(idx: number) {
-    this.xPathBuilder.index(idx)
-    return this
-  }
-
   level(level: number) {
     this.xPathBuilder.level(level)
     return this

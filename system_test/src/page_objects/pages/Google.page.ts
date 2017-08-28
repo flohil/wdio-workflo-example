@@ -18,7 +18,7 @@ export class GooglePage extends core.pages.BasePage<core.stores.PageElementStore
 
   get logo() {
     return this.logoContainer.$.Element(
-      core.builders.xpath('//div').containedClass('logo-subtext')
+      core.builders.xpath('//div').containedClass('logo-subtext').level(1)
     )
   }
 
