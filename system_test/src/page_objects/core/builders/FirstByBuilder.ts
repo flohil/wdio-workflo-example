@@ -1,3 +1,5 @@
+import { XPathBuilder } from './XPathBuilder'
+
 interface IFirstByBuilderOpts<
   Store extends Workflo.IPageElementStore,   
   PageElementType extends Workflo.IPageElement<Store>,
@@ -19,46 +21,50 @@ export class FirstByBuilder<
   private elementStoreFunc: (selector: string, options: PageElementOptions) => PageElementType
   private elementOptions: PageElementOptions
 
+  private xPathBuilder: XPathBuilder
+
   constructor(selector: string, options: IFirstByBuilderOpts<Store, PageElementType, PageElementOptions>) {
     this.selector = selector
     this.store = options.store
     this.elementStoreFunc = options.elementStoreFunc
     this.elementOptions = options.elementOptions
+
+    this.xPathBuilder = XPathBuilder.getInstance()
   }
 
   reset() {
-    SelectorBuilder.reset(this.selector)
+    this.xPathBuilder.reset(this.selector)
     return this
   }
 
   constraint(constraint: string) {
-    SelectorBuilder.constraint(constraint)
+    this.xPathBuilder.constraint(constraint)
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
   text(text: string) {
-    SelectorBuilder.text(text)
+    this.xPathBuilder.text(text)
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
   containedText(text: string) {
-    SelectorBuilder.containedText(text)
+    this.xPathBuilder.containedText(text)
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
   attr(key: string, value: string) {
-    SelectorBuilder.attr(key, value)
+    this.xPathBuilder.attr(key, value)
     return this
   }
 
   containedAttr(key: string, value: string) {
-    SelectorBuilder.containedAttr(key, value)
+    this.xPathBuilder.containedAttr(key, value)
     return this
   }
 
@@ -67,30 +73,30 @@ export class FirstByBuilder<
    * @param idx 
    */
   index(idx: number) {
-    SelectorBuilder.index(idx)
+    this.xPathBuilder.index(idx)
     return this
   }
 
   level(level: number) {
-    SelectorBuilder.level(level)
+    this.xPathBuilder.level(level)
     return this
   }
 
-  id(selector: string, value: string) {
+  id(value: string) {
     return this.attr('id', value)
   }
 
-  class(selector: string, value: string) {
+  class(value: string) {
     return this.attr('class', value)
   }
 
-  containedClass(selector: string, value: string) {
+  containedClass(value: string) {
     return this.containedAttr('class', value)
   }
 
   get(): PageElementType {
     return this.elementStoreFunc.apply(
-      this.store, [ SelectorBuilder.build(), this.elementOptions ]
+      this.store, [ this.xPathBuilder.build(), this.elementOptions ]
     )
   }
 }

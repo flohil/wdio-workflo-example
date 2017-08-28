@@ -1,43 +1,56 @@
-class SelectorBuilder {
-  private static _selector: string
+export class XPathBuilder {
+  private static instance: XPathBuilder
+  private _selector: string
 
-  static reset(selector: string) {
+  static getInstance() {
+    if (typeof XPathBuilder.instance === 'undefined') {
+      XPathBuilder.instance = new XPathBuilder()
+    }
+
+    return XPathBuilder.instance
+  }
+
+  private SelectorBuilder() {
+    this._selector = ''
+  }
+
+  reset(selector: string) {
     this._selector = selector
     return this
   }
 
-  static append(selector: string) {
+  append(selector: string) {
     this._selector = `${this._selector}${selector}`
     return this
   }
 
-  static constraint(constraint: string) {
+  constraint(constraint: string) {
     this._selector = `${this._selector}[${constraint}]`
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
-  static text(text: string) {
+  text(text: string) {
     this._selector = `${this._selector}[. = '${text}']`
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
-  static containedText(text: string) {
+  containedText(text: string) {
     this._selector = `${this._selector}[contains(.,'${text}')]`
     return this
   }
 
   // Modifies element selector, so use only once for
   // the same element.
-  static attr(key: string, value: string) {
+  attr(key: string, value: string) {
     this._selector = `${this._selector}[@${key}='${value}']`
     return this
   }
 
-  static containedAttr(key: string, value: string) {
+  containedAttr(key: string, value: string) {
     this._selector = `${this._selector}[contains(@${key},'${value}')]`
     return this
   }
@@ -46,35 +59,34 @@ class SelectorBuilder {
    * Starts with 1
    * @param idx 
    */
-  static index(idx: number) {
+  index(idx: number) {
     this._selector = `(${this._selector})[${idx}]`
     return this
   }
 
-  static level(level: number) {
+  level(level: number) {
     this._selector = `${this._selector}[${level}]`
     return this
   }
 
-  static id(value: string) {
+  id(value: string) {
     return this.attr('id', value)
   }
 
-  static class(value: string) {
+  class(value: string) {
     return this.attr('class', value)
   }
 
-  static containedClass(value: string) {
+  containedClass(value: string) {
     return this.containedAttr('class', value)
   }
 
-  static build() {
+  build() {
     const selector = this._selector
-    this._selector = undefined
     return selector
   }
 }
 
-function xpath(selector: string) {
-  return SelectorBuilder.reset(selector)
+export function xpath(selector: string) {
+  return XPathBuilder.getInstance().reset(selector)
 }

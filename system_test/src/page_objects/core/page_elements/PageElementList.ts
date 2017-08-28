@@ -57,6 +57,11 @@ export class PageElementList<
     this.identifier = identifier
     this.identifiedObjCache = {}
 
+    this.firstByBuilder = new FirstByBuilder(this.selector, {
+      store: this.store,
+      elementStoreFunc: this.elementStoreFunc,
+      elementOptions: this.elementOptions
+    })
   }
 
   get _elements() {

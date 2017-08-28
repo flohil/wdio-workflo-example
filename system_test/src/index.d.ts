@@ -4,6 +4,7 @@
 import { PageElementStore } from 'test.page_objects/core/stores'
 import { PageElement, IPageElementOpts as _IPageElementOpts, PageElementList, PageElementGroup } from '?/page_objects/core/page_elements'
 import { PageElementGroupWalker, IPageElementGroupWalkerOpts as _IPageElementGroupWalkerOpts } from '?/page_objects/core/walkers'
+import { XPathBuilder } from '?/page_objects/core/builders'
 import { data } from '../data'
 
 declare global {
@@ -104,7 +105,7 @@ declare global {
       value = 'value'
     }
 
-    type Selector = SelectorBuilder | string
+    type XPath = XPathBuilder | string
   }
 }
 

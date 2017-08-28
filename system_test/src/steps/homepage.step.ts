@@ -31,12 +31,22 @@ const HomePageSteps = {
         console.log("logo", logo.getText())
         console.log("logo selector", logo.getSelector())
 
-        /*const list = pages.google.list
+        const list = pages.google.list
 
         console.log('list length:', list.getLength())
         console.log("list selector", list.getSelector())
 
-        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())*/
+        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())
+      
+        const divList = pages.google.divList
+        const logoListElem = divList.firstBy().containedClass('logo-subtext').get()
+
+        console.log('logoListElem: ', logoListElem.getSelector())
+        console.log('logoListElem: ', logoListElem.getText())
+
+        const firstListElem = divList.firstBy().index(1).get()
+
+        console.log("firstListElem", firstListElem.getSelector())
       }),
   
 }

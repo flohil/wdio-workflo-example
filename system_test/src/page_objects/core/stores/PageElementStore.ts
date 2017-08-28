@@ -11,92 +11,19 @@ import {
   PageElementGroupWalker, IPageElementGroupWalkerOpts
 } from '../walkers'
 
-class SelectorBuilder {
-  private static _selector: string
-
-  static reset(selector: string) {
-    this._selector = selector
-    return this
-  }
-
-  static append(selector: string) {
-    this._selector = `${this._selector}${selector}`
-    return this
-  }
-
-  static constraint(constraint: string) {
-    this._selector = `${this._selector}[${constraint}]`
-    return this
-  }
-
-  // Modifies element selector, so use only once for
-  // the same element.
-  static text(text: string) {
-    this._selector = `${this._selector}[. = '${text}']`
-    return this
-  }
-
-  // Modifies element selector, so use only once for
-  // the same element.
-  static containedText(text: string) {
-    this._selector = `${this._selector}[contains(.,'${text}')]`
-    return this
-  }
-
-  // Modifies element selector, so use only once for
-  // the same element.
-  static attr(key: string, value: string) {
-    this._selector = `${this._selector}[@${key}='${value}']`
-    return this
-  }
-
-  static containedAttr(key: string, value: string) {
-    this._selector = `${this._selector}[contains(@${key},'${value}')]`
-    return this
-  }
-
-  /**
-   * Starts with 1
-   * @param idx 
-   */
-  static index(idx: number) {
-    this._selector = `(${this._selector})[${idx}]`
-    return this
-  }
-
-  static level(level: number) {
-    this._selector = `${this._selector}[${level}]`
-    return this
-  }
-
-  static id(value: string) {
-    return this.attr('id', value)
-  }
-
-  static class(value: string) {
-    return this.attr('class', value)
-  }
-
-  static containedClass(value: string) {
-    return this.containedAttr('class', value)
-  }
-
-  static build() {
-    return this._selector
-  }
-}
-
-function xpath(selector: string) {
-  return SelectorBuilder.reset(selector)
-}
+import {
+  XPathBuilder
+} from '../builders'
 
 // Stores singleton instances of page elements to avoid creating new
 // elements on each invocation of a page element.
 export class PageElementStore {
   protected instanceCache: {[id: string] : any}
+  protected xPathBuilder: XPathBuilder
 
   constructor() {
     this.instanceCache = Object.create(null)
+    this.xPathBuilder = XPathBuilder.getInstance()
   }
 
   // DEFINE YOUR ELEMENT GROUPS HERE
@@ -151,16 +78,9 @@ export class PageElementStore {
    * @param options 
    */
   Element(
-    selector: Workflo.Selector,
+    selector: Workflo.XPath,
     options?: Pick<IPageElementOpts<this>, "timeout" | "wait">
   ) {
-    const res = SelectorBuilder.build()
-    if (typeof SelectorBuilder.build() !== 'undefined') {
-      console.log("builder: ", res)
-    } else {
-      console.log("string: ", selector)
-    }
-
     return this.get<IPageElementOpts<this>, PageElement<this>>(
       selector,
       PageElement,
@@ -172,7 +92,7 @@ export class PageElementStore {
   } 
 
   ExistElement(
-    selector: Workflo.Selector,
+    selector: Workflo.XPath,
     options?: Pick<IPageElementOpts<this>, "timeout">
   ) {
     return this.Element(
@@ -187,7 +107,7 @@ export class PageElementStore {
   // DEFINE YOUR ELEMENT LIST TYPE ACCESSOR FUNCTIONS HERE
 
   ElementList(
-    selector: Workflo.Selector, 
+    selector: Workflo.XPath, 
     options?: Pick<
       IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>, 
       "wait" | "timeout" | "elementOptions" | "disableCache" | "identifier"
@@ -208,7 +128,7 @@ export class PageElementStore {
   }
 
   ExistElementList(
-    selector: Workflo.Selector, 
+    selector: Workflo.XPath, 
     options?: Pick<
       IPageElementListOpts<this, PageElement<this>, IPageElementOpts<this>>,
       "timeout" | "elementOptions" | "disableCache" | "identifier"
@@ -242,11 +162,11 @@ export class PageElementStore {
    * @param options 
    */
   protected get<O, T>(
-    selector: Workflo.Selector, 
+    selector: Workflo.XPath, 
     type: { new(selector: string, options: O): T }, 
     options: O = Object.create(Object.prototype)
   ) : T {
-    const _selector = (typeof selector === 'string') ? selector : SelectorBuilder.build()
+    const _selector = (selector instanceof XPathBuilder) ? this.xPathBuilder.build() : selector
 
     // catch: selector must not contain |
     if (_selector.indexOf('|||') > -1) {

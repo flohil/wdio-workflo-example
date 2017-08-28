@@ -1,4 +1,5 @@
 import { PageNode, IPageNodeOpts } from './'
+import { XPathBuilder } from '../builders'
 import * as htmlParser from 'htmlparser2'
 import * as config from '~/config/test_config'
 
@@ -23,7 +24,11 @@ export class PageElement<Store extends Workflo.IPageElementStore> extends PageNo
 
     for ( const method of Workflo.Class.getAllMethods(this.store) ) {
       if ( method.indexOf('_') !== 0 && /^[A-Z]/.test( method ) ) {
-        this._$[ method ] = ( _selector, _options ) => {
+        this._$[ method ] = <Options extends IPageElementOpts<Store>>( _selector: Workflo.XPath, _options: Options) => {
+
+          if (_selector instanceof XPathBuilder) {
+            _selector = XPathBuilder.getInstance().build()
+          }
 
           // chain selectors
           _selector = `${selector}${_selector}`
