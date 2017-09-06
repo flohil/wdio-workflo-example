@@ -27,7 +27,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid wdio-workflo-example@0.0.1
 16 verbose cwd /home/fh0045/workflo/wdio-workflo-example
-17 error Linux 4.4.0-92-generic
+17 error Linux 4.4.0-93-generic
 18 error argv "/home/fh0045/.nvm/versions/node/v6.11.0/bin/node" "/home/fh0045/.nvm/versions/node/v6.11.0/bin/npm" "run" "test"
 19 error node v6.11.0
 20 error npm  v3.10.10

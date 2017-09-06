@@ -1,0 +1,72 @@
+module.exports = [
+  {
+    "id": 1,
+    "created_at": "2017-08-11 13:05:40",
+    "updated_at": "2017-08-11 13:05:40",
+    "basic_type": 1,
+    "name_id": 4,
+    "status": 0,
+    "user_deleted": null,
+    "condition_code": "NULL",
+    "error_message_id": 5,
+    "intern_name": "text",
+    "convert": "NULL",
+    "description_id": 6
+  },
+  {
+    "id": 2,
+    "created_at": "2017-08-11 13:05:40",
+    "updated_at": "2017-08-11 13:05:40",
+    "basic_type": 5,
+    "name_id": 7,
+    "status": 0,
+    "user_deleted": null,
+    "condition_code": "NULL",
+    "error_message_id": 8,
+    "intern_name": "zeitpunkt",
+    "convert": "NULL",
+    "description_id": 9
+  },
+  {
+    "id": 3,
+    "created_at": "2017-08-11 13:05:40",
+    "updated_at": "2017-08-11 13:05:40",
+    "basic_type": 4,
+    "name_id": 10,
+    "status": 0,
+    "user_deleted": null,
+    "condition_code": "NULL",
+    "error_message_id": 11,
+    "intern_name": "fixnum",
+    "convert": "NULL",
+    "description_id": 12
+  },
+  {
+    "id": 4,
+    "created_at": "2017-08-11 13:05:52",
+    "updated_at": "2017-08-11 13:05:52",
+    "basic_type": 3,
+    "name_id": 161,
+    "status": 0,
+    "user_deleted": null,
+    "condition_code": "NULL",
+    "error_message_id": 163,
+    "intern_name": "float",
+    "convert": "NULL",
+    "description_id": 162
+  },
+  {
+    "id": 5,
+    "created_at": "2017-08-11 13:05:52",
+    "updated_at": "2017-08-11 13:05:52",
+    "basic_type": 5,
+    "name_id": 164,
+    "status": 0,
+    "user_deleted": null,
+    "condition_code": "NULL",
+    "error_message_id": 166,
+    "intern_name": "datetime",
+    "convert": "NULL",
+    "description_id": 165
+  }
+]
