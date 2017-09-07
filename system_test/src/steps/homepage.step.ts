@@ -44,6 +44,7 @@ const HomePageSteps = {
             logoList: {
               austria: false
             },
+            anoLogoList: true,
             logoMap: {
               logo: false,
               logo2: true
@@ -71,6 +72,7 @@ const HomePageSteps = {
 
         console.log(pages.google.input.getText())
 
+        console.log('\nbreakpoint: type ".exit" in console to continue\n')
         browser.debug()
 
         pages.google.input.setValue('Google')
@@ -82,10 +84,14 @@ const HomePageSteps = {
             },
             inputList: {
               "search": "Hallo du"
+            },
+            anoInputList: {
+              '0': "index"
             }
           }
         })
 
+        console.log('\nbreakpoint: type ".exit" in console to continue\n')
         browser.debug()
       }),
 }

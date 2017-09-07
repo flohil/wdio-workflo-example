@@ -35,9 +35,15 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
     )
   }
 
+  get anoLogoList() {
+    return this.container.$.ElementList(
+      xpath('//div').containedClass('logo-subtext')
+    )
+  }
+
   get logoList() {
     return this.container.$.ElementList(
-      xpath('//div').containedClass('logo-subtext'),
+      xpath('//div').containedClass('logo-sub'),
       {
         identifier: {
           mappingObject: {
@@ -75,6 +81,9 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
       get logoList() {
         return page.logoList
       },
+      get anoLogoList() {
+        return page.anoLogoList
+      },
       get logoMap() {
         return page.divMap
       },
@@ -92,8 +101,15 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
           search: 'Suche',
         },
         func: (element) => element.getAttribute('title')
+      },
+      elementOptions: {
+        timeout: 13000
       }
     })
+  }
+
+  get anoInputList() {
+    return this.container.$.InputList(xpath('//input').attr('type', 'text').attr('title', 'Suche'))
   }
 
   get inputMap() {
@@ -122,6 +138,9 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
       },
       get inputList() {
         return page.inputList
+      },
+      get anoInputList() {
+        return page.anoInputList
       }
     })
   }

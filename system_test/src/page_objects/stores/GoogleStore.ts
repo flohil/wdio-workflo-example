@@ -18,20 +18,17 @@ export class GoogleStore extends core.stores.PageElementStore {
 
   InputList(
     selector: Workflo.XPath, 
-    options?: Pick<
-      core.elements.IPageElementListOpts<this, Input<this>, IInputOpts<this>>, 
-      "wait" | "timeout" | "elementOptions" | "disableCache" | "identifier"
+    options?: PickPartial<
+      core.elements.IPageElementListOpts<this, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'wait'>>, 
+      "wait" | "timeout" | "disableCache" | "identifier",
+      "elementOptions"
     >
   ) {
-    return this.get<
-      core.elements.IPageElementListOpts<this, Input<this>, IInputOpts<this>>,
-      core.elements.PageElementList<this, Input<this>, IInputOpts<this>>
-    > (
+    return this.List(
       selector,
-      core.elements.PageElementList,
       {
-        store: this,
         elementStoreFunc: this.Input,
+        elementOptions: {},
         ...options
       }
     )
@@ -39,23 +36,19 @@ export class GoogleStore extends core.stores.PageElementStore {
 
   InputMap<K extends string>(
     selector: Workflo.XPath,
-    options: Pick<
-      core.elements.IPageElementMapOpts<this, K, Input<this>, IInputOpts<this>>, 
-      "elementOptions" | "identifier"
+    options: PickPartial<
+      core.elements.IPageElementMapOpts<this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'wait'>>, 
+      "identifier",
+      "elementOptions"
     >
   ) {
-    return this.get<
-      core.elements.IPageElementMapOpts<this, K, Input<this>, IInputOpts<this>>, 
-      core.elements.PageElementMap<this, K, Input<this>, IInputOpts<this>>
-    > (
+    return this.Map(
       selector,
-      core.elements.PageElementMap,
       {
-        store: this,
         elementStoreFunc: this.Input,
+        elementOptions: {},
         ...options
       }
     )
   }
-
 }

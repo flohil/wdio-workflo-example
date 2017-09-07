@@ -1,11 +1,11 @@
 import { stores, core } from '?/page_objects'
 import * as config from '~/config/testConfig'
 
-export interface IBasePageArgs<Store extends Workflo.IPageElementStore> extends core.pages.IPageArgs<Store> {
+export interface IBasePageArgs<Store extends core.stores.PageElementStore> extends core.pages.IPageArgs<Store> {
   basePath: string
 }
 
-export class BasePage<Store extends Workflo.IPageElementStore> extends core.pages.Page<Store> {
+export class BasePage<Store extends core.stores.PageElementStore> extends core.pages.Page<Store> {
   protected basePath: string
 
   constructor(args: IBasePageArgs<Store>) {
