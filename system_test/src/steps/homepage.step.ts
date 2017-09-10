@@ -72,9 +72,6 @@ const HomePageSteps = {
 
         console.log(pages.google.input.getText())
 
-        console.log('\nbreakpoint: type ".exit" in console to continue\n')
-        browser.debug()
-
         pages.google.input.setValue('Google')
         pages.google.inputGroup.SetValue({
           values: {
@@ -90,9 +87,6 @@ const HomePageSteps = {
             }
           }
         })
-
-        console.log('\nbreakpoint: type ".exit" in console to continue\n')
-        browser.debug()
       }),
 }
 
