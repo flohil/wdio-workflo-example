@@ -42,6 +42,13 @@ suite("Homepage Suite 2", {}, () => {
 })
 
 suite("Chaining Suite", {}, () => {
+  suite("sub suite", {}, () => {
+    suite("sub sub suite", {}, () => {
+      testcase("test subs", {}, () => {
+        
+      })
+    })
+  })
   testcase("test chaining", {}, () => {
     given(steps["open homepage"]())
     .when(steps["test chaining functionality"]())
