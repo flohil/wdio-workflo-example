@@ -21,6 +21,9 @@ Feature("Homepage", {}, () => {
       })
     })
   })
+})
+
+Feature("Story", {}, () => {
   Story("4.4", "Another story", {}, () => {
     Given("a user opens the google homepage", () => {
       When("the user observes the page title", () => {

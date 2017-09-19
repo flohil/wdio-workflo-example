@@ -1,4 +1,4 @@
-Feature("Homepage", {featureProp: 1}, () => {
+Feature("Test", {featureProp: 1}, () => {
   Story("7.7", "Display correct title", {severity: 'critical'}, () => {
     Given("a user opens the google homepage", () => {
       When("the user observes the page title", () => {
