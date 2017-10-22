@@ -1,9 +1,9 @@
-const testDir = __dirname + '/testDir'
+const testDir = __dirname + '/system_test'
 
 module.exports = {
   testDir: testDir,
   logLevel: 'verbose',
-  baseUrl: 'http://webdriver.io', // replace with anna base url
+  baseUrl: 'http://www.google.com/',
   windowSize: {
     width: 1280,
     height: 800
@@ -13,28 +13,30 @@ module.exports = {
     port: 4444
   },
   selenium: {
-    version: '2.53.1',
+    version: '3.4.0',
     baseURL: 'http://selenium-release.storage.googleapis.com'
   },
   capabilities: {
     maxInstances: 1,
     browserName: 'chrome',
     requireWindowFocus: true,
-    nativeEvents: true,    
+    nativeEvents: true,
     unexpectedAlertBehaviour: "accept",
     ignoreProtectedModeSettings: true,
     "disable-popup-blocking": true,
     enablePersistentHover: true,
   },
-  specs: [ `${testDir}/src/specs/**/*.spec.ts` ],
-  testcases: [ `${testDir}/src/testcases/**/*.tc.ts` ],
-  manualTestcaseFiles: [ `${testDir}/src/manualTestcases/**/*.man.ts` ],
+  specFiles: [ `${testDir}/src/specs/**/*.spec.ts` ],
+  testcaseFiles: [ `${testDir}/src/testcases/**/*.tc.ts` ],
+  manualResultFiles: [ `${testDir}/src/manualResults/**/*.man.ts` ],
+  uidStorePath: "",
   allure: {
-    issueTrackerPattern: "http://hq.documatrix.com/jira/browse/%s",
-    bugTrackerPattern: "https://bugtracker/issue-%s"
+    issueTrackerPattern: "http://issueTracker/issue-%s",
+    bugAppendix: "#bug", // will be appended to issue url to identify it as bug in report
+    bugPrefix: "" // will be appended to issue url to identify it as bug in report
   },
-  uidStorePath: `${testDir}/data/uidStore.json`,
   timeouts: {
     default: 5000
-  }
+  },
+  reportErrorsInstantly: false
 }
