@@ -6,7 +6,7 @@ suite("Homepage Suite", {}, () => {
     given(steps["open homepage"]())
     .when(steps["get title"]({
       cb: (title) => {
-        verify({"1.2": [1]}, () => {
+        validate({"1.2": [1]}, () => {
           expect(3).toBe(2)
           expect(4).toBe(2)
         })
@@ -15,7 +15,7 @@ suite("Homepage Suite", {}, () => {
     .and(steps["success"]())
     .and(steps["failure"]({
       cb: () => {
-        verify({"2.2": [1]}, () => {
+        validate({"2.2": [1]}, () => {
           expect("asdf").toBe("aaaa")
         })
       }
@@ -25,7 +25,7 @@ suite("Homepage Suite", {}, () => {
     given(steps["open homepage"]())
     .when(steps["get title"]({
       cb: (title) => {
-        verify({"1.1": [1]}, () => {
+        validate({"1.1": [1]}, () => {
           expect(title).toEqual("Google")
         })
       }

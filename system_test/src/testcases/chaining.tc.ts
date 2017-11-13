@@ -7,7 +7,7 @@ suite("Chaining Suite", {}, () => {
         given(steps["open homepage"]())
         .when(steps["test chaining functionality"]({
           cb: () => {
-            verify({'7.7': [1]}, () => {
+            validate({'7.7': [1]}, () => {
               expect(true).toBe(true)
             })
           }
@@ -19,7 +19,7 @@ suite("Chaining Suite", {}, () => {
     given(steps["open homepage"]())
     .when(steps["test chaining functionality"]({
       cb: () => {
-        verify({'7.7': [1]}, () => {
+        validate({'7.7': [1]}, () => {
           expect(true).toBe(true)
         })
       }
