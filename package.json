@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
   "devDependencies": {
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "wdio-workflo": "0.0.255"
   },
   "dependencies": {
     "allure-commandline": "^2.7.0",
@@ -29,7 +30,6 @@
     "htmlparser2": "^3.9.2",
     "selenium-standalone": "^6.15.1",
     "supports-color": "^5.4.0",
-    "typescript": "3.0.1",
-    "wdio-workflo": "0.0.254"
+    "typescript": "3.0.1"
   }
 }

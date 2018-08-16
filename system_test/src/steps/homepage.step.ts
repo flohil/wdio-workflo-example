@@ -43,6 +43,14 @@ const HomePageSteps = {
   (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
     new ParameterizedStep(params, (): void => {
     }),
+  "broken step":
+  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, (): void => {
+      // const el = core.stores.pageElement.Element('//div[@id="asdf"]')
+      // el.click()
+
+      pages.google.selectNonExisting()
+    }),
   "test chaining functionality":
     (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
       new ParameterizedStep(params, (): void => {

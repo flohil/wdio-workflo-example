@@ -122,6 +122,20 @@ suite("TSuite", {}, () => {
       }
     }))
   })
+  testcase("middle fail", {}, () => {
+    given(steps["successful step"]())
+    .when(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["successful step"]())
+    .and(steps["broken step"]())
+    .and(steps["successful step"]())
+  })
 })
 
 suite("Supertest Suite", {}, () => {

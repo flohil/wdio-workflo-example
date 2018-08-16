@@ -11,6 +11,36 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
     super(Object.assign(args, {basePath: '', elementStore: stores.google}))
   }
 
+  get nonExistingDiv() {
+    return this.container.$.Element(
+      xpath('//div').id('asdf')
+    )
+  }
+
+  selectNonExisting() {
+    this.selectNonExisting1()
+  }
+
+  selectNonExisting1() {
+    this.selectNonExisting2()
+  }
+
+  selectNonExisting2() {
+    this.selectNonExisting3()
+  }
+
+  selectNonExisting3() {
+    this.selectNonExisting4()
+  }
+
+  selectNonExisting4() {
+    this.selectNonExisting5()
+  }
+
+  selectNonExisting5() {
+    this.nonExistingDiv.click()
+  }
+
   get logoContainer() {
     return this.container.$.Element(
       xpath('//div').id('hplogo')
@@ -48,7 +78,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
         identifier: {
           mappingObject: {
             "austria": "Österreich"
-          }, 
+          },
           func: (element) => element.getText()
         }
       }
