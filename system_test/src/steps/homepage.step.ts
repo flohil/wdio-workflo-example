@@ -7,6 +7,7 @@ const HomePageSteps = {
   (params: IStepArgs<{url: string}, void>): IParameterizedStep =>
     new ParameterizedStep(params, ({url}): void => {
       browser.url(url)
+      browser.pause(2000)
     }),
   "open homepage":
   (params?: IOptStepArgs<{}, void>): IParameterizedStep =>

@@ -30,6 +30,6 @@
     "selenium-standalone": "^6.15.1",
     "supports-color": "^5.4.0",
     "typescript": "3.0.1",
-    "wdio-workflo": "0.0.253"
+    "wdio-workflo": "0.0.254"
   }
 }

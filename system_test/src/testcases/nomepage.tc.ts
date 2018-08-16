@@ -2,17 +2,9 @@ import steps from '?/steps'
 import { pages, stores } from '?/page_objects'
 
 suite("TSuite", {}, () => {
-  testcase("passing", {}, () => {
-    given(steps["successful step"]({
-      cb: () => {
-        validate({"2.2": [1]}, () => {
-          expect(1).toBe(1)
-        })
-      }
-    }))
-  })
   testcase("multiple", {}, () => {
-    given(steps["successful step"]({
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
       cb: () => {
         validate({"2.1": [1]}, () => {
           expect(1).toBe(2)
@@ -44,6 +36,16 @@ suite("TSuite", {}, () => {
       cb: () => {
         validate({"1.1": [1]}, () => {
           expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("passing", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect(1).toBe(1)
         })
       }
     }))
