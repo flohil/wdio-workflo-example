@@ -3,12 +3,17 @@ import steps from '?/steps'
 import { core, pages } from '?/page_objects'
 
 const HomePageSteps = {
-  "open homepage": 
+  "open url %{url}":
+  (params: IStepArgs<{url: string}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, ({url}): void => {
+      browser.url(url)
+    }),
+  "open homepage":
   (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
     new ParameterizedStep(params, (): void => {
       browser.url('/')
     }),
-  "get title": 
+  "get title":
   (params?: IOptStepArgs<{}, string>): IParameterizedStep =>
     new ParameterizedStep(params, (): string => {
       return browser.getTitle()
@@ -23,7 +28,21 @@ const HomePageSteps = {
     new ParameterizedStep(params, (): void => {
       browser.getUrl()
     }),
-  "test chaining functionality": 
+  "google %{term}":
+  (params?: IStepArgs<{term: string}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, ({term}): void => {
+      pages.google.input.setValue(term)
+      browser.buttonDown()
+    }),
+  "successful step":
+  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, (): void => {
+    }),
+  "failing step":
+  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
+    new ParameterizedStep(params, (): void => {
+    }),
+  "test chaining functionality":
     (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
       new ParameterizedStep(params, (): void => {
         const logo = pages.google.logo
@@ -58,7 +77,7 @@ const HomePageSteps = {
           logoList: true,
           logoMap: true
         }})) */
-      
+
         const divList = pages.google.divList
         const logoListElem = divList.firstBy().containedClass('logo-subtext').get()
 

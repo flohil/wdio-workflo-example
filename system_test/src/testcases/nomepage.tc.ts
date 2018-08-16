@@ -1,0 +1,271 @@
+import steps from '?/steps'
+import { pages, stores } from '?/page_objects'
+
+suite("TSuite", {}, () => {
+  testcase("passing", {}, () => {
+    given(steps["successful step"]({
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect(1).toBe(1)
+        })
+      }
+    }))
+  })
+  testcase("multiple", {}, () => {
+    given(steps["successful step"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          expect(1).toBe(2)
+        })
+      }
+    }))
+    .when(steps["successful step"]({
+      cb: () => {
+        validate({"2.1": [2]}, () => {
+          expect(1).toBe(2)
+        })
+
+        validate({"2.1": [1]}, () => {
+          expect(3).toBe(2)
+          expect(4).toBe(2)
+
+          browser.getText('//asdf')
+        })
+
+        validate({"2.2": [1]}, () => {
+          expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("not implemented", {}, () => {
+    given(steps["open url %{url} asdf"]({
+      arg: {url: '/'},
+      cb: () => {
+        validate({"1.1": [1]}, () => {
+          expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("broken", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        browser.getText('//div[@id="asdf"]')
+
+        validate({"1.1": [1]}, () => {
+          expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("failed", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("broken in validate", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        validate({"1.2": [2]}, () => {
+          browser.getText('//div[@id="asdf"]')
+          expect(1).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("typeerror", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        this.something.getInfo()
+
+        validate({"1.2": [2]}, () => {
+          expect(1).toBe(1)
+        })
+      }
+    }))
+  })
+  testcase("typeerror broken", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+
+        validate({"1.2": [2]}, () => {
+          this.something.getInfo()
+
+          expect(1).toBe(1)
+        })
+      }
+    }))
+  })
+  testcase("waituntil", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'},
+      cb: () => {
+        browser.waitUntil(() => {
+          return browser.getText('//div[@id="asdf"]') === "jodel"
+        })
+
+        validate({"1.2": [2]}, () => {
+          expect(1).toBe(1)
+        })
+      }
+    }))
+  })
+})
+
+suite("Supertest Suite", {}, () => {
+  testcase("middle fail", {}, () => {
+    given(steps["successful step"]())
+    .when(steps["successful step"]())
+    .and(steps["failing step"]())
+    .and(steps["successful step"]())
+  })
+  testcase("test", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        // browser.getText('//div[@id="asasdf"]')
+
+        validate({"1.2": [1]}, () => {
+          expect(3).toBe(2)
+        })
+      }
+    }))
+  })
+  testcase("test 2", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        // browser.getText('//div[@id="asasdf"]')
+
+        validate({"1.2": [2]}, () => {
+          expect(browser.getText('//div[@id="asasdf"]')).toBe("asdf")
+        })
+      }
+    }))
+  })
+})
+
+suite("Homepage Suite", {}, () => {
+  testcase("visit homepage", {bugs: ['KBCPP-5'], severity: "blocker"}, () => {
+    given(steps["open homepage"]())
+    .when(steps["get title"]({
+      cb: (title) => {
+        validate({"1.2": [1]}, () => {
+          expect(3).toBe(2)
+          expect(4).toBe(2)
+        })
+      }
+    }))
+    .and(steps["success"]())
+    .and(steps["failure"]({
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
+        })
+      }
+    }))
+  })
+  testcase("google something", {bugs: ['KBCPP-55']}, () => {
+    given(steps["open homepage"]())
+    .when(steps["google %{term}"]({
+      arg: {term: "Webdriverio"},
+      cb: () => {
+        browser.debug()
+      }
+    }))
+  })
+  testcase("wait", {bugs: ['KBCPP-66']}, () => {
+    given(steps["open homepage"]())
+    .when(steps["google %{term}"]({
+      arg: {term: "Webdriverio"},
+      cb: () => {
+        pages.google.container.waitHidden()
+
+        validate({"2.2": [1]}, () => {
+          expect(true).toBe(true)
+        })
+      }
+    }))
+  })
+  testcase("visit homepage other", {bugs: ['KBCPP-5'], severity: "blocker"}, () => {
+    given(steps["open homepage"]())
+    .when(steps["get title"]({
+      cb: (title) => {
+        validate({"1.1": [1]}, () => {
+          expect(title).toEqual("Google")
+        })
+      }
+    }))
+  })
+})
+
+suite("Hidden Click Suite", {}, () => {
+  testcase("click unclickable element", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        console.log(getUid('test'))
+
+        const elem = stores.google.ExistElement(xpath('//input').id('Name'))
+        const link = stores.google.ExistElement(xpath('//a').text('Startseite'))
+        browser.scroll(elem.getSelector())
+
+        elem.click()
+      }
+    }))
+  })
+})
+
+suite("Failed Suite", {}, () => {
+  testcase("visit homepage", {bugs: ['KBCPP-5'], severity: "blocker"}, () => {
+    given(steps["open homepage"]())
+    .when(steps["failure"]({
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
+        })
+      }
+    }))
+  })
+  testcase("wait", {bugs: ['KBCPP-66']}, () => {
+    given(steps["open homepage"]())
+    .when(steps["google %{term}"]({
+      arg: {term: "Webdriverio"},
+      cb: () => {
+        pages.google.container.waitHidden()
+        validate({"1.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
+        })
+      }
+    }))
+  })
+  testcase("visit homepage 2", {bugs: ['KBCPP-5'], severity: "blocker"}, () => {
+    given(steps["open homepage"]())
+    .when(steps["failure"]({
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
+        })
+      }
+    }))
+  })
+  testcase("wait 2", {bugs: ['KBCPP-66']}, () => {
+    given(steps["open homepage"]())
+    .when(steps["google %{term}"]({
+      arg: {term: "Webdriverio"},
+      cb: () => {
+        pages.google.container.waitHidden()
+        validate({"1.2": [1]}, () => {
+          expect("asdf").toBe("aaaa")
+        })
+      }
+    }))
+  })
+})

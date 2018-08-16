@@ -21,4 +21,12 @@ Feature("Homepage", {}, () => {
       })
     })
   })
+  Story("2.1", "another story", {}, () => {
+    Given("a user opens the google homepage", () => {
+      When("the user observes the page title", () => {
+        Then(1, "This spec is ok")
+        Then(2, "This spec is also ok")
+      })
+    })
+  })
 })
