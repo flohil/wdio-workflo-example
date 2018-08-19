@@ -66,7 +66,7 @@ suite("TSuite", {}, () => {
     given(steps["open url %{url}"]({
       arg: {url: '/'},
       cb: () => {
-        validate({"1.2": [1]}, () => {
+        validate({"1.2": [1, 2]}, () => {
           expect(1).toBe(2)
         })
       }
