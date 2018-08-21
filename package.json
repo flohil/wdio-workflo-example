@@ -22,7 +22,7 @@
   "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
   "devDependencies": {
     "path": "^0.12.7",
-    "wdio-workflo": "0.0.257"
+    "wdio-workflo": "0.0.259"
   },
   "dependencies": {
     "allure-commandline": "^2.7.0",

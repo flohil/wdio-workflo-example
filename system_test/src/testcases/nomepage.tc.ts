@@ -113,7 +113,7 @@ suite("TSuite", {}, () => {
       arg: {url: '/'},
       cb: () => {
         browser.waitUntil(() => {
-          return browser.getText('//div[@id="asdf"]') === "jodel"
+          return browser.getText('//body') === "jodel"
         })
 
         validate({"1.2": [2]}, () => {
