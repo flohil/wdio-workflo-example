@@ -1,7 +1,69 @@
 import steps from '?/steps'
 import { pages, stores } from '?/page_objects'
+import {pageObjects} from 'wdio-workflo'
+
+const customMatchers : jasmine.CustomMatcherFactories = {
+  toExist: (util: jasmine.MatchersUtil, customEqualityTesters: Array<jasmine.CustomEqualityTester>) => {
+      return {
+          compare: (actual: pageObjects.elements.PageElement<pageObjects.stores.PageElementStore>): jasmine.CustomMatcherResult => {
+
+              let result: jasmine.CustomMatcherResult = {
+                  pass: false,
+                  message: `${actual.constructor.name} does not exist: ${actual.getSelector()}`
+              };
+
+              if(actual.exists()) {
+                  result.pass = true;
+                  result.message = `${actual.constructor.name} exists: ${actual.getSelector()}`;
+              }
+
+              return result;
+          }
+      }
+  }
+};
+
+suite("Matchers", {}, () => {
+
+  beforeEach(function() {
+    jasmine.addMatchers(customMatchers);
+  });
+
+  testcase("test", {}, () => {
+    given(steps["successful step"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          (<any> expect)(pages.google.nonExistingDiv).toExist()
+        })
+      }
+    }))
+  })
+})
 
 suite("TSuite", {}, () => {
+  testcase("arrows", {}, () => {
+    given(steps["open url %{url}"]({
+      arg: {url: '/'}
+    }))
+    .when(steps["successful step"]({
+      cb: () => {
+        validate({"2.1": [2]}, () => {
+          expect(1).toBe(2)
+        })
+
+        validate({"2.2": [1]}, () => {
+          expect(3).toBe(3)
+        })
+      }
+    }))
+    .and(steps["successful step"]({
+      cb: () => {
+        validate({"2.2": [1]}, () => {
+          expect(4).toBe(4)
+        })
+      }
+    }))
+  })
   testcase("multiple", {}, () => {
     given(steps["open url %{url}"]({
       arg: {url: '/'},
