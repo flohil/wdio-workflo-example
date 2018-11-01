@@ -53,6 +53,6 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
   }
 
   eventuallyIsOpened(timeout?: number) {
-    return this.container.eventuallyIsVisible({timeout: timeout})
+    return this.container.eventually.isVisible({timeout: timeout})
   }
 }

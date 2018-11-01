@@ -4,7 +4,7 @@ import { Input, IInputOpts } from '../page_elements'
 export class GoogleStore extends core.stores.PageElementStore {
   Input(
     selector: Workflo.XPath,
-    options?: Pick<IInputOpts<this>, 'timeout' | 'wait'>
+    options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
   ) {
     return this.get<Input<this>, IInputOpts<this>>(
       selector,
@@ -17,10 +17,10 @@ export class GoogleStore extends core.stores.PageElementStore {
   }
 
   InputList(
-    selector: Workflo.XPath, 
+    selector: Workflo.XPath,
     options?: PickPartial<
-      core.elements.IPageElementListOpts<this, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'wait'>>, 
-      "wait" | "timeout" | "disableCache" | "identifier",
+      core.elements.IPageElementListOpts<this, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>>,
+      "waitType" | "timeout" | "disableCache" | "identifier",
       "elementOptions"
     >
   ) {
@@ -37,7 +37,7 @@ export class GoogleStore extends core.stores.PageElementStore {
   InputMap<K extends string>(
     selector: Workflo.XPath,
     options: PickPartial<
-      core.elements.IPageElementMapOpts<this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'wait'>>, 
+      core.elements.IPageElementMapOpts<this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>>,
       "identifier",
       "elementOptions"
     >

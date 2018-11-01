@@ -17,6 +17,12 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
     )
   }
 
+  get nonExistingDivList() {
+    return this.container.$.ElementList(
+      xpath('//div').id('asdf')
+    )
+  }
+
   selectNonExisting() {
     this.selectNonExisting1()
   }

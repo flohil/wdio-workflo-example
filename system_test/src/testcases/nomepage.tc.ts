@@ -2,38 +2,47 @@ import steps from '?/steps'
 import { pages, stores } from '?/page_objects'
 import {pageObjects} from 'wdio-workflo'
 
-const customMatchers : jasmine.CustomMatcherFactories = {
-  toExist: (util: jasmine.MatchersUtil, customEqualityTesters: Array<jasmine.CustomEqualityTester>) => {
-      return {
-          compare: (actual: pageObjects.elements.PageElement<pageObjects.stores.PageElementStore>): jasmine.CustomMatcherResult => {
-
-              let result: jasmine.CustomMatcherResult = {
-                  pass: false,
-                  message: `${actual.constructor.name} does not exist: ${actual.getSelector()}`
-              };
-
-              if(actual.exists()) {
-                  result.pass = true;
-                  result.message = `${actual.constructor.name} exists: ${actual.getSelector()}`;
-              }
-
-              return result;
-          }
-      }
-  }
-};
-
 suite("Matchers", {}, () => {
-
-  beforeEach(function() {
-    jasmine.addMatchers(customMatchers);
-  });
-
   testcase("test", {}, () => {
-    given(steps["successful step"]({
+    given(steps["open homepage"]({
       cb: () => {
         validate({"2.1": [1]}, () => {
-          (<any> expect)(pages.google.nonExistingDiv).toExist()
+          expect(1).toBe(2)
+          expectElement(pages.google.nonExistingDiv).toExist()
+          expectElement(pages.google.nonExistingDiv).toBeVisible()
+          expectElement(pages.google.container).toBeHidden()
+          expectElement(pages.google.container).toBeEnabled()
+          expectElement(pages.google.container).toBeDisabled()
+          expectElement(pages.google.container).toBeSelected()
+          expectElement(pages.google.container).toHaveText()
+          expectElement(pages.google.container).toContainText()
+          expectElement(pages.google.container).toHaveText("gurgel")
+          expectElement(pages.google.container).toContainText("gurg")
+
+          expect(2).not.toBe(2)
+
+          expectElement(pages.google.container).not.toExist()
+          expectElement(pages.google.container).not.toBeVisible()
+          expectElement(pages.google.nonExistingDiv).not.toBeHidden()
+          expectElement(pages.google.container).not.toBeEnabled()
+          expectElement(pages.google.container).not.toBeDisabled()
+          expectElement(pages.google.container).not.toBeSelected()
+          expectElement(pages.google.container).not.toHaveText("")
+          expectElement(pages.google.container).not.toContainText("oogle")
+          expectElement(pages.google.container).not.toHaveText("gurgel")
+          expectElement(pages.google.container).not.toContainText("gurg")
+
+          pages.google.input.waitVisible()
+
+          expectElement(pages.google.input).toHaveValue()
+          expectElement(pages.google.input).toContainValue()
+          expectElement(pages.google.input).toHaveValue("gurgel")
+          expectElement(pages.google.input).toContainValue("gurg")
+
+          expectElement(pages.google.input).not.toHaveValue("")
+          expectElement(pages.google.input).not.toContainValue("")
+          expectElement(pages.google.input).not.toHaveValue("gurgel")
+          expectElement(pages.google.input).not.toContainValue("gurg")
         })
       }
     }))
