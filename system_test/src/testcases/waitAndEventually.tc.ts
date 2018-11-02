@@ -33,10 +33,12 @@ suite("Wait and Eventually", {}, () => {
         validate({"2.1": [1]}, () => {
           // pages.google.divList.wait.none.exists() double error message line
           pages.google.divList.wait.any.exists()
+          pages.google.divList.wait.hasLength(1, {comparator: Workflo.Comparator.gt})
 
           expect(1).toBe(1)
 
           pages.google.nonExistingDivList.wait.none.exists()
+          pages.google.nonExistingDivList.wait.isEmpty()
 
           expect(2).toBe(2)
 
@@ -46,6 +48,14 @@ suite("Wait and Eventually", {}, () => {
 
           expect(
             pages.google.nonExistingDivList.eventually.none.exists()
+          ).toBe(true)
+
+          expect(
+            pages.google.nonExistingDivList.eventually.isEmpty()
+          ).toBe(true)
+
+          expect(
+            pages.google.divList.eventually.hasLength(1, {comparator: Workflo.Comparator.gt})
           ).toBe(true)
         })
       }
