@@ -10,9 +10,9 @@ suite("Matchers", {}, () => {
           expect(1).toBe(2)
           expectElement(pages.google.nonExistingDiv).toExist()
           expectElement(pages.google.nonExistingDiv).toBeVisible()
-          expectElement(pages.google.container).toBeHidden()
+          expectElement(pages.google.container).not.toBeVisible()
           expectElement(pages.google.container).toBeEnabled()
-          expectElement(pages.google.container).toBeDisabled()
+          expectElement(pages.google.container).not.toBeEnabled()
           expectElement(pages.google.container).toBeSelected()
           expectElement(pages.google.container).toHaveText()
           expectElement(pages.google.container).toContainText()
@@ -23,16 +23,16 @@ suite("Matchers", {}, () => {
 
           expectElement(pages.google.container).not.toExist()
           expectElement(pages.google.container).not.toBeVisible()
-          expectElement(pages.google.nonExistingDiv).not.toBeHidden()
+          expectElement(pages.google.nonExistingDiv).toBeVisible()
           expectElement(pages.google.container).not.toBeEnabled()
-          expectElement(pages.google.container).not.toBeDisabled()
+          expectElement(pages.google.container).toBeEnabled()
           expectElement(pages.google.container).not.toBeSelected()
           expectElement(pages.google.container).not.toHaveText("")
           expectElement(pages.google.container).not.toContainText("oogle")
           expectElement(pages.google.container).not.toHaveText("gurgel")
           expectElement(pages.google.container).not.toContainText("gurg")
 
-          pages.google.input.waitVisible()
+          pages.google.input.wait.isVisible()
 
           expectElement(pages.google.input).toHaveValue()
           expectElement(pages.google.input).toContainValue()
@@ -274,7 +274,7 @@ suite("Homepage Suite", {}, () => {
     .when(steps["google %{term}"]({
       arg: {term: "Webdriverio"},
       cb: () => {
-        pages.google.container.waitHidden()
+        pages.google.container.wait.not.isVisible()
 
         validate({"2.2": [1]}, () => {
           expect(true).toBe(true)
@@ -326,7 +326,7 @@ suite("Failed Suite", {}, () => {
     .when(steps["google %{term}"]({
       arg: {term: "Webdriverio"},
       cb: () => {
-        pages.google.container.waitHidden()
+        pages.google.container.wait.not.isVisible()
         validate({"1.2": [1]}, () => {
           expect("asdf").toBe("aaaa")
         })
@@ -348,7 +348,7 @@ suite("Failed Suite", {}, () => {
     .when(steps["google %{term}"]({
       arg: {term: "Webdriverio"},
       cb: () => {
-        pages.google.container.waitHidden()
+        pages.google.container.wait.not.isVisible()
         validate({"1.2": [1]}, () => {
           expect("asdf").toBe("aaaa")
         })

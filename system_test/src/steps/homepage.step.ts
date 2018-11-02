@@ -88,7 +88,7 @@ const HomePageSteps = {
         }})) */
 
         const divList = pages.google.divList
-        const logoListElem = divList.firstBy().containedClass('logo-subtext').get()
+        const logoListElem = divList.where.containsClass('logo-subtext').getFirst()
 
         console.log('logoListElem: ', logoListElem.getSelector())
         console.log('logoListElem: ', logoListElem.getText())

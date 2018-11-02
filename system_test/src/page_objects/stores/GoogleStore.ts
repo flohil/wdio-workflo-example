@@ -6,7 +6,7 @@ export class GoogleStore extends core.stores.PageElementStore {
     selector: Workflo.XPath,
     options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
   ) {
-    return this.get<Input<this>, IInputOpts<this>>(
+    return this._get<Input<this>, IInputOpts<this>>(
       selector,
       Input,
       {

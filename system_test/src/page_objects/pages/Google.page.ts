@@ -55,7 +55,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
 
   get logo() {
     return this.logoContainer.$.Element(
-      xpath('//div').containedClass('logo-subtext').level(1)
+      xpath('//div').containsClass('logo-subtext').levelIndex(1)
     )
   }
 
@@ -66,20 +66,26 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
   }
 
   get divList() {
-    return this.container.$.ElementList(
+    return this.container.$.ExistElementList(
       xpath('//div')
+    )
+  }
+
+  get divListConstrained() {
+    return this.container.$.ExistElementList(
+      xpath('//div').child('//div', xpath => xpath.containsClass('s'))
     )
   }
 
   get anoLogoList() {
     return this.container.$.ElementList(
-      xpath('//div').containedClass('logo-subtext')
+      xpath('//div').containsClass('logo-subtext')
     )
   }
 
   get logoList() {
     return this.container.$.ElementList(
-      xpath('//div').containedClass('logo-sub'),
+      xpath('//div').containsClass('logo-sub'),
       {
         identifier: {
           mappingObject: {
@@ -99,7 +105,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
             logo: 'logo-subtext',
             logo2: 'logo-subtext'
           },
-          func: (mapSelector, mappingValue) => xpath(mapSelector).containedClass(mappingValue)
+          func: (mapSelector, mappingValue) => xpath(mapSelector).containsClass(mappingValue)
         }
       }
     )
@@ -111,7 +117,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
     return this.elementStore.TextGroup({
       get logo() {
         return page.logoContainer.$.Element(
-          xpath('//div').containedClass('logo-subtext')
+          xpath('//div').containsClass('logo-subtext')
         )
       },
       get logoList() {
