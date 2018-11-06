@@ -14,8 +14,8 @@ suite("Matchers", {}, () => {
           expectElement(pages.google.container).toBeEnabled()
           expectElement(pages.google.container).not.toBeEnabled()
           expectElement(pages.google.container).toBeSelected()
-          expectElement(pages.google.container).toHaveText()
-          expectElement(pages.google.container).toContainText()
+          expectElement(pages.google.container).toHaveText('jolo')
+          expectElement(pages.google.container).toContainText('jolo')
           expectElement(pages.google.container).toHaveText("gurgel")
           expectElement(pages.google.container).toContainText("gurg")
 
@@ -34,8 +34,8 @@ suite("Matchers", {}, () => {
 
           pages.google.input.wait.isVisible()
 
-          expectElement(pages.google.input).toHaveValue()
-          expectElement(pages.google.input).toContainValue()
+          expectElement(pages.google.input).toHaveValue('jolo')
+          expectElement(pages.google.input).toContainValue('jolo')
           expectElement(pages.google.input).toHaveValue("gurgel")
           expectElement(pages.google.input).toContainValue("gurg")
 

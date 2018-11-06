@@ -15,14 +15,20 @@ suite("Selector", {}, () => {
 
           expect(allDivsCount).toBeGreaterThan(sDivsCount)
 
-          const allSDivs = pages.google.divList.where.containsClass('s').getAll()
-          const allSDivsList = pages.google.divList.where.containsClass('s').getList()
+          const allSDivs = pages.google.divList.where.classContains('s').getAll()
+
+          console.log("after 1")
+
+          const allSDivsList = pages.google.divList.where.classContains('s').getList()
+
+          console.log("after 2")
+
 
           console.log("allSDivsList", allSDivsList.getSelector(), allSDivsList.getLength())
 
           expect(allSDivs.length).toBe(allSDivsList.getLength())
 
-          const allSDivsConstraint = pages.google.divList.where.child('//div', xpath => xpath.containsClass('s')).getList()
+          const allSDivsConstraint = pages.google.divList.where.child('//div', xpath => xpath.classContains('s')).getList()
           const allSDivsContraintLength = allSDivsConstraint.getLength()
 
           console.log("allSDivsConstraint selector", allSDivsConstraint.getSelector(), allSDivsContraintLength)

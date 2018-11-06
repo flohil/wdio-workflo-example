@@ -38,10 +38,10 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
 
     browser.waitUntil(() => {
       const pageBasePath = browser.getUrl().split('/')[3]
-      return pageBasePath === this.basePath && this.container.isVisible()
+      return pageBasePath === this.basePath && this.container.currently.isVisible()
 
     }, config.timeouts.pageOpen, `Expected url to match /${this.basePath}`)
- 
+
     return this
   }
 
@@ -49,7 +49,7 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
  * Returns true if page is opened at the moment.
  */
   isOpened() {
-    return this.container.isVisible()
+    return this.container.currently.isVisible()
   }
 
   eventuallyIsOpened(timeout?: number) {

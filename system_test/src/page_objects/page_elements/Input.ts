@@ -4,9 +4,6 @@ import { GoogleStore } from '../stores'
 export interface IInputOpts<Store extends GoogleStore> extends core.elements.IPageElementOpts<Store> {}
 
 export class Input<Store extends GoogleStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
-  getValue() {
-    return this.element.getValue()
-  }
 
   setValue( value: string ) {
     const valueStr = '' + value
@@ -15,8 +12,8 @@ export class Input<Store extends GoogleStore> extends core.elements.PageElement<
 
     this.element.setValue(value)
 
-    while ( this.__element.getValue() !== valueStr && tries < maxTries ) {
-      this.__element.setValue(value)
+    while ( this.currently.getValue() !== valueStr && tries < maxTries ) {
+      this.currently.element.setValue(value)
     }
 
     // on IE, this does not work reliably - recheck until values has been set!

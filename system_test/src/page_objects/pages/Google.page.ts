@@ -55,7 +55,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
 
   get logo() {
     return this.logoContainer.$.Element(
-      xpath('//div').containsClass('logo-subtext').levelIndex(1)
+      xpath('//div').classContains('logo-subtext').levelIndex(1)
     )
   }
 
@@ -73,19 +73,19 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
 
   get divListConstrained() {
     return this.container.$.ExistElementList(
-      xpath('//div').child('//div', xpath => xpath.containsClass('s'))
+      xpath('//div').child('//div', xpath => xpath.classContains('s'))
     )
   }
 
   get anoLogoList() {
     return this.container.$.ElementList(
-      xpath('//div').containsClass('logo-subtext')
+      xpath('//div').classContains('logo-subtext')
     )
   }
 
   get logoList() {
     return this.container.$.ElementList(
-      xpath('//div').containsClass('logo-sub'),
+      xpath('//div').classContains('logo-sub'),
       {
         identifier: {
           mappingObject: {
@@ -105,7 +105,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
             logo: 'logo-subtext',
             logo2: 'logo-subtext'
           },
-          func: (mapSelector, mappingValue) => xpath(mapSelector).containsClass(mappingValue)
+          func: (mapSelector, mappingValue) => xpath(mapSelector).classContains(mappingValue)
         }
       }
     )
@@ -117,7 +117,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
     return this.elementStore.TextGroup({
       get logo() {
         return page.logoContainer.$.Element(
-          xpath('//div').containsClass('logo-subtext')
+          xpath('//div').classContains('logo-subtext')
         )
       },
       get logoList() {
@@ -133,11 +133,11 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
   }
 
   get input() {
-    return this.container.$.Input(xpath('//input').attr('title', 'Suche'))
+    return this.container.$.Input(xpath('//input').attribute('title', 'Suche'))
   }
 
   get inputList() {
-    return this.container.$.InputList(xpath('//input').attr('type', 'text'), {
+    return this.container.$.InputList(xpath('//input').attribute('type', 'text'), {
       identifier: {
         mappingObject: {
           search: 'Suche',
@@ -151,7 +151,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
   }
 
   get anoInputList() {
-    return this.container.$.InputList(xpath('//input').attr('type', 'text').attr('title', 'Suche'))
+    return this.container.$.InputList(xpath('//input').attribute('type', 'text').attribute('title', 'Suche'))
   }
 
   get inputMap() {
@@ -162,7 +162,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
           mappingObject: {
             search: 'Suche'
           },
-          func: (parentSelector, mappingValue) => xpath(parentSelector).attr('title', mappingValue)
+          func: (parentSelector, mappingValue) => xpath(parentSelector).attribute('title', mappingValue)
         }
       }
     )
