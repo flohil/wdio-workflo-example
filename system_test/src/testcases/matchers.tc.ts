@@ -26,11 +26,53 @@ suite("Matchers", {}, () => {
 
           // expectElement(pages.google.input).toEventuallyHaveClass('aasdf', {timeout: 2000})
 
-          expectElement(pages.google.input).toHaveLocation({x: 500, y: 300}, {tolerances: {x: 100, y: 50}})
-          expectElement(pages.google.input).toEventuallyHaveLocation({x: 500, y: 300}, {tolerances: {x: 100, y: 50}, timeout: 2000})
+          //expectElement(pages.google.input).toHaveLocation({x: 500, y: 300}, {tolerances: {x: 100, y: 50}})
+          //expectElement(pages.google.input).toEventuallyHaveLocation({x: 500, y: 300}, {tolerances: {x: 100, y: 50}, timeout: 2000})
 
-          // this should fail??? -> ausgabe ein blödsinn???
-          expectElement(pages.google.input).not.toEventuallyHaveLocation({x: 10, y: 10}, {tolerances: {x: 2, y: 2}, timeout: 2000})
+                    // {x: 404.5, y: 323}
+
+          // expectElement(pages.google.input).not.toEventuallyHaveLocation({x: 10, y: 10}, {tolerances: {x: 2, y: 2}, timeout: 2000})
+          // expectElement(pages.google.input).not.toEventuallyHaveLocation({x: 10, y: 10}, {tolerances: {y: 2}})
+          // expectElement(pages.google.input).not.toEventuallyHaveLocation({x: 10, y: 10})
+
+          // expectElement(pages.google.input).not.toEventuallyHaveX(10, {tolerance: 2})
+          // expectElement(pages.google.input).not.toEventuallyHaveX(10)
+
+          // expectElement(pages.google.input).not.toEventuallyHaveY(10, {tolerance: 2})
+          // expectElement(pages.google.input).not.toEventuallyHaveY(10)
+
+          // expectElement(pages.google.input).toEventuallyHaveLocation({x: 10, y: 10}, {tolerances: {x: 2, y: 2}, timeout: 2000})
+          // expectElement(pages.google.input).toEventuallyHaveLocation({x: 10, y: 10}, {tolerances: {x: 1}})
+          // expectElement(pages.google.input).toEventuallyHaveLocation({x: 10, y: 10})
+
+          // expectElement(pages.google.input).toEventuallyHaveX(10, {tolerance: 2})
+          // expectElement(pages.google.input).toEventuallyHaveX(10)
+
+          // expectElement(pages.google.input).toEventuallyHaveY(10, {tolerance: 2})
+          // expectElement(pages.google.input).toEventuallyHaveY(10)
+
+          // TODO: broken
+
+          expectElement(pages.google.input).not.toEventuallyHaveSize({width: 400, height: 300}, {tolerances: {width: 40, height: 30}, timeout: 2000})
+          expectElement(pages.google.input).not.toEventuallyHaveSize({width: 400, height: 300}, {tolerances: {width: 40}})
+          expectElement(pages.google.input).not.toEventuallyHaveSize({width: 400, height: 300})
+
+          expectElement(pages.google.input).not.toEventuallyHaveWidth(400, {tolerance: 40})
+          expectElement(pages.google.input).not.toEventuallyHaveWidth(400)
+
+          expectElement(pages.google.input).not.toEventuallyHaveHeight(300, {tolerance: 30})
+          expectElement(pages.google.input).not.toEventuallyHaveHeight(300)
+
+          // expectElement(pages.google.input).toEventuallyHaveSize({width: 400, height: 300}, {tolerances: {width: 40, height: 30}, timeout: 2000})
+          // expectElement(pages.google.input).toEventuallyHaveSize({width: 400, height: 300}, {tolerances: {width: 40}})
+          // expectElement(pages.google.input).toEventuallyHaveSize({width: 400, height: 300})
+          // expectElement(pages.google.input).toEventuallyHaveSize({width: 400})
+
+          // expectElement(pages.google.input).toEventuallyHaveWidth(400, {tolerance: 40})
+          // expectElement(pages.google.input).toEventuallyHaveWidth(400)
+
+          // expectElement(pages.google.input).toEventuallyHaveHeight(300, {tolerance: 30})
+          // expectElement(pages.google.input).toEventuallyHaveHeight(300)
 
           // expectList(pages.google.nonExistingDivList).toBeEmpty()
           // expectList(pages.google.divList).toHaveLength(3, {comparator: Workflo.Comparator.greaterThan})
