@@ -1,20 +1,20 @@
 import { stepsGetter, stepsSetter } from 'wdio-workflo'
-import * as _ from 'lodash'
 
 ////////////////////////////////////////////////////////////////////////
 // EDIT THIS AREA IN ORDER FOR INTELLISENSE TO SUGGEST STEPS BY NAMES
 ////////////////////////////////////////////////////////////////////////
 
 import HomePageSteps from '?/steps/homepage.step'
-
-// import * as types from '../types' // surpress error for cannot be named
+import DemoPageSteps from '?/steps/demo.step'
 
 // create a single steps object that merges all single step definitions
 
-const Steps: 
-  typeof HomePageSteps
+const Steps:
+  typeof HomePageSteps &
+  typeof DemoPageSteps
 = Object.assign(
-  HomePageSteps
+  HomePageSteps,
+  DemoPageSteps
 )
 
 ////////////////////////////////////////////////////////////////////////

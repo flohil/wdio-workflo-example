@@ -3,28 +3,92 @@ import { pages, stores } from '?/page_objects'
 import {pageObjects} from 'wdio-workflo'
 
 suite("Matchers", {}, () => {
-  testcase("test existence", {}, () => {
+
+  // expectElement(pages.google.input).toExist()
+  // expectElement(pages.google.nonExistingDiv).not.toExist()
+  // expectElement(pages.google.input).toBeVisible()
+  // expectElement(pages.google.nonExistingDiv).not.toBeVisible()
+  // expectElement(pages.google.input).toHaveClass('gsfi lst-d-f')
+  // expectElement(pages.google.input).not.toHaveClass('aasdf')
+
+  // why does this take so long???
+
+  // expectElement(pages.google.input).toEventuallyExist({timeout: 6000})
+  // expectElement(pages.google.nonExistingDiv).not.toEventuallyExist({timeout: 6000})
+  // expectElement(pages.google.input).toEventuallyBeVisible({timeout: 6000})
+  // expectElement(pages.google.nonExistingDiv).not.toEventuallyBeVisible({timeout: 6000})
+  // expectElement(pages.google.input).toEventuallyHaveClass('gsfi lst-d-f', {timeout: 6000})
+  // expectElement(pages.google.input).not.toEventuallyHaveClass('aasdf', {timeout: 6000})
+
+  // expectElement(pages.google.input).toEventuallyHaveClass('aasdf', {timeout: 2000})
+
+  testcase("existence", {}, () => {
     given(steps["open homepage"]({
       cb: () => {
         validate({"2.1": [1]}, () => {
 
-          // expectElement(pages.google.input).toExist()
-          // expectElement(pages.google.nonExistingDiv).not.toExist()
-          // expectElement(pages.google.input).toBeVisible()
-          // expectElement(pages.google.nonExistingDiv).not.toBeVisible()
-          // expectElement(pages.google.input).toHaveClass('gsfi lst-d-f')
-          // expectElement(pages.google.input).not.toHaveClass('aasdf')
+          pages.google.input.wait.exists()
 
-          // why does this take so long???
+          expectElement(pages.google.input).toExist()
+          expectElement(pages.google.input).toEventuallyExist()
 
-          // expectElement(pages.google.input).toEventuallyExist({timeout: 6000})
-          // expectElement(pages.google.nonExistingDiv).not.toEventuallyExist({timeout: 6000})
-          // expectElement(pages.google.input).toEventuallyBeVisible({timeout: 6000})
-          // expectElement(pages.google.nonExistingDiv).not.toEventuallyBeVisible({timeout: 6000})
-          // expectElement(pages.google.input).toEventuallyHaveClass('gsfi lst-d-f', {timeout: 6000})
-          // expectElement(pages.google.input).not.toEventuallyHaveClass('aasdf', {timeout: 6000})
+          pages.google.nonExistingDiv.wait.not.exists()
 
-          // expectElement(pages.google.input).toEventuallyHaveClass('aasdf', {timeout: 2000})
+          expectElement(pages.google.nonExistingDiv).not.toExist()
+          expectElement(pages.google.nonExistingDiv).not.toEventuallyExist()
+
+          expectElement(pages.google.nonExistingDiv).toExist()
+          expectElement(pages.google.nonExistingDiv).toEventuallyExist()
+
+          pages.google.nonExistingDiv.wait.exists()
+        })
+      }
+    }))
+  })
+
+  testcase("visibility", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+
+          pages.google.input.wait.isVisible()
+
+          expectElement(pages.google.input).toBeVisible()
+          expectElement(pages.google.input).toEventuallyBeVisible()
+
+          pages.google.nonExistingDiv.wait.not.isVisible()
+
+          expectElement(pages.google.nonExistingDiv).not.toBeVisible()
+          expectElement(pages.google.nonExistingDiv).not.toEventuallyBeVisible()
+
+          expectElement(pages.google.nonExistingDiv).toBeVisible()
+          expectElement(pages.google.nonExistingDiv).toEventuallyBeVisible()
+
+          pages.google.nonExistingDiv.wait.isVisible()
+        })
+      }
+    }))
+  })
+
+  testcase("enabled", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          pages.demo.dynamicControls.input.wait.not.isEnabled()
+
+          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+        })
+      }
+    }))
+    .when(steps["enable input in demopage"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          pages.demo.dynamicControls.input.wait.isEnabled()
+
+          expectElement(pages.demo.dynamicControls.input).toBeEnabled()
+          expectElement(pages.demo.dynamicControls.input).toEventuallyBeEnabled()
         })
       }
     }))

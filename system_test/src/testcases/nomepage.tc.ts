@@ -300,8 +300,8 @@ suite("Hidden Click Suite", {}, () => {
       cb: () => {
         console.log(getUid('test'))
 
-        const elem = stores.google.ExistElement(xpath('//input').id('Name'))
-        const link = stores.google.ExistElement(xpath('//a').text('Startseite'))
+        const elem = stores.demo.ExistElement(xpath('//input').id('Name'))
+        const link = stores.demo.ExistElement(xpath('//a').text('Startseite'))
         browser.scroll(elem.getSelector())
 
         elem.click()

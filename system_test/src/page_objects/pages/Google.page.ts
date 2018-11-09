@@ -5,10 +5,10 @@ export interface IGooglePageArgs {
 
 }
 
-export class GooglePage extends BasePage<stores.GoogleStore> {
+export class GooglePage extends BasePage<stores.DemoStore> {
 
   constructor(args: IGooglePageArgs = {}) {
-    super(Object.assign(args, {basePath: '', elementStore: stores.google}))
+    super(Object.assign(args, {basePath: '', elementStore: stores.demo}))
   }
 
   get nonExistingDiv() {
@@ -73,7 +73,7 @@ export class GooglePage extends BasePage<stores.GoogleStore> {
 
   get divListConstrained() {
     return this.container.$.ExistElementList(
-      xpath('//div').child('//div', xpath => xpath.classContains('s'))
+      xpath('//div').hasChild('//div', xpath => xpath.classContains('s'))
     )
   }
 

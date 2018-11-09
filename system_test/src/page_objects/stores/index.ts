@@ -1,5 +1,5 @@
-import { GoogleStore } from './GoogleStore'
+import { DemoStore } from './DemoStore'
 
-export * from './GoogleStore'
+export * from './DemoStore'
 
-export const google = new GoogleStore()
+export const demo = new DemoStore()

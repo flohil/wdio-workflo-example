@@ -28,7 +28,7 @@ suite("Selector", {}, () => {
 
           expect(allSDivs.length).toBe(allSDivsList.getLength())
 
-          const allSDivsConstraint = pages.google.divList.where.child('//div', xpath => xpath.classContains('s')).getList()
+          const allSDivsConstraint = pages.google.divList.where.hasChild('//div', xpath => xpath.classContains('s')).getList()
           const allSDivsContraintLength = allSDivsConstraint.getLength()
 
           console.log("allSDivsConstraint selector", allSDivsConstraint.getSelector(), allSDivsContraintLength)

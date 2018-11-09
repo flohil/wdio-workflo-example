@@ -1,7 +1,7 @@
 import { pageObjects as core } from 'wdio-workflo'
 import { Input, IInputOpts } from '../page_elements'
 
-export class GoogleStore extends core.stores.PageElementStore {
+export class DemoStore extends core.stores.PageElementStore {
   Input(
     selector: Workflo.XPath,
     options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>

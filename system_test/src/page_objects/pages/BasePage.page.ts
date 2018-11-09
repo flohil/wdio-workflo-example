@@ -10,7 +10,7 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
 
   constructor(args: IBasePageArgs<Store>) {
     super(args)
-    
+
     this.basePath = args.basePath || ''
   }
 
@@ -20,7 +20,7 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
   }
 
   // opens a page at the given url path and waits for it to load
-  open(path?) {
+  open(path?: string) {
     if (typeof path !== 'undefined') {
       path = `/${path}`
     } else {
@@ -34,13 +34,14 @@ export class BasePage<Store extends core.stores.PageElementStore> extends core.p
   }
 
   // used to wait for page load to finished
-  waitForOpened() {
+  waitForOpened(path?: string) {
+    const matchPath = (path) ? path : this.basePath
 
     browser.waitUntil(() => {
       const pageBasePath = browser.getUrl().split('/')[3]
-      return pageBasePath === this.basePath && this.container.currently.isVisible()
+      return pageBasePath === matchPath && this.container.currently.isVisible()
 
-    }, config.timeouts.pageOpen, `Expected url to match /${this.basePath}`)
+    }, config.timeouts.pageOpen, `Expected url to match /${matchPath}`)
 
     return this
   }

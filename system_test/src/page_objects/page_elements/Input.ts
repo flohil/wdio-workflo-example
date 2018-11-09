@@ -1,9 +1,9 @@
 import { pageObjects as core } from 'wdio-workflo'
-import { GoogleStore } from '../stores'
+import { DemoStore } from '../stores'
 
-export interface IInputOpts<Store extends GoogleStore> extends core.elements.IPageElementOpts<Store> {}
+export interface IInputOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
 
-export class Input<Store extends GoogleStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
+export class Input<Store extends DemoStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
 
   setValue( value: string ) {
     const valueStr = '' + value
