@@ -1,5 +1,5 @@
 import { pageObjects as core } from 'wdio-workflo'
-import { Input, IInputOpts } from '../page_elements'
+import { Input, IInputOpts, Dropdown, IDropdownOpts } from '../page_elements'
 
 export class DemoStore extends core.stores.PageElementStore {
   Input(
@@ -47,6 +47,20 @@ export class DemoStore extends core.stores.PageElementStore {
       {
         elementStoreFunc: this.Input,
         elementOptions: {},
+        ...options
+      }
+    )
+  }
+
+  Dropdown(
+    selector: Workflo.XPath,
+    options?: Pick<IDropdownOpts<this>, 'timeout' | 'waitType'>
+  ) {
+    return this._get<Dropdown<this>, IDropdownOpts<this>>(
+      selector,
+      Dropdown,
+      {
+        store: this,
         ...options
       }
     )

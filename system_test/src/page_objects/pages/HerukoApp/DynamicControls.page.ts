@@ -1,14 +1,26 @@
 import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoApp.page'
 import { stores, core } from '?/page_objects'
 
-export interface IDynamicControlsArgs extends IHerukoAppPageArgs {
+export interface IDynamicControlsPageArgs extends IHerukoAppPageArgs {
 
 }
 
 export class DynamicControlsPage extends HerukoAppPage {
 
-  constructor(args: IDynamicControlsArgs = {}) {
+  constructor(args: IDynamicControlsPageArgs = {}) {
     super(Object.assign(args, {basePath: 'dynamic_controls', elementStore: stores.demo}))
+  }
+
+  get paragraph() {
+    return this.container.$.Element(
+      '//p'
+    )
+  }
+
+  get paragraphList() {
+    return this.container.$.ElementList(
+      '//p'
+    )
   }
 
   get enableButton() {
@@ -21,5 +33,15 @@ export class DynamicControlsPage extends HerukoAppPage {
     return this.container.$.Input(
       xpath('//form').id('input-example').append('//input')
     )
+  }
+
+  get inputs() {
+    return this.container.$.InputList(
+      xpath('//form').id('input-example').append('//input')
+    )
+  }
+
+  get nonExistingDiv() {
+    return this.container.$.Element(xpath('//div').id('asdfasdfasdfasdf'))
   }
 }

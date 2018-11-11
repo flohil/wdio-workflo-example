@@ -89,6 +89,62 @@ suite("Matchers", {}, () => {
 
           expectElement(pages.demo.dynamicControls.input).toBeEnabled()
           expectElement(pages.demo.dynamicControls.input).toEventuallyBeEnabled()
+
+          // expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
+          // expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+
+          // pages.demo.dynamicControls.input.wait.not.isEnabled()
+        })
+      }
+    }))
+  })
+
+  testcase("selected", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          pages.demo.dynamicControls.input.wait.not.isEnabled()
+
+          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+        })
+      }
+    }))
+    .when(steps["enable input in demopage"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          pages.demo.dynamicControls.input.wait.isEnabled()
+
+          expectElement(pages.demo.dynamicControls.input).toBeEnabled()
+          expectElement(pages.demo.dynamicControls.input).toEventuallyBeEnabled()
+
+          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+
+          pages.demo.dynamicControls.input.wait.not.isEnabled()
+        })
+      }
+    }))
+  })
+
+  testcase("checked", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'checkboxes'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+
+          const firstCheckbox = pages.demo.checkboxes.checkboxes.first
+          const secondCheckbox = pages.demo.checkboxes.checkboxes.at(1)
+
+          firstCheckbox.wait.not.isChecked()
+          secondCheckbox.wait.isChecked()
+
+          expectElement(firstCheckbox).not.toBeChecked()
+          expectElement(secondCheckbox).toBeChecked()
+
+          expectElement(firstCheckbox).not.toEventuallyBeChecked()
+          expectElement(secondCheckbox).toEventuallyBeChecked()
         })
       }
     }))
