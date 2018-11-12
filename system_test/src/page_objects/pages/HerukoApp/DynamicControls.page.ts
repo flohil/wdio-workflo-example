@@ -41,7 +41,17 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get footer() {
+    return this.container.$.Element(
+      xpath('//div').id('page-footer')
+    )
+  }
+
   get nonExistingDiv() {
     return this.container.$.Element(xpath('//div').id('asdfasdfasdfasdf'))
+  }
+
+  get nonExistingDivList() {
+    return this.container.$.ExistElementList(xpath('//div').id('asdfasdfasdfasdf'))
   }
 }

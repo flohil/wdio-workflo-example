@@ -134,14 +134,29 @@ suite("Selector", {}, () => {
         validate({"2.1": [1]}, () => {
           const inputList = pages.demo.dynamicControls.inputs
 
-          const nonExistingDiv = pages.demo.dynamicControls.nonExistingDiv
+          // CHECK that calling action on nonexisting element throws custom error
 
-          console.log("exists", nonExistingDiv.currently.exists())
-          console.log("isVisible", nonExistingDiv.currently.isVisible())
-          console.log("isEnabled", nonExistingDiv.currently.isEnabled())
-          console.log("isSelected", nonExistingDiv.currently.isSelected())
+          // const nonExistingDiv = pages.demo.dynamicControls.nonExistingDiv
 
-          console.log("getClass", nonExistingDiv.currently.getClass())
+          // nonExistingDiv.currently.exists()
+          // nonExistingDiv.currently.isVisible()
+          // nonExistingDiv.currently.isEnabled()
+          // nonExistingDiv.currently.isSelected()
+          // nonExistingDiv.currently.isChecked()
+          // nonExistingDiv.currently.getHTML()
+          // nonExistingDiv.currently.getText()
+          // nonExistingDiv.currently.getDirectText()
+          // nonExistingDiv.currently.getValue()
+          // nonExistingDiv.currently.getAttribute('class')
+          // nonExistingDiv.currently.getClass()
+          // nonExistingDiv.currently.getId()
+          // nonExistingDiv.currently.getName()
+          // nonExistingDiv.currently.getLocation()
+          // nonExistingDiv.currently.getX()
+          // nonExistingDiv.currently.getY()
+          // nonExistingDiv.currently.getSize()
+          // nonExistingDiv.currently.getWidth()
+          // nonExistingDiv.currently.getHeight()
 
           const attribute = inputList.where.attribute('style', 'width: 30%;').getFirst()
           const notAttribute = inputList.where.notAttribute('style', 'asdfasdfasdf').getFirst()
