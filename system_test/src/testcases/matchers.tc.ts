@@ -229,6 +229,98 @@ suite("Matchers", {}, () => {
     }))
   })
 
+  testcase("html", {}, () => {
+    console.log("start testcase")
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          const footer = pages.demo.dynamicControls.footer
+          const input = pages.demo.dynamicControls.input
+
+          const HTML = `
+      <div class="large-4 large-centered columns">
+        <hr>
+        <div style="text-align: center;">Powered by <a target="_blank" href="http://elementalselenium.com/">Elemental Selenium</a></div>
+      </div>
+    `
+          const containsHTML = '<div style="text-align: center;">Powered by <a target="_blank" href="http://elementalselenium.com/">Elemental Selenium</a></div>'
+          const notHTML = '<span style="text-align: center;">Powered by <a target="_blank" href="http://elementalselenium.com/">Elemental Selenium</a></span>'
+
+          footer.wait.hasHTML(HTML)
+          footer.wait.hasAnyHTML()
+          footer.wait.containsHTML(containsHTML)
+
+          // input.wait.hasHTML(HTML)
+
+          footer.wait.not.hasHTML(notHTML)
+          input.wait.not.hasAnyHTML()
+          footer.wait.not.containsHTML(notHTML)
+
+          expectElement(footer).toHaveHTML(HTML)
+          expectElement(footer).toHaveAnyHTML()
+          expectElement(footer).toContainHTML(containsHTML)
+
+          expectElement(footer).not.toHaveHTML(notHTML)
+          expectElement(input).not.toHaveAnyHTML()
+          expectElement(footer).not.toContainHTML(notHTML)
+
+          expectElement(footer).toEventuallyHaveHTML(HTML)
+          expectElement(footer).toEventuallyHaveAnyHTML()
+          expectElement(footer).toEventuallyContainHTML(containsHTML)
+
+          expectElement(footer).not.toEventuallyHaveHTML(notHTML)
+          expectElement(input).not.toEventuallyHaveAnyHTML()
+          expectElement(footer).not.toEventuallyContainHTML(notHTML)
+        })
+      }
+    }))
+  })
+
+  testcase("direct text", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          const poweredBy = pages.demo.dynamicControls.poweredBy
+          const input = pages.demo.dynamicControls.input
+
+          const directText = 'Powered by '
+          const containsDirectText = 'by'
+          const notDirectText = 'asdf'
+
+          console.log("direct text", poweredBy.getDirectText())
+          console.log("text", poweredBy.getText())
+
+          // TODO: output actual value in wait -> Actual ist "undefined" -> instead: ''
+          poweredBy.wait.hasDirectText(directText)
+          poweredBy.wait.hasAnyDirectText()
+          poweredBy.wait.containsDirectText(containsDirectText)
+
+          poweredBy.wait.not.hasDirectText(notDirectText)
+          input.wait.not.hasAnyDirectText()
+          poweredBy.wait.not.containsDirectText(notDirectText)
+
+          expectElement(poweredBy).toHaveDirectText(directText)
+          expectElement(poweredBy).toHaveAnyDirectText()
+          expectElement(poweredBy).toContainDirectText(containsDirectText)
+
+          expectElement(poweredBy).not.toHaveDirectText(notDirectText)
+          expectElement(input).not.toHaveAnyDirectText()
+          expectElement(poweredBy).not.toContainDirectText(notDirectText)
+
+          expectElement(poweredBy).toEventuallyHaveDirectText(directText)
+          expectElement(poweredBy).toEventuallyHaveAnyDirectText()
+          expectElement(poweredBy).toEventuallyContainDirectText(containsDirectText)
+
+          expectElement(poweredBy).not.toEventuallyHaveDirectText(notDirectText)
+          expectElement(input).not.toEventuallyHaveAnyDirectText()
+          expectElement(poweredBy).not.toEventuallyContainDirectText(notDirectText)
+        })
+      }
+    }))
+  })
+
   testcase("attribute", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},

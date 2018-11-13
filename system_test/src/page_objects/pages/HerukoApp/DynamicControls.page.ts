@@ -47,6 +47,12 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get poweredBy() {
+    return this.container.$.Element(
+      xpath('//div').attribute('style', 'text-align: center;')
+    )
+  }
+
   get nonExistingDiv() {
     return this.container.$.Element(xpath('//div').id('asdfasdfasdfasdf'))
   }
