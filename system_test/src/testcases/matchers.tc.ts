@@ -289,7 +289,6 @@ suite("Matchers", {}, () => {
           const containsDirectText = 'by'
           const notDirectText = 'asdf'
 
-          // TODO: output actual value in wait -> Actual ist "undefined" -> instead: ''
           poweredBy.wait.hasDirectText(directText)
           poweredBy.wait.hasAnyDirectText()
           poweredBy.wait.containsDirectText(containsDirectText)

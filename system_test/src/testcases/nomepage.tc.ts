@@ -92,7 +92,7 @@ suite("TSuite", {}, () => {
           expect(3).toBe(2)
           expect(4).toBe(2)
 
-          browser.getText('//asdf')
+          browser.element('//asdf').getText()
         })
 
         validate({"2.2": [1]}, () => {

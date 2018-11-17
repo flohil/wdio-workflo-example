@@ -80,4 +80,16 @@ suite("Wait and Eventually", {}, () => {
       }
     }))
   })
+
+  testcase("wait for non existing element", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+          pages.google.nonExistingDiv.wait.isChecked()
+
+          expect(false).toBe(false)
+        })
+      }
+    }))
+  })
 })

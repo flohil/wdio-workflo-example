@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "allure-commandline": "^2.7.0",
+    "chrome-launcher": "^0.10.5",
     "deasync": "^0.1.10",
     "htmlparser2": "^3.9.2",
     "selenium-standalone": "^6.15.1",

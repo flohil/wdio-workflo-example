@@ -136,7 +136,7 @@ suite("Selector", {}, () => {
 
           // CHECK that calling action on nonexisting element throws custom error
 
-          // const nonExistingDiv = pages.demo.dynamicControls.nonExistingDiv
+          const nonExistingDiv = pages.demo.dynamicControls.nonExistingDiv
 
           // nonExistingDiv.currently.exists()
           // nonExistingDiv.currently.isVisible()
