@@ -81,7 +81,7 @@ interface IWorkfloConfig {
    */
   debug?: boolean
   /**
-   * Stop test runner after specific amount of tests have failed.
+   * Skip future testcases after specific amount of already executed testcases have failed.
    * By default, does not bail.
    *
    * @default 0
