@@ -25,6 +25,7 @@
     "wdio-workflo": "0.0.265"
   },
   "dependencies": {
+    "@types/selenium-standalone": "^6.15.0",
     "allure-commandline": "^2.7.0",
     "chrome-launcher": "^0.10.5",
     "deasync": "^0.1.10",
