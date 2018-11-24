@@ -93,19 +93,10 @@ declare global {
       throwSolveError?: boolean 
     }
 
-    const enum WaitType {
-      exist = 'exist',
-      visible = 'visible',
-      value = 'value',
-      text = 'text'
-    }
-
     const enum IdentifyBy {
       text = 'text',
       value = 'value'
     }
-
-    type XPath = XPathBuilder | string
   }
 }
 

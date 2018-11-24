@@ -14,7 +14,7 @@ Feature("Homepage", {}, () => {
       })
     })
   })
-  Story("2.2", "last failing story", {}, () => {
+  Story("2.2", "last failing story", {bugs: ["KBCPP-3"], issues: ["KBCPP-2222"]}, () => {
     Given("a user opens the google homepage", () => {
       When("the user observes the page title", () => {
         Then(1, "This spec fails too")

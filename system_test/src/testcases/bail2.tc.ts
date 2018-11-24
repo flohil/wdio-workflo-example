@@ -5,7 +5,7 @@ import {pageObjects} from 'wdio-workflo'
 let ctr = 0
 
 suite("Bail2", {}, () => {
-  testcase("test", {}, () => {
+  testcase("test", {bugs: ["KBCPP-2"]}, () => {
     given(steps["open homepage"]({
       cb: () => {
         validate({"2.2": [1]}, () => {
