@@ -2,7 +2,7 @@ import { IWorkfloConfig } from 'wdio-workflo'
 
 const testDir = __dirname + '/system_test'
 
-const myConf: IWorkfloConfig = {
+const workfloConfig: IWorkfloConfig = {
   testDir: testDir,
   baseUrl: 'http://www.google.com/',
   host: '127.0.0.1',
@@ -26,8 +26,12 @@ const myConf: IWorkfloConfig = {
   },
   specFiles: [ `${testDir}/src/specs/**/*.spec.ts` ],
   testcaseFiles: [ `${testDir}/src/testcases/**/*.tc.ts` ],
-  manualResultFiles: [ `${testDir}/src/manualResults/**/*.man.ts` ],
+  manualResultFiles: [ `${testDir}/src/manual_results/**/*.man.ts` ],
   uidStorePath: `${testDir}/data/uidStore.json`,
-  beforeSession: (config, capabilities) => {
+  allure: {
+    issueTrackerPattern: 'http://example.com/issues/%s',
+    testManagementPattern: 'http://example.com/tms/%s',
   }
 }
+
+export default workfloConfig

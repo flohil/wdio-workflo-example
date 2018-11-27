@@ -6,15 +6,18 @@ import { stepsGetter, stepsSetter } from 'wdio-workflo'
 
 import HomePageSteps from '?/steps/homepage.step'
 import DemoPageSteps from '?/steps/demo.step'
+import ToolsQAPageSteps from '?/steps/toolsqa.step'
 
 // create a single steps object that merges all single step definitions
 
 const Steps:
   typeof HomePageSteps &
-  typeof DemoPageSteps
+  typeof DemoPageSteps &
+  typeof ToolsQAPageSteps
 = Object.assign(
   HomePageSteps,
-  DemoPageSteps
+  DemoPageSteps,
+  ToolsQAPageSteps
 )
 
 ////////////////////////////////////////////////////////////////////////

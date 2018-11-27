@@ -14,4 +14,8 @@ export class CheckboxesPage extends HerukoAppPage {
   get checkboxes() {
     return this.container.$.ElementList(xpath('//input').attribute('type', 'checkbox'))
   }
+
+  get checkboxGroup() {
+    return this.container.$.CheckboxGroup(xpath('//input').attribute('type', 'checkbox'))
+  }
 }
