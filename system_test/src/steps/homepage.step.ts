@@ -64,19 +64,15 @@ const HomePageSteps = {
         console.log('list length:', list.getLength())
         console.log("list selector", list.getSelector())
 
-        console.log('logo inside group selector:', pages.google.logoGroup.logo.getSelector())
+        console.log('logo inside group selector:', pages.google.logoGroup.$.logo.getSelector())
 
-        console.log('text group result: ', pages.google.logoGroup.GetText({
-          filter: {
-            logo: false,
-            logoList: {
-              austria: false
-            },
-            anoLogoList: true,
-            logoMap: {
-              logo: false,
-              logo2: true
-            }
+        console.log('text group result: ', pages.google.logoGroup.getText({
+          logo: '',
+          logoList: [],
+          anoLogoList: [],
+          logoMap: {
+            logo: '',
+            logo2: ''
           }
         }))
 
@@ -101,20 +97,18 @@ const HomePageSteps = {
         console.log(pages.google.input.getText())
 
         pages.google.input.setValue('Google')
-        pages.google.inputGroup.SetValue({
-          values: {
-            input: "Input",
-            inputMap: {
-              "search": "Jodel"
-            },
-            inputList: {
-              "search": "Hallo du"
-            },
-            anoInputList: {
-              '0': "index"
-            }
-          }
-        })
+        // pages.google.inputGroup.setValue({
+        //   input: "Input",
+        //   inputMap: {
+        //     "search": "Jodel"
+        //   },
+        //   inputList: {
+        //     "search": "Hallo du"
+        //   },
+        //   anoInputList: {
+        //     '0': "index"
+        //   }
+        // })
       }),
 }
 

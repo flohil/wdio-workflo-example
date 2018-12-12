@@ -1,14 +1,15 @@
 import { pageObjects as core, pageObjects } from 'wdio-workflo'
-import { Input, IInputOpts, Dropdown, IDropdownOpts, Checkbox, ICheckboxOpts } from '../page_elements'
+import { Dropdown, IDropdownOpts, Checkbox, ICheckboxOpts, IInputOpts, Input } from '../page_elements'
 
-type CheckboxOpts<Store extends DemoStore> = Pick<ICheckboxOpts<Store>, Workflo.PageElementOptions>
+type CheckboxOpts<Store extends DemoStore> = Pick<ICheckboxOpts<Store>, Workflo.Store.ElementPublicKeys>
 
 export class DemoStore extends core.stores.PageElementStore {
   Input(
     selector: Workflo.XPath,
     options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
   ) {
-    return this._get<Input<this>, IInputOpts<this>>(
+    console.log("selector in demoStore", selector)
+    return this._getElement<Input<this>, IInputOpts<this>>(
       selector,
       Input,
       {
@@ -58,7 +59,7 @@ export class DemoStore extends core.stores.PageElementStore {
     selector: Workflo.XPath,
     options?: Pick<IDropdownOpts<this>, 'timeout' | 'waitType'>
   ) {
-    return this._get<Dropdown<this>, IDropdownOpts<this>>(
+    return this._getElement<Dropdown<this>, IDropdownOpts<this>>(
       selector,
       Dropdown,
       {
@@ -72,7 +73,7 @@ export class DemoStore extends core.stores.PageElementStore {
     selector: Workflo.XPath,
     options?: Pick<ICheckboxOpts<this>, 'timeout' | 'waitType'>
   ) {
-    return this._get<Checkbox<this>, ICheckboxOpts<this>>(
+    return this._getElement<Checkbox<this>, ICheckboxOpts<this>>(
       selector,
       Checkbox,
       {
@@ -100,3 +101,162 @@ export class DemoStore extends core.stores.PageElementStore {
     )
   }
 }
+
+
+// test if proxying works with IGetValue
+
+// class NumberInput<
+//   Store extends pageObjects.stores.PageElementStore,
+// > extends pageObjects.elements.ValuePageElement<
+//   Store, number
+// > {
+
+//   currently: pageObjects.elements.ValuePageElementCurrently<Store, this, number>;
+
+//   constructor(selector: string, opts?: IInputOpts<Store>) {
+//     super(selector, opts)
+
+//     this.currently = new NumberInputCurrently(this)
+//   }
+
+//   setValue(value: number) {
+//     this.initialWait()
+
+//     return this.currently.setValue(value)
+//   }
+// }
+
+// class NumberInputCurrently<
+//   Store extends pageObjects.stores.PageElementStore,
+//   PageElementType extends NumberInput<Store>
+// > extends pageObjects.elements.ValuePageElementCurrently<Store, PageElementType, number> {
+//   getValue(): number {
+//     return parseInt(this.element.getValue())
+//   }
+
+//   setValue(value: number) {
+//     this.element.setValue(value)
+
+//     return this._node
+//   }
+// }
+
+// // achieved mapping type to input value!!!
+
+// class InputStore extends pageObjects.stores.PageElementStore {
+//   Input(
+//     selector: Workflo.XPath,
+//     options?: Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>
+//   ) {
+//     return this._getElement<Input<this>, IInputOpts<this>>(
+//       selector,
+//       Input,
+//       {
+//         store: this,
+//         ...options
+//       }
+//     )
+//   }
+
+//   InputList(
+//     selector: Workflo.XPath,
+//     options?: PickPartial<
+//       pageObjects.elements.IValuePageElementListOpts<
+//         this, Input<this>, Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>, string
+//       >,
+//       "waitType" | "timeout" | "disableCache" | "identifier",
+//       "elementOptions"
+//     >
+//   ) {
+//     return this.ValueList(
+//       selector,
+//       {
+//         elementOptions: {},
+//         elementStoreFunc: this.Input,
+//         ...options
+//       }
+//     )
+//   }
+
+//   InputMap<K extends string>(
+//     selector: Workflo.XPath,
+//     options: PickPartial<
+//       pageObjects.elements.IPageElementMapOpts<this, K, Input<this>, Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>>,
+//       Workflo.Store.MapPublicKeys,
+//       Workflo.Store.MapPublicPartialKeys
+//     >
+//   ) {
+//     return this.ValueMap(
+//       selector,
+//       {
+//         elementStoreFunc: this.Input,
+//         elementOptions: {},
+//         ...options
+//       }
+//     )
+//   }
+// }
+
+// // REMOVE THIS - just for testing
+
+// const inputStore = new InputStore()
+
+// const innerGroup = pageObjects.stores.pageElement.ValueGroup({
+//   x: new Input('//asdf'),
+//   y: new NumberInput('//div'),
+// })
+
+// const textGroup = pageObjects.stores.pageElement.ElementGroup({
+//   x: new Input('//asdf'),
+//   y: inputStore.Element('//div')
+// })
+
+// // if getvalue is not supported, will always return undefined
+// const group = pageObjects.stores.pageElement.ValueGroup({
+//   a: new Input('//asdf'),
+//   b: new NumberInput('//div'),
+//   c: pageObjects.stores.pageElement.Element('//span'),
+//   d: inputStore.InputList('//input'),
+//   e: inputStore.InputMap('//input', {identifier: {
+//     mappingObject: {
+//       name: "Name",
+//       password: "Password"
+//     },
+//     func: (mapSelector: string, mappingValue: string) => xpath(mapSelector).text(mappingValue)
+//   }}),
+//   f: innerGroup,
+//   g: textGroup
+// })
+
+
+// const valuesObj = group.getValue()
+// const valuesObj2 = {...valuesObj}
+// const valuesObj3 = group.currently.getValue()
+// const valuesObj4 = group.currently.getText()
+// const valuesObj5 = group.getText()
+// const valuesObj6 = {...valuesObj5}
+// const valuesObj7 = {...valuesObj3}
+
+// // const values: Workflo.PageNode.Values<typeof innerGroup.$> = {
+// //   x: 'jodel',
+// //   y: 3
+// // }
+
+// const values = {
+//   x: 'jodel',
+//   y: 3,
+// }
+
+// const otherValues = {
+//   a: 'asdf'
+// }
+
+// const mapValues = {
+//   name: 'asdf'
+// }
+
+// innerGroup.setValue(values)
+// innerGroup.currently.setValue(values)
+
+// group.$.e.setValue(mapValues)
+// group.$.e.currently.setValue(mapValues)

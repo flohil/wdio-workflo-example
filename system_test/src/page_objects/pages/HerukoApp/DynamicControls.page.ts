@@ -11,6 +11,12 @@ export class DynamicControlsPage extends HerukoAppPage {
     super(Object.assign(args, {basePath: 'dynamic_controls', elementStore: stores.demo}))
   }
 
+  get checkbox() {
+    return this.container.$.Checkbox(
+      xpath('//input').attribute('label', 'blah')
+    )
+  }
+
   get paragraph() {
     return this.container.$.Element(
       '//p'
@@ -23,9 +29,33 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get removeButton() {
+    return this.container.$.Element(
+      xpath('//button').text('Remove')
+    )
+  }
+
+  get message() {
+    return this.container.$.Element(
+      xpath('//p').id('message')
+    )
+  }
+
   get enableButton() {
     return this.container.$.Element(
       xpath('//button').text('Enable')
+    )
+  }
+
+  get buttonList() {
+    return this.container.$.ElementList(
+      xpath('//button')
+    )
+  }
+
+  get nonExistingButtonList() {
+    return this.container.$.ElementList(
+      xpath('//button').id('asdf')
     )
   }
 

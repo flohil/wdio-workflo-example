@@ -11,11 +11,11 @@ export class CheckboxesPage extends HerukoAppPage {
     super(Object.assign(args, {basePath: 'checkboxes', elementStore: stores.demo}))
   }
 
-  get checkboxes() {
-    return this.container.$.ElementList(xpath('//input').attribute('type', 'checkbox'))
-  }
+  // get checkboxes() {
+  //   return this.container.$.ElementList(xpath('//input').attribute('type', 'checkbox'))
+  // }
 
-  get checkboxGroup() {
-    return this.container.$.CheckboxGroup(xpath('//input').attribute('type', 'checkbox'))
-  }
+  // get checkboxGroup() {
+  //   return this.container.$.CheckboxGroup(xpath('//input').attribute('type', 'checkbox'))
+  // }
 }

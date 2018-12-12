@@ -114,7 +114,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
   get logoGroup() {
     const page = this
 
-    return this.elementStore.TextGroup({
+    return this.elementStore.ElementGroup({
       get logo() {
         return page.logoContainer.$.Element(
           xpath('//div').classContains('logo-subtext')

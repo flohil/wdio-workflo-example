@@ -1,69 +1,30 @@
 import { pageObjects as core } from 'wdio-workflo'
 import { DemoStore } from '../stores'
 
-export interface IInputOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
+export interface IInputOpts<Store extends DemoStore> extends core.elements.IValuePageElementOpts<Store> {}
 
-export class Input<Store extends DemoStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
+export class Input<Store extends DemoStore> extends core.elements.ValuePageElement<Store, string> {
 
-  setValue( value: string ) {
-    const valueStr = '' + value
-    const maxTries = 10
-    let tries = 0
+  readonly currently: InputCurrently<Store, this>
 
+  constructor(selector: string, opts: IInputOpts<Store>) {
+    super(selector, opts)
+
+    this.currently = new InputCurrently(this)
+  }
+}
+
+export class InputCurrently<
+  Store extends DemoStore,
+  PageElementType extends Input<Store>
+> extends core.elements.ValuePageElementCurrently<Store, PageElementType, string> {
+  getValue(): string {
+    return this.element.getValue()
+  }
+
+  setValue(value: string = '') {
     this.element.setValue(value)
 
-    while ( this.currently.getValue() !== valueStr && tries < maxTries ) {
-      this.currently.element.setValue(value)
-    }
-
-    // on IE, this does not work reliably - recheck until values has been set!
-
-    // on IE, sometimes capital and lower case letters
-    // are not inserted correctly - try again
-
-    // SHOULD NOT BE NEEDED ANY LONGER
-
-    /*const maxTries = 10
-    let tries = 0
-
-    const _global: any = global
-
-    if ( !_global.typeDelay ) {
-      this.element.setValue( value )
-    }
-
-    while ( this.element.getValue() !== valueStr && tries < maxTries ) {
-      if ( _global.typeDelay ) {
-        if ( _global.typeSingleKey ) {
-          let tempStr = valueStr
-
-          // delete previous content
-          this.element.setValue('')
-
-          while ( tempStr.length > 0 ) {
-            const firstChar = tempStr.substring( 0, 1 )
-            tempStr = tempStr.substring(1, tempStr.length)
-
-            browser.keys([firstChar])
-
-            // increase delay by 100 milliseconds for next try
-            browser.pause( _global.typeDelay + tries * 100 )
-          }
-        } else {
-          const lastChar = browser.selectorExecute(this.selector, (inputs, value) => {
-            inputs[0].value = value
-            return inputs[0].value.slice(-1)
-          }, value)
-          browser.pause( _global.typeDelay + tries * 100 )
-          this.element.click()
-          browser.keys(['Backspace', lastChar])
-        }
-      } else {
-        this.element.setValue( value )
-      }
-      tries++
-    }*/
-
-    return this
+    return this._node
   }
 }
