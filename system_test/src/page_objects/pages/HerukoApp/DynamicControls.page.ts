@@ -143,18 +143,27 @@ export class DynamicControlsPage extends HerukoAppPage {
       get checkbox() {
         return page.checkboxInput
       },
-      // get search() {
-      //   return page.searchInput
-      // },
-      // get paragraph() {
-      //   return page.paragraph
-      // },
-      // get inputList() {
-      //   return page.inputList
-      // },
-      // get inputMap() {
-      //   return page.inputMap
-      // }
+      get search() {
+        return page.searchInput
+      },
+      get paragraph() {
+        return page.paragraph
+      },
+      get inputList() {
+        return page.inputList
+      },
+      get inputMap() {
+        return page.inputMap
+      }
+    })
+  }
+
+  get outerInputGroup() {
+    const page = this
+
+    return this._store.ValueGroup({
+      search: page.searchInput,
+      innerGroup: page.inputGroup
     })
   }
 
