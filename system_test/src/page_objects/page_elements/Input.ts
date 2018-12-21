@@ -5,12 +5,12 @@ export interface IInputOpts<Store extends DemoStore> extends core.elements.IValu
 
 export class Input<Store extends DemoStore> extends core.elements.ValuePageElement<Store, string> {
 
-  readonly currently: InputCurrently<Store, this>
+  readonly currently = new InputCurrently(this)
 
-  constructor(selector: string, opts: IInputOpts<Store>) {
-    super(selector, opts)
+  setValue(value: string): this {
+    this.element.setValue(value)
 
-    this.currently = new InputCurrently(this)
+    return this
   }
 }
 
@@ -18,13 +18,8 @@ export class InputCurrently<
   Store extends DemoStore,
   PageElementType extends Input<Store>
 > extends core.elements.ValuePageElementCurrently<Store, PageElementType, string> {
+
   getValue(): string {
     return this.element.getValue()
-  }
-
-  setValue(value: string = '') {
-    this.element.setValue(value)
-
-    return this._node
   }
 }

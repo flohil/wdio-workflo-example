@@ -6,7 +6,7 @@ const DemoPageSteps = {
   "open demopage %{path}":
   (params: IStepArgs<{path: string}, void>): IParameterizedStep =>
     new ParameterizedStep(params, ({path}): void => {
-      pages.demo.base.open(path)
+      pages.demo.base.open({path})
     }),
   "enable input in demopage":
   (params?: IOptStepArgs<{}, void>): IParameterizedStep =>

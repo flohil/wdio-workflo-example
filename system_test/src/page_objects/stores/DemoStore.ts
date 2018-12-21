@@ -8,7 +8,6 @@ export class DemoStore extends core.stores.PageElementStore {
     selector: Workflo.XPath,
     options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
   ) {
-    console.log("selector in demoStore", selector)
     return this._getElement<Input<this>, IInputOpts<this>>(
       selector,
       Input,
@@ -21,13 +20,18 @@ export class DemoStore extends core.stores.PageElementStore {
 
   InputList(
     selector: Workflo.XPath,
-    options?: PickPartial<
-      core.elements.IPageElementListOpts<this, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>>,
+    options?: Workflo.PickPartial<
+      core.elements.IValuePageElementListOpts<
+        this,
+        Input<this>,
+        IInputOpts<this>,
+        string
+      >,
       "waitType" | "timeout" | "disableCache" | "identifier",
       "elementOptions"
     >
   ) {
-    return this.List(
+    return this.ValueList(
       selector,
       {
         elementStoreFunc: this.Input,
@@ -39,13 +43,15 @@ export class DemoStore extends core.stores.PageElementStore {
 
   InputMap<K extends string>(
     selector: Workflo.XPath,
-    options: PickPartial<
-      core.elements.IPageElementMapOpts<this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>>,
+    options: Workflo.PickPartial<
+      core.elements.IValuePageElementMapOpts<
+        this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>, string
+      >,
       "identifier",
       "elementOptions"
     >
   ) {
-    return this.Map(
+    return this.ValueMap(
       selector,
       {
         elementStoreFunc: this.Input,
@@ -85,7 +91,7 @@ export class DemoStore extends core.stores.PageElementStore {
 
   CheckboxList(
     selector: Workflo.XPath,
-    options?: PickPartial<
+    options?: Workflo.PickPartial<
       pageObjects.elements.IPageElementListOpts<this, Checkbox<this>, CheckboxOpts<this>>,
       "waitType" | "timeout" | "disableCache" | "identifier",
       "elementOptions"

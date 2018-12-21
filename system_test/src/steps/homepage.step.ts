@@ -66,15 +66,15 @@ const HomePageSteps = {
 
         console.log('logo inside group selector:', pages.google.logoGroup.$.logo.getSelector())
 
-        console.log('text group result: ', pages.google.logoGroup.getText({
-          logo: '',
-          logoList: [],
-          anoLogoList: [],
-          logoMap: {
-            logo: '',
-            logo2: ''
-          }
-        }))
+        // console.log('text group result: ', pages.google.logoGroup.getText({
+        //   logo: '',
+        //   logoList: [],
+        //   anoLogoList: [],
+        //   logoMap: {
+        //     logo: '',
+        //     logo2: ''
+        //   }
+        // }))
 
         // check that filter works
 

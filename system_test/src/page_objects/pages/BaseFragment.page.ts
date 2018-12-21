@@ -16,18 +16,15 @@ export class BaseFragment<Store extends core.stores.PageElementStore> extends co
   }
 
   get container() {
-    return this.elementStore
+    return this._store
       .Element(this._containerSelector)
   }
 
-/**
- * Returns true if page is opened at the moment.
- */
-  isOpened() {
+  isOpen(): boolean {
     return this.container.currently.isVisible()
   }
 
-  eventuallyIsOpened(timeout?: number) {
-    return this.container.eventually.isVisible({timeout: timeout})
+  isClosed(): boolean {
+    return !this.isOpen()
   }
 }

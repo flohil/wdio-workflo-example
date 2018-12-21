@@ -8,20 +8,20 @@ export interface IHerukoAppPageArgs {
 export class HerukoAppPage extends BasePage<stores.DemoStore> {
 
   constructor(args: IHerukoAppPageArgs = {}) {
-    super(Object.assign(args, {basePath: '', elementStore: stores.demo}))
+    super({...args, basePath: '', store: stores.demo})
   }
 
   // opens a page at the given url path and waits for it to load
-  open(path?: string) {
-    if (typeof path !== 'undefined') {
-      path = `${path}`
+  open(opts: {path?: string} = {}) {
+    if (typeof opts.path !== 'undefined') {
+      opts.path = `${opts.path}`
     } else {
-      path = ''
+      opts.path = ''
     }
-    const fullPath = `https://the-internet.herokuapp.com/${this.basePath}${path}`
+    const fullPath = `https://the-internet.herokuapp.com/${this.basePath}${opts.path}`
 
     browser.url(fullPath)
 
-    this.waitForOpened(path)
+    this.wait.isOpen({path: opts.path})
   }
 }

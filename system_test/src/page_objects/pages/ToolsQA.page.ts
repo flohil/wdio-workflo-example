@@ -8,20 +8,20 @@ export interface IToolsQAPageArgs {
 export class ToolsQAPage extends BasePage<stores.DemoStore> {
 
   constructor(args: IToolsQAPageArgs = {}) {
-    super(Object.assign(args, {basePath: '', elementStore: stores.demo}))
+    super({...args, basePath: '', store: stores.demo})
   }
 
   // opens a page at the given url path and waits for it to load
-  open(path?: string) {
-    if (typeof path !== 'undefined') {
-      path = `${path}`
+  open(opts: {path?: string} = {}) {
+    if (typeof opts.path !== 'undefined') {
+      opts.path = `${opts.path}`
     } else {
-      path = ''
+      opts.path = ''
     }
-    const fullPath = `http://toolsqa.com/automation-practice-form/${path}`
+    const fullPath = `http://toolsqa.com/automation-practice-form/${opts.path}`
 
     browser.url(fullPath)
 
-    this.waitForOpened(path)
+    this.wait.isOpen(opts)
   }
 }

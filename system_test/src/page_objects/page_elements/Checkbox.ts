@@ -3,28 +3,24 @@ import { DemoStore } from '../stores'
 
 export interface ICheckboxOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
 
-export class Checkbox<Store extends DemoStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
+export class Checkbox<
+  Store extends DemoStore
+> extends core.elements.ValuePageElement<Store, boolean> implements Workflo.PageNode.ISetValue<boolean> {
 
-  setValue(value: 'true' | 'false') {
-    if (value === 'true') {
-      this.check()
-    } else {
-      this.uncheck()
-    }
+  readonly currently = new CheckboxCurrently(this)
 
+  setValue(value: boolean) {
+    this.initialWait()
     return this
   }
+}
 
-  check() {
+export class CheckboxCurrently<
+  Store extends DemoStore,
+  PageElementType extends Checkbox<Store>
+> extends core.elements.ValuePageElementCurrently<Store, PageElementType, boolean> {
 
-  }
-
-  uncheck() {
-
-  }
-
-  isChecked() {
-    // return this.element.isCh
-    return true
+  getValue(): boolean {
+    return this.element.getValue() === 'on'
   }
 }

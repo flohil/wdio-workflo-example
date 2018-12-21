@@ -8,7 +8,7 @@ export interface IGooglePageArgs {
 export class GooglePage extends BasePage<stores.DemoStore> {
 
   constructor(args: IGooglePageArgs = {}) {
-    super(Object.assign(args, {basePath: '', elementStore: stores.demo}))
+    super({...args, basePath: '', store: stores.demo})
   }
 
   get nonExistingDiv() {
@@ -114,7 +114,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
   get logoGroup() {
     const page = this
 
-    return this.elementStore.ElementGroup({
+    return this._store.ElementGroup({
       get logo() {
         return page.logoContainer.$.Element(
           xpath('//div').classContains('logo-subtext')
@@ -143,9 +143,6 @@ export class GooglePage extends BasePage<stores.DemoStore> {
           search: 'Suche',
         },
         func: (element) => element.getAttribute('title')
-      },
-      elementOptions: {
-        timeout: 13000
       }
     })
   }
@@ -171,7 +168,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
   get inputGroup() {
     const page = this
 
-    return this.elementStore.ValueGroup({
+    return this._store.ValueGroup({
       get input() {
         return page.input
       },

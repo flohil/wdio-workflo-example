@@ -72,8 +72,8 @@ suite("Selector", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          const disabledInput = pages.demo.dynamicControls.inputs.where.disabled().getFirst()
-          const enabledInput = pages.demo.dynamicControls.inputs.where.notDisabled().getFirst()
+          const disabledInput = pages.demo.dynamicControls.inputList.where.disabled().getFirst()
+          const enabledInput = pages.demo.dynamicControls.inputList.where.notDisabled().getFirst()
 
           expect(disabledInput.eventually.not.isEnabled()).toBe(true)
 
@@ -132,7 +132,7 @@ suite("Selector", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          const inputList = pages.demo.dynamicControls.inputs
+          const inputList = pages.demo.dynamicControls.inputList
 
           // CHECK that calling action on nonexisting element throws custom error
 

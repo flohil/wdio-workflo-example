@@ -3,7 +3,11 @@ import { DemoStore } from '../stores'
 
 export interface IDropdownOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
 
-export class Dropdown<Store extends DemoStore> extends core.elements.PageElement<Store> implements Workflo.PageNode.ISetValue<string> {
+export class Dropdown<
+  Store extends DemoStore
+> extends core.elements.ValuePageElement<Store, string> implements Workflo.PageNode.ISetValue<string> {
+
+  currently: core.elements.ValuePageElementCurrently<Store, this, string>;
 
   get selectField() {
     return this.$.Element(
@@ -17,14 +21,20 @@ export class Dropdown<Store extends DemoStore> extends core.elements.PageElement
     )
   }
 
-  setValue( value: string ) {
+  setValue(value: string): this {
     this.selectField.click()
     this.optionsList.where.text(value).getFirst().click()
 
     return this
   }
+}
+
+export class DropdownCurrently<
+  Store extends DemoStore,
+  PageElementType extends Dropdown<Store>
+> extends core.elements.ValuePageElementCurrently<Store, PageElementType, string> {
 
   getValue(): string {
-    return this.optionsList.where.checked().getFirst().getText()
+    return this._node.optionsList.where.selected().getFirst().currently.getText()
   }
 }

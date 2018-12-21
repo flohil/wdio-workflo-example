@@ -53,22 +53,109 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get buttonMap() {
+    return this.container.$.ElementMap(
+      xpath('//button'),
+      {
+        identifier: {
+          mappingObject: {
+            remove: 'Remove',
+            enable: 'Enable'
+          },
+          func: (mapSelector, mappingValue) => xpath(mapSelector).text(mappingValue)
+        }
+      }
+    )
+  }
+
+  get buttonGroup() {
+    const page = this
+
+    return this._store.ElementGroup({
+      get removeButton() {
+        return page.removeButton
+      },
+      get enableButton() {
+        return page.enableButton
+      },
+      get buttonList() {
+        return page.buttonList
+      },
+      get buttonMap() {
+        return page.buttonMap
+      }
+    }, {timeout: 5000})
+  }
+
+  get superGroup() {
+    const page = this
+
+    return this._store.ElementGroup({
+      get checkbox() {
+        return page.checkbox
+      },
+      get buttons() {
+        return page.buttonGroup
+      }
+    })
+  }
+
   get nonExistingButtonList() {
     return this.container.$.ElementList(
       xpath('//button').id('asdf')
     )
   }
 
-  get input() {
+  get checkboxInput() {
+    return this.container.$.Input(
+      xpath('//form').id('checkbox-example').append('//input')
+    )
+  }
+
+  get searchInput() {
     return this.container.$.Input(
       xpath('//form').id('input-example').append('//input')
     )
   }
 
-  get inputs() {
+  get inputList() {
     return this.container.$.InputList(
-      xpath('//form').id('input-example').append('//input')
+      xpath('//input')
     )
+  }
+
+  get inputMap() {
+    return this.container.$.InputMap('//input', {
+      identifier: {
+        mappingObject: {
+          checkbox: 'checkbox-example',
+          search: 'input-example'
+        },
+        func: (mapSelector, mappingValue) => xpath('//form').id(mappingValue).append('//input')
+      }
+    })
+  }
+
+  get inputGroup() {
+    const page = this
+
+    return this._store.ValueGroup({
+      get checkbox() {
+        return page.checkboxInput
+      },
+      // get search() {
+      //   return page.searchInput
+      // },
+      // get paragraph() {
+      //   return page.paragraph
+      // },
+      // get inputList() {
+      //   return page.inputList
+      // },
+      // get inputMap() {
+      //   return page.inputMap
+      // }
+    })
   }
 
   get footer() {
