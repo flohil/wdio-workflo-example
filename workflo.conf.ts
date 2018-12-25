@@ -19,7 +19,7 @@ const workfloConfig: IWorkfloConfig = {
     enablePersistentHover: true,
   },
   timeouts: {
-    default: 4000
+    default: 800
   },
   intervals: {
     default: 400
@@ -31,7 +31,8 @@ const workfloConfig: IWorkfloConfig = {
   allure: {
     issueTrackerPattern: 'http://example.com/issues/%s',
     testManagementPattern: 'http://example.com/tms/%s',
-  }
+  },
+  cleanStackTraces: true
 }
 
 export default workfloConfig

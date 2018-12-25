@@ -90,7 +90,7 @@ export class DynamicControlsPage extends HerukoAppPage {
   get superGroup() {
     const page = this
 
-    return this._store.ElementGroup({
+    return this._store.ValueGroup({
       get checkbox() {
         return page.checkbox
       },
@@ -163,6 +163,7 @@ export class DynamicControlsPage extends HerukoAppPage {
 
     return this._store.ValueGroup({
       search: page.searchInput,
+      paragraph: page.paragraph,
       innerGroup: page.inputGroup
     })
   }

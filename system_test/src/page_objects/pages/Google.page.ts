@@ -117,7 +117,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
     return this._store.ElementGroup({
       get logo() {
         return page.logoContainer.$.Element(
-          xpath('//div').classContains('logo-subtext')
+          xpath('//div') /*.classContains('logo-subtext')*/
         )
       },
       get logoList() {
@@ -169,6 +169,9 @@ export class GooglePage extends BasePage<stores.DemoStore> {
     const page = this
 
     return this._store.ValueGroup({
+      get logo() {
+        return page.logo
+      },
       get input() {
         return page.input
       },
