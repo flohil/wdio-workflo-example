@@ -221,6 +221,48 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toHaveAnyText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // expectElement(pages.demo.dynamicControls.removeButton).toHaveAnyText()
+          // expectElement(pages.demo.dynamicControls.removeButton).not.toHaveAnyText()
+
+          console.log(pages.demo.dynamicControls.buttonList.getText())
+
+          // expectList(pages.demo.dynamicControls.buttonList).toHaveAnyText()
+          expectList(pages.demo.dynamicControls.buttonList).not.toHaveAnyText()
+
+          // expectList(pages.demo.dynamicControls.buttonList).toHaveAnyText(true)
+          // expectList(pages.demo.dynamicControls.buttonList).not.toHaveAnyText()
+
+          // expectList(pages.demo.dynamicControls.buttonList).not.toHaveText('Remove')
+          // expectMap(pages.demo.dynamicControls.buttonMap).not.toHaveText({
+          //   remove: 'Remove',
+          //   enable: 'Enable'
+          // })
+          // expectGroup(pages.demo.dynamicControls.buttonGroup).not.toHaveText({
+          //   removeButton: 'Remove',
+          //   enableButton: 'Enable',
+          //   buttonList: ['Remove', 'Enable'],
+          //   buttonMap: {
+          //     remove: 'Remove',
+          //     enable: 'Enable'
+          //   }
+          // })
+          // expectGroup(pages.demo.dynamicControls.superGroup).not.toHaveText({
+          //   checkbox: '',
+          //   buttons: {
+          //     removeButton: 'Remove'
+          //   }
+          // })
+        })
+      }
+    }))
+  })
+
   testcase("toEventuallyHaveText", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
