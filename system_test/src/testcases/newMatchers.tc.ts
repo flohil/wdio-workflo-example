@@ -430,6 +430,109 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toContainText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toContainText('move')
+
+          expectList(pages.demo.dynamicControls.buttonList).toContainText(['asdf', 'asdf'])
+          expectList(pages.demo.dynamicControls.buttonList).toContainText(['move', 'nab'])
+          expectList(pages.demo.dynamicControls.buttonList).not.toContainText('move')
+
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toContainText({
+            remove: 'move',
+            enable: 'nab'
+          })
+
+          expectMap(pages.demo.dynamicControls.buttonMap).toContainText({
+            remove: 'move',
+            enable: 'nab'
+          })
+
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toContainText({
+            removeButton: 'move',
+            enableButton: 'nab',
+            buttonList: ['move', 'nab'],
+            buttonMap: {
+              remove: 'move',
+              enable: 'nab'
+            }
+          })
+
+          expectGroup(pages.demo.dynamicControls.buttonGroup).toContainText({
+            removeButton: 'move',
+            enableButton: 'nab',
+            buttonList: ['move', 'nab'],
+            buttonMap: {
+              remove: 'move',
+              enable: 'nab'
+            }
+          })
+
+          expectGroup(pages.demo.dynamicControls.superGroup).not.toContainText({
+            checkbox: '',
+            buttons: {
+              removeButton: 'move'
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyContainText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyContainText('mov')
+
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyContainText(['asdf', 'asdf'])
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyContainText(['mov', 'nab'])
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyContainText('mov')
+
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyContainText({
+            remove: 'mov',
+            enable: 'nab'
+          })
+
+          expectGroup(pages.demo.dynamicControls.buttonGroup).toEventuallyContainText({
+            removeButton: 'mov',
+            enableButton: 'nab',
+            buttonList: ['mov', 'nab'],
+            buttonMap: {
+              remove: 'mov',
+              enable: 'nab'
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyContainText({
+            removeButton: 'mov',
+            enableButton: 'nab',
+            buttonList: ['mov', 'nab'],
+            buttonMap: {
+              remove: 'mov',
+              enable: 'nab'
+            }
+          }, {timeout: 1111})
+          expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyContainText({
+            checkbox: '',
+            buttons: {
+              removeButton: 'mov',
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.superGroup).toEventuallyContainText({
+            checkbox: '',
+            buttons: {
+              removeButton: 'mov',
+            }
+          })
+        })
+      }
+    }))
+  })
+
   testcase("toHaveValue", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
