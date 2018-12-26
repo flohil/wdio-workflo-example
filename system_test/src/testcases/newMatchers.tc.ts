@@ -538,38 +538,35 @@ suite("New Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"1.2": [1]}, () => {
-          // expectElement(pages.demo.dynamicControls.searchInput).toHaveValue('asdf')
-          // expectList(pages.demo.dynamicControls.inputList).toHaveValue('asdf')
-          // expectList(pages.demo.dynamicControls.inputList).toHaveValue(['on', ''])
-          // expectMap(pages.demo.dynamicControls.inputMap).toHaveValue({
-          //   checkbox: 'on',
-          //   search: 'asdf'
-          // })
-          // expectMap(pages.demo.dynamicControls.inputMap).not.toHaveValue({
-          //   checkbox: 'on',
-          //   search: 'asdf'
-          // })
-          // expectGroup(pages.demo.dynamicControls.inputGroup).toHaveValue({
-          //   checkbox: 'on',
-          //   search: '',
-          //   inputList: ['on', ''],
-          //   inputMap: {
-          //     checkbox: 'on',
-          //     search: ''
-          //   }
-          // })
-          // expectGroup(pages.demo.dynamicControls.inputGroup).not.toHaveValue({
-          //   checkbox: 'on',
-          //   search: '',
-          //   inputList: ['on', ''],
-          //   inputMap: {
-          //     checkbox: 'on',
-          //     search: ''
-          //   }
-          // })
-
-          pages.demo.dynamicControls.inputList.wait.not.isEmpty()
-
+          expectElement(pages.demo.dynamicControls.searchInput).toHaveValue('asdf')
+          expectList(pages.demo.dynamicControls.inputList).toHaveValue('asdf')
+          expectList(pages.demo.dynamicControls.inputList).toHaveValue(['on', ''])
+          expectMap(pages.demo.dynamicControls.inputMap).toHaveValue({
+            checkbox: 'on',
+            search: 'asdf'
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).not.toHaveValue({
+            checkbox: 'on',
+            search: 'asdf'
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toHaveValue({
+            checkbox: 'on',
+            search: '',
+            inputList: ['on', ''],
+            inputMap: {
+              checkbox: 'on',
+              search: ''
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).not.toHaveValue({
+            checkbox: 'on',
+            search: '',
+            inputList: ['on', ''],
+            inputMap: {
+              checkbox: 'on',
+              search: ''
+            }
+          })
           expectGroup(pages.demo.dynamicControls.outerInputGroup).toHaveValue({
             search: 'bla',
             innerGroup: {
@@ -582,17 +579,15 @@ suite("New Matchers", {}, () => {
               }
             }
           })
-
-          // expectGroup(pages.demo.dynamicControls.inputGroup).toHaveValue({
-          //   inputList: 'on'
-          // })
-
-          // expectGroup(pages.demo.dynamicControls.outerInputGroup).toHaveValue({
-          //   search: '',
-          //   innerGroup: {
-          //     inputList: ['on', '']
-          //   }
-          // })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toHaveValue({
+            inputList: 'on'
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toHaveValue({
+            search: '',
+            innerGroup: {
+              inputList: ['on', '']
+            }
+          })
         })
       }
     }))
@@ -830,6 +825,121 @@ suite("New Matchers", {}, () => {
               }
             }
           })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainValue", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.searchInput).toContainValue('asdf')
+          expectList(pages.demo.dynamicControls.inputList).toContainValue('asdf')
+          expectList(pages.demo.dynamicControls.inputList).toContainValue(['on', ''])
+          expectMap(pages.demo.dynamicControls.inputMap).toContainValue({
+            checkbox: 'o',
+            search: 'asdf'
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).not.toContainValue({
+            checkbox: 'o',
+            search: 'asdf'
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toContainValue({
+            checkbox: 'o',
+            search: '',
+            inputList: ['o', ''],
+            inputMap: {
+              checkbox: 'o',
+              search: ''
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).not.toContainValue({
+            checkbox: 'o',
+            search: '',
+            inputList: ['o', ''],
+            inputMap: {
+              checkbox: 'o',
+              search: ''
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toContainValue({
+            search: 'bla',
+            innerGroup: {
+              checkbox: 'bla',
+              search: 'bla',
+              inputList: ['bla', 'bli'],
+              inputMap: {
+                checkbox: 'bla',
+                search: 'bla'
+              }
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toContainValue({
+            inputList: 'o'
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toContainValue({
+            search: '',
+            innerGroup: {
+              inputList: ['o', '']
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyContainValue", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.searchInput).toEventuallyContainValue('asdf', {
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyContainValue('asdf', {
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyContainValue(['on', ''])
+          expectMap(pages.demo.dynamicControls.inputMap).toEventuallyContainValue({
+            checkbox: 'on',
+            search: 'asdf'
+          }, {timeout: 1111})
+          expectMap(pages.demo.dynamicControls.inputMap).not.toEventuallyContainValue({
+            checkbox: 'on',
+            search: 'asdf'
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toEventuallyContainValue({
+            checkbox: 'on',
+            search: '',
+            inputList: ['on', ''],
+            inputMap: {
+              checkbox: 'on',
+              search: ''
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).not.toEventuallyContainValue({
+            checkbox: 'on',
+            search: '',
+            inputList: ['on', ''],
+            inputMap: {
+              checkbox: 'on',
+              search: ''
+            }
+          }, {timeout: 3000})
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toEventuallyContainValue({
+            search: 'bla',
+            innerGroup: {
+              checkbox: 'bla',
+              search: 'bla',
+              inputList: ['bla', 'bli'],
+              inputMap: {
+                checkbox: 'bla',
+                search: 'bla'
+              }
+            }
+          }, {timeout: 1111})
         })
       }
     }))
