@@ -117,4 +117,86 @@ suite("FilterMask Suite", {}, () => {
       }
     }))
   })
+
+  testcase("map has", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          console.log("no filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText())
+          console.log("true filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText({
+            enable: true,
+            remove: true
+          }))
+          console.log("false filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText({
+            enable: false,
+            remove: false
+          }))
+          console.log("mixed filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText({
+            enable: true,
+            remove: false
+          }))
+          console.log("null filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText(null))
+          console.log("undefined or null filterMask map", pages.demo.dynamicControls.buttonMap.getHasAnyText({
+            enable: null,
+            remove: undefined
+          }))
+        })
+      }
+    }))
+  })
+
+  testcase("group has", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          console.log("no filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText())
+          console.log("true filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText({
+            enableButton: true,
+            removeButton: true,
+            buttonList: true,
+            buttonMap: {
+              enable: true,
+              remove: true
+            }
+          }))
+          console.log("false filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText({
+            enableButton: false,
+            removeButton: false,
+            buttonList: false,
+            buttonMap: {
+              enable: false,
+              remove: false
+            }
+          }))
+          console.log("mixed filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText({
+            enableButton: false,
+            removeButton: true,
+            buttonList: false,
+            buttonMap: {
+              enable: true,
+              remove: false
+            }
+          }))
+          console.log("mixed filterMask group with list", pages.demo.dynamicControls.buttonGroup.getHasAnyText({
+            enableButton: false,
+            removeButton: true,
+            buttonList: [false, false],
+            buttonMap: {
+              enable: true,
+              remove: false
+            }
+          }))
+          console.log("null filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText(null))
+          console.log("undefined or null filterMask group", pages.demo.dynamicControls.buttonGroup.getHasAnyText({
+            enableButton: undefined,
+            removeButton: null,
+            buttonList: undefined,
+            buttonMap: null
+          }))
+        })
+      }
+    }))
+  })
 })
