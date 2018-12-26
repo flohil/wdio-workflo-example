@@ -550,45 +550,182 @@ suite("New Matchers", {}, () => {
     }))
   })
 
-  testcase("toHaveValue2", {}, () => {
-    given(steps["open homepage"]({
+  testcase("toHaveAnyValue", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"1.2": [1]}, () => {
-          // console.log(pages.google.inputGroup.getValue({
-          //   input: true
-          // }))
+          expectElement(pages.demo.dynamicControls.searchInput).toHaveAnyValue()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toHaveAnyValue()
 
-          // pages.google.inputGroup.currently.hasValue({
-          //   input: ''
-          // })
+          expectList(pages.demo.dynamicControls.inputList).toHaveAnyValue()
+          expectList(pages.demo.dynamicControls.inputList).not.toHaveAnyValue()
+          expectList(pages.demo.dynamicControls.inputList).toHaveAnyValue(true)
+          expectList(pages.demo.dynamicControls.inputList).toHaveAnyValue(false)
+          expectList(pages.demo.dynamicControls.inputList).toHaveAnyValue([true, false])
 
-          // pages.google.inputGroup.eventually.hasValue({
-          //   input: ''
-          // })
+          expectMap(pages.demo.dynamicControls.inputMap).toHaveAnyValue({
+            checkbox: true,
+            search: true
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).toHaveAnyValue({
+            checkbox: false,
+            search: false
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).toHaveAnyValue()
 
-          // pages.google.inputGroup.setValue({
-          //   input: 'jodel'
-          // })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toHaveAnyValue({
+            checkbox: true,
+            search: true,
+            inputList: [true, true],
+            inputMap: {
+              checkbox: true,
+              search: true
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).not.toHaveAnyValue({
+            checkbox: true,
+            search: true,
+            inputList: [true, true],
+            inputMap: {
+              checkbox: true,
+              search: true
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toHaveAnyValue({
+            search: true,
+            innerGroup: {
+              checkbox: true,
+              search: true,
+              inputList: true,
+              inputMap: {
+                checkbox: true,
+                search: true
+              }
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toHaveAnyValue({
+            inputList: false
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toHaveAnyValue({
+            search: true,
+            innerGroup: {
+              inputList: false
+            }
+          })
+        })
+      }
+    }))
+  })
 
-          // pages.google.inputGroup.wait.hasValue({
-          //   input: ''
-          // })
+  testcase("toEventuallyHaveAnyValue", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.searchInput).toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.searchInput).not.toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkboxInput).toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkboxInput).not.toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
 
-          // expectGroup(pages.google.logoGroup).toHaveText({
-          //   logo: ''
-          // })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.inputList).not.toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: true
+          })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: false
+          })
+          expectList(pages.demo.dynamicControls.inputList).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: [true, false]
+          })
 
-          // expectGroup(pages.google.logoGroup).toHaveText({
-          //   logo: ''
-          // })
+          expectMap(pages.demo.dynamicControls.inputMap).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              checkbox: true,
+              search: true
+            }
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              checkbox: false,
+              search: false
+            }
+          })
+          expectMap(pages.demo.dynamicControls.inputMap).toEventuallyHaveAnyValue({
+            timeout: 1111
+          })
 
-          // expectGroup(pages.google.inputGroup).toHaveText({
-          //   input: 'lolo'
-          // })
-
-          expectGroup(pages.google.inputGroup).toHaveValue({
-            input: 'lol',
-
+          expectGroup(pages.demo.dynamicControls.inputGroup).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              checkbox: true,
+              search: true,
+              inputList: [true, true],
+              inputMap: {
+                checkbox: true,
+                search: true
+              }
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).not.toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              checkbox: true,
+              search: true,
+              inputList: [true, true],
+              inputMap: {
+                checkbox: true,
+                search: true
+              }
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              search: true,
+              innerGroup: {
+                checkbox: true,
+                search: true,
+                inputList: true,
+                inputMap: {
+                  checkbox: true,
+                  search: true
+                }
+              }
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.inputGroup).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              inputList: false
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.outerInputGroup).toEventuallyHaveAnyValue({
+            timeout: 1111,
+            filterMask: {
+              search: true,
+              innerGroup: {
+                inputList: false
+              }
+            }
           })
         })
       }
