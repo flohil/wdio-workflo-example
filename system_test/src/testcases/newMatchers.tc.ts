@@ -533,6 +533,164 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toHaveDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toHaveDirectText('Remove')
+          expectList(pages.demo.dynamicControls.buttonList).toHaveDirectText(['asdf', 'asdf'])
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toHaveDirectText({
+            remove: 'Remove',
+            enable: 'Enable'
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toHaveDirectText({
+            removeButton: 'Remove',
+            enableButton: 'Enable',
+            buttonList: ['Remove', 'Enable'],
+            buttonMap: {
+              remove: 'Remove',
+              enable: 'Enable'
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyHaveDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyHaveDirectText('Remove')
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveDirectText(['asdf', 'asdf'])
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyHaveDirectText({
+            remove: 'Remove',
+            enable: 'Enable'
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyHaveDirectText({
+            removeButton: 'Remove',
+            enableButton: 'Enable',
+            buttonList: ['Remove', 'Enable'],
+            buttonMap: {
+              remove: 'Remove',
+              enable: 'Enable'
+            }
+          }, {timeout: 1111})
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toHaveAnyDirectText()
+          expectList(pages.demo.dynamicControls.buttonList).not.toHaveAnyDirectText()
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toHaveAnyDirectText()
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toHaveAnyDirectText({
+            removeButton: true,
+            enableButton: true,
+            buttonList: [true, true],
+            buttonMap: {
+              remove: true,
+              enable: true
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyHaveAnyDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyHaveAnyDirectText({
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyHaveAnyDirectText({
+            timeout: 1111,
+            filterMask: true
+          })
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyHaveAnyDirectText({
+            timeout: 1111,
+            filterMask: {
+              remove: true,
+              enable: true
+            }
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyHaveAnyDirectText({
+            timeout: 1111,
+            filterMask: {
+              removeButton: true,
+              enableButton: true,
+              buttonList: [true, true],
+              buttonMap: {
+                remove: true,
+                enable: true
+              }
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toContainDirectText('move')
+          expectList(pages.demo.dynamicControls.buttonList).toContainDirectText(['asdf', 'asdf'])
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toContainDirectText({
+            remove: 'move',
+            enable: 'nab'
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toContainDirectText({
+            removeButton: 'move',
+            enableButton: 'nab',
+            buttonList: ['move', 'nab'],
+            buttonMap: {
+              remove: 'move',
+              enable: 'nab'
+            }
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyContainDirectText", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyContainDirectText('mov')
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyContainDirectText(['asdf', 'asdf'])
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyContainDirectText({
+            remove: 'mov',
+            enable: 'nab'
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyContainDirectText({
+            removeButton: 'mov',
+            enableButton: 'nab',
+            buttonList: ['mov', 'nab'],
+            buttonMap: {
+              remove: 'mov',
+              enable: 'nab'
+            }
+          }, {timeout: 1111})
+        })
+      }
+    }))
+  })
+
   testcase("toHaveValue", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
