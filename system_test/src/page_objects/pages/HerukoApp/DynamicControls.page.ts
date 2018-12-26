@@ -94,6 +94,9 @@ export class DynamicControlsPage extends HerukoAppPage {
       get checkbox() {
         return page.checkbox
       },
+      get removeButton() {
+        return page.removeButton
+      },
       get buttons() {
         return page.buttonGroup
       }
