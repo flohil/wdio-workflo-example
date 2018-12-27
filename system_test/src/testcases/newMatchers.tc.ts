@@ -849,7 +849,7 @@ suite("New Matchers", {}, () => {
             timeout: 1111
           })
 
-          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyHaveAnyAttribute('label', {
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyHaveAnyAttribute('label', {
             timeout: 1111
           })
         })
@@ -888,6 +888,237 @@ suite("New Matchers", {}, () => {
           expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyContainAttribute(
             falseAttribute, {timeout: 1111}
           )
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveClass", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.footer).toHaveClass('row')
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveClass('row')
+
+          expectElement(pages.demo.dynamicControls.footer).toHaveClass('jodel')
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveClass('jodel')
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyHaveClass('row', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveClass('row', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyHaveClass('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveClass('jodel', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyClass", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toHaveAnyClass()
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveAnyClass()
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyHaveAnyClass({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveAnyClass({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainClass", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.footer).toContainClass('ro')
+          expectElement(pages.demo.dynamicControls.footer).not.toContainClass('ro')
+
+          expectElement(pages.demo.dynamicControls.footer).toContainClass('jodel')
+          expectElement(pages.demo.dynamicControls.footer).not.toContainClass('jodel')
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyContainClass('ro', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyContainClass('ro', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyContainClass('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyContainClass('jodel', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveId", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.footer).toHaveId('page-footer')
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveId('page-footer')
+
+          expectElement(pages.demo.dynamicControls.footer).toHaveId('jodel')
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveId('jodel')
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyHaveId('page-footer', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveId('page-footer', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyHaveId('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveId('jodel', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyId", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.checkbox).toHaveAnyId()
+          expectElement(pages.demo.dynamicControls.footer).not.toHaveAnyId()
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyHaveAnyId({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyHaveAnyId({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainId", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.footer).toContainId('page-foote')
+          expectElement(pages.demo.dynamicControls.footer).not.toContainId('page-foote')
+
+          expectElement(pages.demo.dynamicControls.footer).toContainId('jodel')
+          expectElement(pages.demo.dynamicControls.footer).not.toContainId('jodel')
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyContainId('page-foote', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyContainId('page-foote', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.footer).toEventuallyContainId('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.footer).not.toEventuallyContainId('jodel', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveName", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.login.usernameById).toHaveName('username')
+          expectElement(pages.demo.login.usernameById).not.toHaveName('username')
+
+          expectElement(pages.demo.login.usernameById).toHaveName('jodel')
+          expectElement(pages.demo.login.usernameById).not.toHaveName('jodel')
+
+          expectElement(pages.demo.login.usernameById).toEventuallyHaveName('username', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.login.usernameById).not.toEventuallyHaveName('username', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.login.usernameById).toEventuallyHaveName('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.login.usernameById).not.toEventuallyHaveName('jodel', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyName", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.login.usernameById).toHaveAnyName()
+          expectElement(pages.demo.login.usernameById).not.toHaveAnyName()
+
+          expectElement(pages.demo.login.usernameById).toEventuallyHaveAnyName({
+            timeout: 1111
+          })
+          expectElement(pages.demo.login.usernameById).not.toEventuallyHaveAnyName({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainName", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.login.usernameById).toContainName('ser')
+          expectElement(pages.demo.login.usernameById).not.toContainName('ser')
+
+          expectElement(pages.demo.login.usernameById).toContainName('jodel')
+          expectElement(pages.demo.login.usernameById).not.toContainName('jodel')
+
+          expectElement(pages.demo.login.usernameById).toEventuallyContainName('ser', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.login.usernameById).not.toEventuallyContainName('ser', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.login.usernameById).toEventuallyContainName('jodel', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.login.usernameById).not.toEventuallyContainName('jodel', {
+            timeout: 1111
+          })
         })
       }
     }))
