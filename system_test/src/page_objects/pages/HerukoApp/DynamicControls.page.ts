@@ -17,6 +17,12 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get checkboxContainer() {
+    return this.container.$.Checkbox(
+      xpath('//div').id('checkbox')
+    )
+  }
+
   get paragraph() {
     return this.container.$.Element(
       '//p'

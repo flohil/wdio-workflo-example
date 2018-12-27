@@ -230,6 +230,67 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toHaveHTML", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const fullHTML = '<input type="checkbox" label="blah"> A checkbox'
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toHaveHTML(fullHTML)
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toHaveHTML(fullHTML)
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyHaveHTML(fullHTML, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toEventuallyHaveHTML(fullHTML, {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyHTML", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toHaveAnyHTML()
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toHaveAnyHTML()
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyHaveAnyHTML({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toEventuallyHaveAnyHTML({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainHTML", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const partialHTML = '<input type="checkbox" label="blah">'
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toContainHTML(partialHTML)
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toContainHTML(partialHTML)
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyContainHTML(partialHTML, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkboxContainer).not.toEventuallyContainHTML(partialHTML, {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
   testcase("toHaveText", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
