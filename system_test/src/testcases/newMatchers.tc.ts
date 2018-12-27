@@ -186,6 +186,50 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toBeSelected", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dropdown'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dropdown.defaultOption).toBeSelected()
+          expectElement(pages.demo.dropdown.defaultOption).not.toBeSelected()
+
+          expectElement(pages.demo.dropdown.defaultOption).toEventuallyBeSelected()
+          expectElement(pages.demo.dropdown.defaultOption).not.toEventuallyBeSelected({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toBeChecked", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.checkbox).toBeChecked()
+          expectElement(pages.demo.dynamicControls.checkbox).not.toBeChecked()
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyBeChecked({
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyBeChecked()
+
+          pages.demo.dynamicControls.checkbox.click()
+
+          expectElement(pages.demo.dynamicControls.checkbox).toBeChecked()
+          expectElement(pages.demo.dynamicControls.checkbox).not.toBeChecked()
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyBeChecked()
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyBeChecked({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
   testcase("toHaveText", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},

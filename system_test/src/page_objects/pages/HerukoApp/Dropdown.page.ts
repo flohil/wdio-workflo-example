@@ -14,4 +14,8 @@ export class DropdownPage extends HerukoAppPage {
   get dropdown() {
     return this.container.$.Dropdown('//select')
   }
+
+  get defaultOption() {
+    return this.dropdown.$.ExistElement(xpath('//option').text('Please select an option'))
+  }
 }
