@@ -796,6 +796,103 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toHaveAttribute", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const attribute: Workflo.IAttribute = {
+            name: 'label',
+            value: 'blah'
+          }
+          const falseAttribute: Workflo.IAttribute = {
+            name: 'label',
+            value: 'asdf'
+          }
+
+          expectElement(pages.demo.dynamicControls.checkbox).toHaveAttribute(attribute)
+          expectElement(pages.demo.dynamicControls.checkbox).not.toHaveAttribute(attribute)
+
+          expectElement(pages.demo.dynamicControls.checkbox).toHaveAttribute(falseAttribute)
+          expectElement(pages.demo.dynamicControls.checkbox).not.toHaveAttribute(falseAttribute)
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyHaveAttribute(attribute, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyHaveAttribute(attribute, {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyHaveAttribute(falseAttribute, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyHaveAttribute(falseAttribute, {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveAnyAttribute", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectElement(pages.demo.dynamicControls.checkbox).toHaveAnyAttribute('label')
+          expectElement(pages.demo.dynamicControls.checkbox).not.toHaveAnyAttribute('label')
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyHaveAnyAttribute('label', {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyHaveAnyAttribute('label', {
+            timeout: 1111
+          })
+
+          expectElement(pages.demo.dynamicControls.checkboxContainer).toEventuallyHaveAnyAttribute('label', {
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toContainAttribute", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const partialAttribute: Workflo.IAttribute = {
+            name: 'label',
+            value: 'bla'
+          }
+          const falseAttribute: Workflo.IAttribute = {
+            name: 'label',
+            value: 'asdf'
+          }
+
+          expectElement(pages.demo.dynamicControls.checkbox).toContainAttribute(partialAttribute)
+          expectElement(pages.demo.dynamicControls.checkbox).not.toContainAttribute(partialAttribute)
+          expectElement(pages.demo.dynamicControls.checkbox).toContainAttribute(falseAttribute)
+          expectElement(pages.demo.dynamicControls.checkbox).not.toContainAttribute(falseAttribute)
+
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyContainAttribute(partialAttribute, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyContainAttribute(
+            partialAttribute, {timeout: 1111}
+          )
+          expectElement(pages.demo.dynamicControls.checkbox).toEventuallyContainAttribute(falseAttribute, {
+            timeout: 1111
+          })
+          expectElement(pages.demo.dynamicControls.checkbox).not.toEventuallyContainAttribute(
+            falseAttribute, {timeout: 1111}
+          )
+        })
+      }
+    }))
+  })
+
   testcase("toHaveValue", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
