@@ -22,4 +22,8 @@ export class LoginPage extends HerukoAppPage {
       xpath('//input').id('username')
     )
   }
+
+  get loginButton() {
+    return this.container.$.Element(xpath('//button'))
+  }
 }

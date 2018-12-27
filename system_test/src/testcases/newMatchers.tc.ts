@@ -1124,6 +1124,301 @@ suite("New Matchers", {}, () => {
     }))
   })
 
+  testcase("toHaveLocation", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 10, y: 10}, {x: 2, y: 2})
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 10, y: 10}, {y: 2})
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 10, y: 10})
+
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 147, y: 342.390625}, {x: 20, y: 20})
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 147, y: 342.390625}, {y: 20})
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 147, y: 342.390625})
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 10, y: 10}, {tolerances: {x: 2, y: 2}, timeout: 2000}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 10, y: 10}, {tolerances: {y: 2}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 10, y: 10}
+          )
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}, {tolerances: {x: 20, y: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}, {tolerances: {y: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}
+          )
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 10, y: 10}, {x: 2, y: 2})
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 10, y: 10}, {y: 2})
+          expectElement(pages.demo.login.loginButton).toHaveLocation({x: 10, y: 10})
+
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 147, y: 342.390625}, {x: 20, y: 20})
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 147, y: 342.390625}, {y: 20})
+          expectElement(pages.demo.login.loginButton).not.toHaveLocation({x: 147, y: 342.390625})
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 10, y: 10}, {tolerances: {x: 2, y: 2}, timeout: 2000}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 10, y: 10}, {tolerances: {y: 2}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveLocation(
+            {x: 10, y: 10}
+          )
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}, {tolerances: {x: 20, y: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}, {tolerances: {y: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveLocation(
+            {x: 147, y: 342.390625}
+          )
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveX", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveX(10, 2)
+          expectElement(pages.demo.login.loginButton).not.toHaveX(10)
+
+          expectElement(pages.demo.login.loginButton).toHaveX(147, 20)
+          expectElement(pages.demo.login.loginButton).toHaveX(147)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveX(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveX(10)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveX(147, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveX(147)
+
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveX(10, 2)
+          expectElement(pages.demo.login.loginButton).toHaveX(10)
+
+          expectElement(pages.demo.login.loginButton).not.toHaveX(147, 20)
+          expectElement(pages.demo.login.loginButton).not.toHaveX(147)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveX(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveX(10)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveX(147, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveX(147)
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveY", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveY(10, 2)
+          expectElement(pages.demo.login.loginButton).not.toHaveY(10)
+
+          expectElement(pages.demo.login.loginButton).toHaveY(342.390625, 20)
+          expectElement(pages.demo.login.loginButton).toHaveY(342.390625)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveY(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveY(10)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveY(342.390625, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveY(342.390625)
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveY(10, 2)
+          expectElement(pages.demo.login.loginButton).toHaveY(10)
+
+          expectElement(pages.demo.login.loginButton).not.toHaveY(342.390625, 20)
+          expectElement(pages.demo.login.loginButton).not.toHaveY(342.390625)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveY(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveY(10)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveY(342.390625, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveY(342.390625)
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveSize", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"2.1": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 10, height: 10}, {width: 2, height: 2})
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 10, height: 10}, {height: 2})
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 10, height: 10})
+
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 162, height: 59}, {width: 20, height: 20})
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 162, height: 59}, {height: 20})
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 162, height: 59})
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 10, height: 10}, {tolerances: {width: 2, height: 2}, timeout: 2000}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 10, height: 10}, {tolerances: {height: 2}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 10, height: 10}
+          )
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 162, height: 59}, {tolerances: {width: 20, height: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 162, height: 59}, {tolerances: {height: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 162, height: 59}
+          )
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 10, height: 10}, {width: 2, height: 2})
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 10, height: 10}, {height: 2})
+          expectElement(pages.demo.login.loginButton).toHaveSize({width: 10, height: 10})
+
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 162, height: 59}, {width: 20, height: 20})
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 162, height: 59}, {height: 20})
+          expectElement(pages.demo.login.loginButton).not.toHaveSize({width: 162, height: 59})
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 10, height: 10}, {tolerances: {width: 2, height: 2}, timeout: 2000}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 10, height: 10}, {tolerances: {height: 2}}
+          )
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveSize(
+            {width: 10, height: 10}
+          )
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 162, height: 59}, {tolerances: {width: 20, height: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 162, height: 59}, {tolerances: {height: 20}}
+          )
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveSize(
+            {width: 162, height: 59}
+          )
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveWidth", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveWidth(10, 2)
+          expectElement(pages.demo.login.loginButton).not.toHaveWidth(10)
+
+          expectElement(pages.demo.login.loginButton).toHaveWidth(162, 20)
+          expectElement(pages.demo.login.loginButton).toHaveWidth(162)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveWidth(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveWidth(10)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveWidth(162, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveWidth(162)
+
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveWidth(10, 2)
+          expectElement(pages.demo.login.loginButton).toHaveWidth(10)
+
+          expectElement(pages.demo.login.loginButton).not.toHaveWidth(162, 20)
+          expectElement(pages.demo.login.loginButton).not.toHaveWidth(162)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveWidth(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveWidth(10)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveWidth(162, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveWidth(162)
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveHeight", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'login'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+
+          // WORKS
+
+          expectElement(pages.demo.login.loginButton).not.toHaveHeight(10, 2)
+          expectElement(pages.demo.login.loginButton).not.toHaveHeight(10)
+
+          expectElement(pages.demo.login.loginButton).toHaveHeight(59, 20)
+          expectElement(pages.demo.login.loginButton).toHaveHeight(59)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveHeight(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveHeight(10)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveHeight(59, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveHeight(59)
+
+
+          // DOES NOT WORK
+
+          expectElement(pages.demo.login.loginButton).toHaveHeight(10, 2)
+          expectElement(pages.demo.login.loginButton).toHaveHeight(10)
+
+          expectElement(pages.demo.login.loginButton).not.toHaveHeight(59, 20)
+          expectElement(pages.demo.login.loginButton).not.toHaveHeight(59)
+
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveHeight(10, {tolerance: 2})
+          expectElement(pages.demo.login.loginButton).toEventuallyHaveHeight(10)
+
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveHeight(59, {tolerance: 20})
+          expectElement(pages.demo.login.loginButton).not.toEventuallyHaveHeight(59)
+        })
+      }
+    }))
+  })
+
   testcase("toHaveValue", {}, () => {
     given(steps["open demopage %{path}"]({
       arg: {path: 'dynamic_controls'},
