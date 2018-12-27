@@ -1102,4 +1102,94 @@ suite("New Matchers", {}, () => {
       }
     }))
   })
+
+  testcase("toBeEmpty", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectList(pages.demo.dynamicControls.buttonList).toBeEmpty()
+          expectList(pages.demo.dynamicControls.nonExistingButtonList).toBeEmpty()
+          expectList(pages.demo.dynamicControls.buttonList).not.toBeEmpty()
+          expectList(pages.demo.dynamicControls.nonExistingButtonList).not.toBeEmpty()
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyBeEmpty", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyBeEmpty({
+            timeout: 1111
+          })
+          expectList(pages.demo.dynamicControls.nonExistingButtonList).toEventuallyBeEmpty()
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyBeEmpty()
+          expectList(pages.demo.dynamicControls.nonExistingButtonList).not.toEventuallyBeEmpty({
+            timeout: 1111
+          })
+        })
+      }
+    }))
+  })
+
+  testcase("toHaveLength", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(2)
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(1)
+
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(1, Workflo.Comparator.gt)
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(2, Workflo.Comparator.gt)
+
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(2, Workflo.Comparator.lt)
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(3, Workflo.Comparator.lt)
+
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(2, Workflo.Comparator.ne)
+          expectList(pages.demo.dynamicControls.buttonList).toHaveLength(3, Workflo.Comparator.ne)
+        })
+      }
+    }))
+  })
+
+  testcase("toEventuallyHaveLength", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(2)
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(1)
+
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(1, {
+            timeout: 1111,
+            comparator: Workflo.Comparator.gt
+          })
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(2, {
+            comparator: Workflo.Comparator.gt
+          })
+
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(2, {
+            timeout: 1111,
+            comparator: Workflo.Comparator.lt
+          })
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(3, {
+            comparator: Workflo.Comparator.lt
+          })
+
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(2, {
+            timeout: 1111,
+            comparator: Workflo.Comparator.ne
+          })
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyHaveLength(3, {
+            timeout: 1111,
+            comparator: Workflo.Comparator.ne
+          })
+        })
+      }
+    }))
+  })
 })
