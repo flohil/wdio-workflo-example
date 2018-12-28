@@ -53,6 +53,12 @@ export class DynamicControlsPage extends HerukoAppPage {
     )
   }
 
+  get disableButton() {
+    return this.container.$.Element(
+      xpath('//button').text('Disable')
+    )
+  }
+
   get buttonList() {
     return this.container.$.ElementList(
       xpath('//button')
