@@ -1,5 +1,6 @@
 import steps from '?/steps'
 import { pages, stores, elements } from '?/page_objects'
+import { pageObjects } from 'wdio-workflo'
 
 suite("FilterMask Suite", {}, () => {
   testcase("list get", {}, () => {
@@ -195,6 +196,226 @@ suite("FilterMask Suite", {}, () => {
             buttonList: undefined,
             buttonMap: null
           }))
+        })
+      }
+    }))
+  })
+
+  testcase("list wait", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expect(() => pages.demo.dynamicControls.buttonList.wait.not.hasAnyText({
+            filterMask: true,
+            timeout: 800
+          })).toThrowError('PageElement never not had any text within 800ms.\n( (//body//button)[1] )')
+
+          expect(() => pages.demo.dynamicControls.buttonList.wait.not.hasAnyText({
+            timeout: 800
+          })).toThrowError(
+            'PageElement never not had any text within 800ms.\n( (//body//button)[1] )'
+          )
+
+          expect(() => pages.demo.dynamicControls.buttonList.wait.not.hasAnyText({
+            filterMask: [true, false],
+            timeout: 800
+          })).toThrowError('PageElement never not had any text within 800ms.\n( (//body//button)[1] )')
+
+          expect(() => pages.demo.dynamicControls.buttonList.wait.not.hasAnyText({
+            filterMask: [false, false],
+            timeout: 800
+          })).not.toThrowAnyError()
+        })
+      }
+    }))
+  })
+
+  testcase("map wait", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expect(() => pages.demo.dynamicControls.buttonMap.wait.not.hasAnyText({
+            filterMask: {
+              enable: true,
+              remove: true
+            },
+            timeout: 800
+          })).toThrowError("PageElement never not had any text within 800ms.\n( //body//button[. = 'Remove'] )")
+
+          expect(() => pages.demo.dynamicControls.buttonMap.wait.not.hasAnyText({
+            timeout: 800
+          })).toThrowError(
+            "PageElement never not had any text within 800ms.\n( //body//button[. = 'Remove'] )"
+          )
+
+          expect(() => pages.demo.dynamicControls.buttonMap.wait.not.hasAnyText({
+            filterMask: {
+              enable: true,
+              remove: false
+            },
+            timeout: 800
+          })).toThrowError("PageElement never not had any text within 800ms.\n( //body//button[. = 'Enable'] )")
+
+          expect(() => pages.demo.dynamicControls.buttonMap.wait.not.hasAnyText({
+            filterMask: {
+              enable: false,
+              remove: false
+            },
+            timeout: 800
+          })).not.toThrowAnyError()
+        })
+      }
+    }))
+  })
+
+  testcase("group wait", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          expect(() => pages.demo.dynamicControls.buttonGroup.wait.not.hasAnyText({
+            filterMask: {
+              enableButton: true,
+              removeButton: true,
+              buttonList: true,
+              buttonMap: {
+                enable: true,
+                remove: true
+              }
+            },
+            timeout: 800
+          })).toThrowError("PageElement never not had any text within 800ms.\n( //body//button[. = 'Remove'] )")
+
+          expect(() => pages.demo.dynamicControls.buttonGroup.wait.not.hasAnyText({
+            timeout: 800
+          })).toThrowError(
+            "PageElement never not had any text within 800ms.\n( //body//button[. = 'Remove'] )"
+          )
+
+          expect(() => pages.demo.dynamicControls.buttonGroup.wait.not.hasAnyText({
+            filterMask: {
+              enableButton: true,
+              removeButton: false,
+              buttonList: true,
+              buttonMap: {
+                enable: true,
+                remove: false
+              }
+            },
+            timeout: 800
+          })).toThrowError("PageElement never not had any text within 800ms.\n( //body//button[. = 'Enable'] )")
+
+          expect(() => pages.demo.dynamicControls.buttonGroup.wait.not.hasAnyText({
+            filterMask: {
+              enableButton: false,
+              removeButton: false,
+              buttonList: false,
+              buttonMap: {
+                enable: false,
+                remove: false
+              }
+            },
+            timeout: 800
+          })).not.toThrowAnyError()
+        })
+      }
+    }))
+  })
+
+  testcase("list do", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const texts: string[] = []
+          const filteredTexts: string[] = []
+
+          pages.demo.dynamicControls.buttonList.eachDo(
+            element => texts.push(element.getText())
+          )
+          pages.demo.dynamicControls.buttonList.eachDo(
+            element => filteredTexts.push(element.getText()),
+            [false, true]
+          )
+
+          expect(texts).toEqual(['Remove', 'Enable'])
+          expect(filteredTexts).toEqual(['Enable'])
+        })
+      }
+    }))
+  })
+
+  testcase("map do", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const texts: string[] = []
+          const filteredTexts: string[] = []
+
+          pages.demo.dynamicControls.buttonMap.eachDo(element => texts.push(element.getText()))
+          pages.demo.dynamicControls.buttonMap.eachDo(
+            element => filteredTexts.push(element.getText()),
+            {
+              enable: true,
+              remove: false
+            }
+          )
+
+          expect(texts).toEqual(['Remove', 'Enable'])
+          expect(filteredTexts).toEqual(['Enable'])
+        })
+      }
+    }))
+  })
+
+  testcase("group do", {}, () => {
+    given(steps["open demopage %{path}"]({
+      arg: {path: 'dynamic_controls'},
+      cb: () => {
+        validate({"1.2": [1]}, () => {
+          const buttonGroup = pages.demo.dynamicControls.buttonGroup
+
+          const texts: string[] = []
+          const filteredTexts: string[] = []
+
+          buttonGroup.eachDo<Workflo.PageNode.IElementNode<
+            Workflo.PageNode.ExtractText<typeof buttonGroup.$>,
+            Workflo.PageNode.ExtractBoolean<typeof buttonGroup.$>,
+            Workflo.PageNode.ExtractBoolean<typeof buttonGroup.$>
+          >>(pageObjects.elements.isIElementNode, ({node}) => {
+            const res = node.getText()
+
+            texts.push(JSON.stringify(res))
+          })
+          buttonGroup.eachDo<Workflo.PageNode.IElementNode<
+            Workflo.PageNode.ExtractText<typeof buttonGroup.$>,
+            Workflo.PageNode.ExtractBoolean<typeof buttonGroup.$>
+          >>(pageObjects.elements.isIElementNode, ({node, filter}) => {
+            const res = node.getText(filter)
+
+            filteredTexts.push(JSON.stringify(res))
+          }, {
+            enableButton: true,
+            buttonList: [false, true],
+            buttonMap: {
+              enable: true
+            }
+          })
+
+          expect(texts).toEqual([
+            '"Remove"',
+            '"Enable"',
+            '["Remove","Enable"]',
+            '{"remove":"Remove","enable":"Enable"}'
+          ])
+          expect(filteredTexts).toEqual([
+            '"Enable"',
+            '["Enable"]',
+            '{"enable":"Enable"}'
+          ])
         })
       }
     }))

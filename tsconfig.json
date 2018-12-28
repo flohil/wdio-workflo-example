@@ -2,14 +2,7 @@
     "compilerOptions": {
         "target": "ES6",
         "module": "commonjs",
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "allowJs": true,
-        "outDir": "./tsOut",
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true,
         "types": ["jasmine", "jasmine-expect", "node", "webdriverio"],
-        "traceResolution": false,
         "preserveConstEnums": true,
         "baseUrl": ".",
         "paths": {
@@ -29,7 +22,10 @@
             "test.system/*": ["./system_test/src/*"],
             "test.page_objects/*": ["./system_test/src/page_objects/*"],
             "test.json_table_data/*": ["./system_test/src/fixtures/json_table_data/*"]
-        }
+        },
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "allowJs": true
     },
     "include": [
         "node_modules/wdio-workflo/**/*.ts",
