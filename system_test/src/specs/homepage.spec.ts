@@ -1,5 +1,3 @@
-console.log("in homepage.spec.ts")
-
 Feature("Homepage", {}, () => {
   Story("1.1", "Display correct title", {issues: ['KBCPP-1', 'KBCPP-2'], bugs: ['KBCPP-3', 'KBCPP-4']}, () => {
     Given("a user opens the google homepage", () => {

@@ -20,18 +20,7 @@
     "url": "https://github.com/flohil/wdio-workflo-example/issues"
   },
   "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
-  "devDependencies": {
-    "path": "^0.12.7"
-  },
   "dependencies": {
-    "@types/selenium-standalone": "^6.15.0",
-    "allure-commandline": "^2.7.0",
-    "chrome-launcher": "^0.10.5",
-    "deasync": "^0.1.10",
-    "htmlparser2": "^3.9.2",
-    "selenium-standalone": "^6.15.1",
-    "supports-color": "^5.4.0",
-    "typescript": "^3.2.2",
     "wdio-workflo": "^0.2.13"
   }
 }
