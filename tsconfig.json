@@ -8,7 +8,6 @@
       "outDir": "./tsOut",
       "experimentalDecorators": true,
       "allowSyntheticDefaultImports": true,
-      "types": ["jasmine", "jasmine-expect", "node", "webdriverio"],
       "traceResolution": false,
       "preserveConstEnums": true,
       "baseUrl": ".",
