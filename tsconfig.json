@@ -1,15 +1,10 @@
 {
+  "extends": "./tsconfig.workflo.json",
   "compilerOptions": {
-      "target": "ES6",
-      "module": "commonjs",
       "noImplicitAny": false,
       "sourceMap": true,
       "allowJs": true,
       "outDir": "./tsOut",
-      "experimentalDecorators": true,
-      "allowSyntheticDefaultImports": true,
-      "traceResolution": false,
-      "preserveConstEnums": true,
       "baseUrl": ".",
       "paths": {
           "~/*": ["./*"],
@@ -29,9 +24,5 @@
           "test.page_objects/*": ["./system_test/src/page_objects/*"],
           "test.json_table_data/*": ["./system_test/src/fixtures/json_table_data/*"]
       }
-  },
-  "include": [
-      "node_modules/wdio-workflo/**/*.ts",
-      "system_test/src/**/*"
-  ]
+  }
 }
