@@ -5,7 +5,7 @@ export interface ICheckboxOpts<Store extends DemoStore> extends core.elements.IP
 
 export class Checkbox<
   Store extends DemoStore
-> extends core.elements.ValuePageElement<Store, boolean> implements Workflo.PageNode.ISetValue<boolean> {
+> extends core.elements.ValuePageElement<Store, boolean> {
 
   readonly currently = new CheckboxCurrently(this)
 

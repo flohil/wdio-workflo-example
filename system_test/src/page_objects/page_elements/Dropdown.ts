@@ -5,7 +5,7 @@ export interface IDropdownOpts<Store extends DemoStore> extends core.elements.IP
 
 export class Dropdown<
   Store extends DemoStore
-> extends core.elements.ValuePageElement<Store, string> implements Workflo.PageNode.ISetValue<string> {
+> extends core.elements.ValuePageElement<Store, string> {
 
   currently: core.elements.ValuePageElementCurrently<Store, this, string>;
 

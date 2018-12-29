@@ -1,34 +1,38 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "module": "commonjs",
-        "types": ["jasmine", "jasmine-expect", "node", "webdriverio"],
-        "preserveConstEnums": true,
-        "baseUrl": ".",
-        "paths": {
-            "~/*": ["./*"],
-            "?/*": ["./system_test/src/*"],
-            "$/*": ["./src/styles/*"],
-            "@/*": ["./src/app/*"],
-            "test.data/*": ["./system_test/data/*"],
-            "app/*": ["./src/app/*"],
-            "app.styles/*": ["./src/styles/*"],
-            "app.config/*": ["./config/*"],
-            "app.components/*": ["./src/app/components/*"],
-            "app.dteditor/*": ["./src/dteditor/dist/*"],
-            "app.pages/*": ["./src/app/pages/*"],
-            "test.unit/*": ["./test/spec/unit_tests/*"],
-            "test.integration/*": ["./test/spec/integration_tests/*"],
-            "test.system/*": ["./system_test/src/*"],
-            "test.page_objects/*": ["./system_test/src/page_objects/*"],
-            "test.json_table_data/*": ["./system_test/src/fixtures/json_table_data/*"]
-        },
-        "noImplicitAny": false,
-        "sourceMap": true,
-        "allowJs": true
-    },
-    "include": [
-        "node_modules/wdio-workflo/**/*.ts",
-        "system_test/src/**/*"
-    ]
+  "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "noImplicitAny": false,
+      "sourceMap": true,
+      "allowJs": true,
+      "outDir": "./tsOut",
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "types": ["jasmine", "jasmine-expect", "node", "webdriverio"],
+      "traceResolution": false,
+      "preserveConstEnums": true,
+      "baseUrl": ".",
+      "paths": {
+          "~/*": ["./*"],
+          "?/*": ["./system_test/src/*"],
+          "$/*": ["./src/styles/*"],
+          "@/*": ["./src/app/*"],
+          "test.data/*": ["./system_test/data/*"],
+          "app/*": ["./src/app/*"],
+          "app.styles/*": ["./src/styles/*"],
+          "app.config/*": ["./config/*"],
+          "app.components/*": ["./src/app/components/*"],
+          "app.dteditor/*": ["./src/dteditor/dist/*"],
+          "app.pages/*": ["./src/app/pages/*"],
+          "test.unit/*": ["./test/spec/unit_tests/*"],
+          "test.integration/*": ["./test/spec/integration_tests/*"],
+          "test.system/*": ["./system_test/src/*"],
+          "test.page_objects/*": ["./system_test/src/page_objects/*"],
+          "test.json_table_data/*": ["./system_test/src/fixtures/json_table_data/*"]
+      }
+  },
+  "include": [
+      "node_modules/wdio-workflo/**/*.ts",
+      "system_test/src/**/*"
+  ]
 }

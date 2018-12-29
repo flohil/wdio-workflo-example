@@ -79,25 +79,25 @@ suite("Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          pages.demo.dynamicControls.input.wait.not.isEnabled()
+          pages.demo.dynamicControls.searchInput.wait.not.isEnabled()
 
-          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
-          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toEventuallyBeEnabled()
         })
       }
     }))
     .when(steps["enable input in demopage"]({
       cb: () => {
         validate({"2.1": [1]}, () => {
-          pages.demo.dynamicControls.input.wait.isEnabled()
+          pages.demo.dynamicControls.searchInput.wait.isEnabled()
 
-          expectElement(pages.demo.dynamicControls.input).toBeEnabled()
-          expectElement(pages.demo.dynamicControls.input).toEventuallyBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).toBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).toEventuallyBeEnabled()
 
-          // expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
-          // expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+          // expectElement(pages.demo.dynamicControls.searchInput).not.toBeEnabled()
+          // expectElement(pages.demo.dynamicControls.searchInput).not.toEventuallyBeEnabled()
 
-          // pages.demo.dynamicControls.input.wait.not.isEnabled()
+          // pages.demo.dynamicControls.searchInput.wait.not.isEnabled()
         })
       }
     }))
@@ -108,25 +108,25 @@ suite("Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          pages.demo.dynamicControls.input.wait.not.isEnabled()
+          pages.demo.dynamicControls.searchInput.wait.not.isEnabled()
 
-          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
-          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toEventuallyBeEnabled()
         })
       }
     }))
     .when(steps["enable input in demopage"]({
       cb: () => {
         validate({"2.1": [1]}, () => {
-          pages.demo.dynamicControls.input.wait.isEnabled()
+          pages.demo.dynamicControls.searchInput.wait.isEnabled()
 
-          expectElement(pages.demo.dynamicControls.input).toBeEnabled()
-          expectElement(pages.demo.dynamicControls.input).toEventuallyBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).toBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).toEventuallyBeEnabled()
 
-          expectElement(pages.demo.dynamicControls.input).not.toBeEnabled()
-          expectElement(pages.demo.dynamicControls.input).not.toEventuallyBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toBeEnabled()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toEventuallyBeEnabled()
 
-          pages.demo.dynamicControls.input.wait.not.isEnabled()
+          pages.demo.dynamicControls.searchInput.wait.not.isEnabled()
         })
       }
     }))
@@ -160,7 +160,7 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
           const paragraph = pages.demo.dynamicControls.paragraph
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           paragraph.wait.hasText(textStr)
           paragraph.wait.hasAnyText()
@@ -236,7 +236,7 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
           const footer = pages.demo.dynamicControls.footer
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           const HTML = `
       <div class="large-4 large-centered columns">
@@ -283,7 +283,7 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
           const poweredBy = pages.demo.dynamicControls.poweredBy
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           const directText = 'Powered by '
           const containsDirectText = 'by'
@@ -329,13 +329,13 @@ suite("Matchers", {}, () => {
           const containsType = 'tto'
           const notType = 'asdf'
 
-          button.wait.hasAttribute('type', type)
+          button.wait.hasAttribute({name: 'type', value: type})
           button.wait.hasAnyAttribute('type')
-          button.wait.containsAttribute('type', containsType)
+          button.wait.containsAttribute({name: 'type', value: type})
 
-          button.wait.not.hasAttribute('type', notType)
+          button.wait.not.hasAttribute({name: 'type', value: type})
           footer.wait.not.hasAnyAttribute('type')
-          button.wait.not.containsAttribute('type', notType)
+          button.wait.not.containsAttribute({name: 'type', value: type})
 
           expectElement(button).toHaveAttribute({name: 'type', value: type})
           expectElement(button).toHaveAnyAttribute('type')
@@ -363,7 +363,7 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
           const footer = pages.demo.dynamicControls.footer
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           const klass = 'row'
           const containsClass = 'ro'
@@ -434,7 +434,7 @@ suite("Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           input.wait.not.hasAnyId()
           expectElement(input).not.toHaveAnyId()
@@ -481,7 +481,7 @@ suite("Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"2.1": [1]}, () => {
-          const input = pages.demo.dynamicControls.input
+          const input = pages.demo.dynamicControls.searchInput
 
           input.wait.not.hasAnyName()
           expectElement(input).not.toHaveAnyName()
@@ -496,24 +496,24 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
 
-          expectElement(pages.google.input).not.toHaveLocation({x: 10, y: 10}, {tolerances: {x: 2, y: 2}})
-          expectElement(pages.google.input).not.toHaveLocation({x: 10, y: 10}, {tolerances: {y: 2}})
+          expectElement(pages.google.input).not.toHaveLocation({x: 10, y: 10}, {x: 2, y: 2})
+          expectElement(pages.google.input).not.toHaveLocation({x: 10, y: 10}, {y: 2})
           expectElement(pages.google.input).not.toHaveLocation({x: 10, y: 10})
 
-          expectElement(pages.google.input).not.toHaveX(10, {tolerance: 2})
+          expectElement(pages.google.input).not.toHaveX(10, 2)
           expectElement(pages.google.input).not.toHaveX(10)
 
-          expectElement(pages.google.input).not.toHaveY(10, {tolerance: 2})
+          expectElement(pages.google.input).not.toHaveY(10, 2)
           expectElement(pages.google.input).not.toHaveY(10)
 
-          expectElement(pages.google.input).toHaveLocation({x: 400, y: 325}, {tolerances: {x: 20, y: 20}})
-          expectElement(pages.google.input).toHaveLocation({x: 404.5, y: 325}, {tolerances: {y: 20}})
+          expectElement(pages.google.input).toHaveLocation({x: 400, y: 325}, {x: 20, y: 20})
+          expectElement(pages.google.input).toHaveLocation({x: 404.5, y: 325}, {y: 20})
           expectElement(pages.google.input).toHaveLocation({x: 404.5, y: 323})
 
-          expectElement(pages.google.input).toHaveX(400, {tolerance: 20})
+          expectElement(pages.google.input).toHaveX(400, 20)
           expectElement(pages.google.input).toHaveX(404.5)
 
-          expectElement(pages.google.input).toHaveY(325, {tolerance: 20})
+          expectElement(pages.google.input).toHaveY(325, 20)
           expectElement(pages.google.input).toHaveY(323)
 
           // expectElement(pages.google.input).toHaveLocation({x: 10, y: 10}, {tolerances: {x: 2, y: 2}})
@@ -595,24 +595,24 @@ suite("Matchers", {}, () => {
       cb: () => {
         validate({"2.1": [1]}, () => {
 
-          expectElement(pages.google.input).not.toHaveSize({width: 10, height: 10}, {tolerances: {width: 2, height: 2}})
-          expectElement(pages.google.input).not.toHaveSize({width: 10, height: 10}, {tolerances: {height: 2}})
+          expectElement(pages.google.input).not.toHaveSize({width: 10, height: 10}, {width: 2, height: 2})
+          expectElement(pages.google.input).not.toHaveSize({width: 10, height: 10}, {height: 2})
           expectElement(pages.google.input).not.toHaveSize({width: 10, height: 10})
 
-          expectElement(pages.google.input).not.toHaveWidth(10, {tolerance: 2})
+          expectElement(pages.google.input).not.toHaveWidth(10, 2)
           expectElement(pages.google.input).not.toHaveWidth(10)
 
-          expectElement(pages.google.input).not.toHaveHeight(10, {tolerance: 2})
+          expectElement(pages.google.input).not.toHaveHeight(10, 2)
           expectElement(pages.google.input).not.toHaveHeight(10)
 
-          expectElement(pages.google.input).toHaveSize({width: 400, height: 40}, {tolerances: {width: 20, height: 20}})
-          expectElement(pages.google.input).toHaveSize({width: 403, height: 40}, {tolerances: {height: 20}})
+          expectElement(pages.google.input).toHaveSize({width: 400, height: 40}, {width: 20, height: 20})
+          expectElement(pages.google.input).toHaveSize({width: 403, height: 40}, {height: 20})
           expectElement(pages.google.input).toHaveSize({width: 403, height: 34})
 
-          expectElement(pages.google.input).toHaveWidth(400, {tolerance: 20})
+          expectElement(pages.google.input).toHaveWidth(400, 20)
           expectElement(pages.google.input).toHaveWidth(403)
 
-          expectElement(pages.google.input).toHaveHeight(40, {tolerance: 20})
+          expectElement(pages.google.input).toHaveHeight(40, 20)
           expectElement(pages.google.input).toHaveHeight(34)
 
           // expectElement(pages.google.input).toHaveSize({width: 10, height: 10}, {tolerances: {width: 2, height: 2}})
