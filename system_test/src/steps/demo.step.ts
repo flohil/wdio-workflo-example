@@ -1,6 +1,5 @@
 import { ParameterizedStep } from 'wdio-workflo'
-import steps from '?/steps'
-import { core, pages } from '?/page_objects'
+import { pages } from '?/page_objects'
 
 const DemoPageSteps = {
   "open demopage %{path}":

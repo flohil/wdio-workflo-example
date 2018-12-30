@@ -1,12 +1,13 @@
-import { core } from '?/page_objects'
+import { PageElementStore } from '../stores'
+import { Page, IPageArgs } from './Page'
 
-export interface IBasePageArgs<Store extends core.stores.PageElementStore> extends core.pages.IPageArgs<Store> {
+export interface IBasePageArgs<Store extends PageElementStore> extends IPageArgs<Store> {
   basePath: string
 }
 
 export class BasePage<
-  Store extends core.stores.PageElementStore
-> extends core.pages.Page<
+  Store extends PageElementStore
+> extends Page<
   Store,
   {path?: string}
 > {

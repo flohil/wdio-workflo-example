@@ -1,6 +1,4 @@
-import steps from '?/steps'
-import { pages, stores } from '?/page_objects'
-import {pageObjects} from 'wdio-workflo'
+import { pages } from '?/page_objects'
 
 suite("Bail1", {}, () => {
   testcase("test", {testId: '5'}, () => {

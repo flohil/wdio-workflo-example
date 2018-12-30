@@ -1,11 +1,11 @@
-import { stores, core } from '?/page_objects'
-import * as config from '~/config/testConfig'
+import { PageElementStore } from '../stores'
+import { Page, IPageArgs } from './Page'
 
-export interface IBaseFragmentPageArgs<Store extends core.stores.PageElementStore> extends core.pages.IPageArgs<Store> {
+export interface IBaseFragmentPageArgs<Store extends PageElementStore> extends IPageArgs<Store> {
   containerSelector: string
 }
 
-export class BaseFragment<Store extends core.stores.PageElementStore> extends core.pages.Page<Store> {
+export class BaseFragment<Store extends PageElementStore> extends Page<Store> {
 
   protected _containerSelector: string
 

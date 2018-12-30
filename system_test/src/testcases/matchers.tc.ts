@@ -1,6 +1,5 @@
 import steps from '?/steps'
-import { pages, stores } from '?/page_objects'
-import {pageObjects} from 'wdio-workflo'
+import { pages } from '?/page_objects'
 
 const textStr = "This example demonstrates when elements (e.g., checkbox, input field, etc.) are changed asynchronously."
 const textContainsStr = "This example"

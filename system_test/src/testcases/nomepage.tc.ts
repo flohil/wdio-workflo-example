@@ -1,6 +1,5 @@
 import steps from '?/steps'
 import { pages, stores } from '?/page_objects'
-import {pageObjects} from 'wdio-workflo'
 
 suite("Matchers", {}, () => {
   testcase("test", {}, () => {

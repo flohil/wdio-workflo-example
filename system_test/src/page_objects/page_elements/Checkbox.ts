@@ -1,11 +1,11 @@
-import { pageObjects as core } from 'wdio-workflo'
 import { DemoStore } from '../stores'
+import { ValuePageElement, ValuePageElementCurrently, IValuePageElementOpts } from './ValuePageElement'
 
-export interface ICheckboxOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
+export interface ICheckboxOpts<Store extends DemoStore> extends IValuePageElementOpts<Store> {}
 
 export class Checkbox<
   Store extends DemoStore
-> extends core.elements.ValuePageElement<Store, boolean> {
+> extends ValuePageElement<Store, boolean> {
 
   readonly currently = new CheckboxCurrently(this)
 
@@ -18,7 +18,7 @@ export class Checkbox<
 export class CheckboxCurrently<
   Store extends DemoStore,
   PageElementType extends Checkbox<Store>
-> extends core.elements.ValuePageElementCurrently<Store, PageElementType, boolean> {
+> extends ValuePageElementCurrently<Store, PageElementType, boolean> {
 
   getValue(): boolean {
     return this.element.getValue() === 'on'

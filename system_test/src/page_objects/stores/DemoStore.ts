@@ -1,9 +1,11 @@
-import { pageObjects as core, pageObjects } from 'wdio-workflo'
+import { pageObjects as core } from 'wdio-workflo'
+
+import { PageElementStore } from './PageElementStore';
 import { Dropdown, IDropdownOpts, Checkbox, ICheckboxOpts, IInputOpts, Input } from '../page_elements'
 
 type CheckboxOpts<Store extends DemoStore> = Pick<ICheckboxOpts<Store>, Workflo.Store.ElementPublicKeys>
 
-export class DemoStore extends core.stores.PageElementStore {
+export class DemoStore extends PageElementStore {
   Input(
     selector: Workflo.XPath,
     options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
@@ -92,7 +94,7 @@ export class DemoStore extends core.stores.PageElementStore {
   CheckboxList(
     selector: Workflo.XPath,
     options?: Workflo.PickPartial<
-      pageObjects.elements.IPageElementListOpts<this, Checkbox<this>, CheckboxOpts<this>>,
+      core.elements.IPageElementListOpts<this, Checkbox<this>, CheckboxOpts<this>>,
       "waitType" | "timeout" | "disableCache" | "identifier",
       "elementOptions"
     >

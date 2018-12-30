@@ -1,5 +1,5 @@
-import { BasePage, IBasePageArgs } from './BasePage.page'
-import { stores, core } from '?/page_objects'
+import { BasePage } from './BasePage'
+import { stores } from '?/page_objects'
 
 export interface IToolsQAPageArgs {
 

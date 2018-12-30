@@ -1,13 +1,13 @@
-import { pageObjects as core } from 'wdio-workflo'
 import { DemoStore } from '../stores'
+import { ValuePageElement, ValuePageElementCurrently, IValuePageElementOpts } from './ValuePageElement'
 
-export interface IDropdownOpts<Store extends DemoStore> extends core.elements.IPageElementOpts<Store> {}
+export interface IDropdownOpts<Store extends DemoStore> extends IValuePageElementOpts<Store> {}
 
 export class Dropdown<
   Store extends DemoStore
-> extends core.elements.ValuePageElement<Store, string> {
+> extends ValuePageElement<Store, string> {
 
-  currently: core.elements.ValuePageElementCurrently<Store, this, string>;
+  currently: ValuePageElementCurrently<Store, this, string>;
 
   get selectField() {
     return this.$.Element(
@@ -32,7 +32,7 @@ export class Dropdown<
 export class DropdownCurrently<
   Store extends DemoStore,
   PageElementType extends Dropdown<Store>
-> extends core.elements.ValuePageElementCurrently<Store, PageElementType, string> {
+> extends ValuePageElementCurrently<Store, PageElementType, string> {
 
   getValue(): string {
     return this._node.optionsList.where.selected().getFirst().currently.getText()

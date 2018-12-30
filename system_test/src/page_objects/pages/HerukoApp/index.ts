@@ -1,15 +1,15 @@
-import { CheckboxesPage } from './Checkboxes.page'
-import { DropdownPage } from './Dropdown.page'
-import { DynamicControlsPage } from './DynamicControls.page'
-import { DynamicControlsOpenPage } from './DynamicControlsOpen.page'
-import { LoginPage } from './Login.page'
-import { HerukoAppPage } from './HerukoApp.page'
+import { CheckboxesPage } from './CheckboxePage'
+import { DropdownPage } from './DropdownPage'
+import { DynamicControlsPage } from './DynamicControlsPage'
+import { DynamicControlsOpenPage } from './DynamicControlsOpenPage'
+import { LoginPage } from './LoginPage'
+import { HerukoAppPage } from './HerukoAppPage'
 
-export * from './Checkboxes.page'
-export * from './Dropdown.page'
-export * from './DynamicControls.page'
-export * from './Login.page'
-export * from './HerukoApp.page'
+export * from './CheckboxePage'
+export * from './DropdownPage'
+export * from './DynamicControlsPage'
+export * from './LoginPage'
+export * from './HerukoAppPage'
 
 export const checkboxes = new CheckboxesPage()
 export const dynamicControls = new DynamicControlsPage()

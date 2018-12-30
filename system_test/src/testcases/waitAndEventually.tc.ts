@@ -1,6 +1,5 @@
 import steps from '?/steps'
-import { pages, stores } from '?/page_objects'
-import {pageObjects} from 'wdio-workflo'
+import { pages } from '?/page_objects'
 
 suite("Wait and Eventually", {}, () => {
   testcase("page element wait and eventually", {}, () => {

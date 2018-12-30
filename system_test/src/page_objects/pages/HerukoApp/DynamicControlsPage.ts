@@ -1,5 +1,5 @@
-import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoApp.page'
-import { stores, core } from '?/page_objects'
+import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoAppPage'
+import { stores } from '?/page_objects'
 
 export interface IDynamicControlsPageArgs extends IHerukoAppPageArgs {
 

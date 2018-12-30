@@ -1,5 +1,5 @@
-import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoApp.page'
-import { stores, core } from '?/page_objects'
+import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoAppPage'
+import { stores } from '?/page_objects'
 
 export interface ICheckboxesPageArgs extends IHerukoAppPageArgs {
 
@@ -14,8 +14,4 @@ export class CheckboxesPage extends HerukoAppPage {
   get checkboxes() {
     return this.container.$.ElementList(xpath('//input').attribute('type', 'checkbox'))
   }
-
-  // get checkboxGroup() {
-  //   return this.container.$.CheckboxGroup(xpath('//input').attribute('type', 'checkbox'))
-  // }
 }

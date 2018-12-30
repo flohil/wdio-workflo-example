@@ -1,5 +1,4 @@
 import steps from '?/steps'
-import { pages, stores } from '?/page_objects'
 
 suite("Homepage Suite 2", {}, () => {
   testcase("visit homepage 2", {}, () => {

@@ -1,6 +1,6 @@
-import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoApp.page'
-import { stores, core } from '?/page_objects'
-import { DynamicControlsPage } from './DynamicControls.page';
+import { IHerukoAppPageArgs } from './HerukoAppPage'
+import { stores } from '?/page_objects'
+import { DynamicControlsPage } from './DynamicControlsPage';
 
 export interface IDynamicControlsOpenPageArgs extends IHerukoAppPageArgs {
 

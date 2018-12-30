@@ -1,5 +1,5 @@
 import steps from '?/steps'
-import { pages, stores, elements } from '?/page_objects'
+import { pages } from '?/page_objects'
 import { pageObjects } from 'wdio-workflo'
 
 suite("FilterMask Suite", {}, () => {
@@ -225,7 +225,7 @@ suite("FilterMask Suite", {}, () => {
           expect(() => pages.demo.dynamicControls.buttonList.wait.not.hasAnyText({
             filterMask: [false, false],
             timeout: 800
-          })).not.toThrowAnyError()
+          })).not.toThrowError()
         })
       }
     }))
@@ -264,7 +264,7 @@ suite("FilterMask Suite", {}, () => {
               remove: false
             },
             timeout: 800
-          })).not.toThrowAnyError()
+          })).not.toThrowError()
         })
       }
     }))
@@ -318,7 +318,7 @@ suite("FilterMask Suite", {}, () => {
               }
             },
             timeout: 800
-          })).not.toThrowAnyError()
+          })).not.toThrowError()
         })
       }
     }))
