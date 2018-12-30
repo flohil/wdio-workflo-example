@@ -48,9 +48,11 @@ export class PageElementCurrently<
     return 'true'
   }
 
-  not = {...super.not,
-    printBooleanStr: () => {
-      return 'not' + this.printBooleanStr()
+  get not() {
+    return {...super.not,
+      printBooleanStr: () => {
+        return 'not' + this.printBooleanStr()
+      }
     }
   }
 }

@@ -17,75 +17,6 @@ export interface IValuePageElementOpts<
   Store extends PageElementStore
 > extends core.elements.IValuePageElementOpts<Store>, IPageElementOpts<Store> {}
 
-// /**
-//  * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElement class.
-//  * It is supposed to serve as the base ValuePageElement class throughout your project.
-//  */
-// export abstract class ValuePageElement<
-//   Store extends PageElementStore,
-//   ValueType
-// > extends core.elements.ValuePageElement<Store, ValueType>
-// implements PageElement<Store> {
-//   printTestValue: () => string
-
-//   readonly abstract currently: ValuePageElementCurrently<Store, this, ValueType>
-//   readonly wait: ValuePageElementWait<Store, this, ValueType>
-//   readonly eventually: ValuePageElementEventually<Store, this, ValueType>
-
-//   testProp: string;
-//   testValueProp: string
-
-//   constructor(selector: string, opts?: IValuePageElementOpts<Store>) {
-//     super(selector, opts)
-
-//     this.testProp = 'testProp in ValuePageElement'
-//     this.testValueProp = 'testValueProp in ValuePageElement'
-
-//     this.wait = new ValuePageElementWait(this)
-//     this.eventually = new ValuePageElementEventually(this)
-
-//     this.printTestValue()
-//   }
-
-//   printValueTestValue() {
-//     return 'testValue in ValuePageElement'
-//   }
-// }
-
-// export abstract class ValuePageElementCurrently<
-//   Store extends PageElementStore,
-//   PageElementType extends ValuePageElement<Store, ValueType>,
-//   ValueType
-// > extends core.elements.ValuePageElementCurrently<Store, PageElementType, ValueType>
-// implements PageElementCurrently<Store, PageElementType> {
-//   printBooleanStr: () => string
-
-//   readonly not: core.elements.ValuePageElementCurrently<Store, PageElementType, ValueType> &
-//     PageElementCurrently<Store, PageElementType>['not']
-// }
-
-// export class ValuePageElementWait<
-//   Store extends PageElementStore,
-//   PageElementType extends ValuePageElement<Store, ValueType>,
-//   ValueType
-// > extends core.elements.ValuePageElementWait<Store, PageElementType, ValueType>
-// implements PageElementWait<Store, PageElementType> {}
-
-// export class ValuePageElementEventually<
-//   Store extends PageElementStore,
-//   PageElementType extends ValuePageElement<Store, ValueType>,
-//   ValueType
-// > extends core.elements.ValuePageElementEventually<Store, PageElementType, ValueType>
-// implements PageElementEventually<Store, PageElementType> {}
-
-// // mixin functionalities of extended PageElement base class -> https://www.typescriptlang.org/docs/handbook/mixins.html
-
-// helpers.applyMixins(ValuePageElement, [PageElement]);
-// helpers.applyMixins(ValuePageElementCurrently, [PageElementCurrently]);
-// helpers.applyMixins(ValuePageElementWait, [PageElementWait]);
-// helpers.applyMixins(ValuePageElementEventually, [PageElementEventually]);
-
-
 /**
  * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElement class.
  * It is supposed to serve as the base ValuePageElement class throughout your project.
@@ -135,7 +66,7 @@ export abstract class ValuePageElementCurrently<
   ValueType
 > extends PageElementCurrently<Store, PageElementType>
 implements core.elements.ValuePageElementCurrently<Store, PageElementType, ValueType> {
-  getValue: () => ValueType
+  abstract getValue(): ValueType
   getHasValue: (value: ValueType) => boolean
   getHasAnyValue: () => boolean
   getContainsValue: (value: ValueType) => boolean
@@ -179,7 +110,7 @@ implements core.elements.ValuePageElementEventually<Store, PageElementType, Valu
 
 // mixin functionalities of extended PageElement base class -> https://www.typescriptlang.org/docs/handbook/mixins.html
 
-helpers.applyMixins(ValuePageElement, [PageElement]);
-helpers.applyMixins(ValuePageElementCurrently, [PageElementCurrently]);
-helpers.applyMixins(ValuePageElementWait, [PageElementWait]);
-helpers.applyMixins(ValuePageElementEventually, [PageElementEventually]);
+helpers.applyMixins(ValuePageElement, [core.elements.ValuePageElement], ['not']);
+helpers.applyMixins(ValuePageElementCurrently, [core.elements.ValuePageElementCurrently], ['not']);
+helpers.applyMixins(ValuePageElementWait, [core.elements.ValuePageElementWait], ['not']);
+helpers.applyMixins(ValuePageElementEventually, [core.elements.ValuePageElementEventually], ['not']);
