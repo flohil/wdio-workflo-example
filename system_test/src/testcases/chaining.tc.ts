@@ -1,4 +1,5 @@
 import steps from '?/steps'
+import { pages } from '../page_objects';
 
 suite("Chaining Suite", {}, () => {
   suite("sub suite", {}, () => {
@@ -21,6 +22,17 @@ suite("Chaining Suite", {}, () => {
       cb: () => {
         validate({'7.7': [1]}, () => {
           expect(true).toBe(true)
+        })
+      }
+    }))
+  })
+  testcase("invalid group chaining", {}, () => {
+    given(steps["open homepage"]({
+      cb: () => {
+        validate({'7.7': [1]}, () => {
+          expect(() => pages.google.container.$.ElementGroup({})).toThrowError(
+            'Selector chaining is not supported for PageElementGroups.'
+          )
         })
       }
     }))

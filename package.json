@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
   "dependencies": {
-    "wdio-workflo": "^0.2.23"
+    "wdio-workflo": "^0.2.24"
   }
 }
