@@ -20,6 +20,9 @@ suite("Mixin", {}, () => {
           expect(pages.demo.dynamicControls.checkbox.printValueTestValue()).toEqual('testValue in ValuePageElement')
           expect(pages.demo.dynamicControls.checkbox.printTestValue()).toEqual('testValue in PageElement')
           expect(pages.demo.dynamicControls.paragraph.printTestValue()).toEqual('testValue in PageElement')
+
+          expectElement(pages.demo.dynamicControls.removeButton).toHaveAnyText()
+          expectElement(pages.demo.dynamicControls.searchInput).not.toHaveAnyText()
         })
       }
     }))

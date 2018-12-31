@@ -40,6 +40,10 @@ export class PageElement<Store extends PageElementStore> extends core.elements.P
   }
 }
 
+/**
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's PageElementCurrently
+ * class. It is supposed to serve as the base PageElementCurrently class throughout your project.
+ */
 export class PageElementCurrently<
   Store extends PageElementStore,
   PageElementType extends PageElement<Store>
@@ -52,16 +56,27 @@ export class PageElementCurrently<
     return {...super.not,
       printBooleanStr: () => {
         return 'not' + this.printBooleanStr()
+      },
+      hasAnyText: () => {
+        return super.not.hasAnyText()
       }
     }
   }
 }
 
+/**
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's PageElementWait
+ * class. It is supposed to serve as the base PageElementWait class throughout your project.
+ */
 export class PageElementWait<
   Store extends PageElementStore,
   PageElementType extends PageElement<Store>
 > extends core.elements.PageElementWait<Store, PageElementType> {}
 
+/**
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's PageElementEventually
+ * class. It is supposed to serve as the base PageElementEventually class throughout your project.
+ */
 export class PageElementEventually<
   Store extends PageElementStore,
   PageElementType extends PageElement<Store>

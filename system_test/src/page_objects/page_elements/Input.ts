@@ -39,6 +39,9 @@ export class InputCurrently<
     return {...super.not,
       printBooleanStr: () => {
         return 'not' + super.printBooleanStr()
+      },
+      hasAnyText: () => {
+        return super.not.hasAnyText()
       }
     }
   }
