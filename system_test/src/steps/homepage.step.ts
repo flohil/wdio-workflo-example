@@ -1,58 +1,58 @@
-import { ParameterizedStep } from 'wdio-workflo'
+import { Step, IOptStepArgs, IStepArgs } from 'wdio-workflo'
 import { pages } from '?/page_objects'
 
 const HomePageSteps = {
   "open url %{url}":
-  (params: IStepArgs<{url: string}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, ({url}): void => {
+  (params: IStepArgs<{url: string}, void>) =>
+    new Step(params, ({url}): void => {
       browser.url(url)
       browser.pause(2000)
     }),
   "open homepage":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
       browser.url('/')
     }),
   "get title":
-  (params?: IOptStepArgs<{}, string>): IParameterizedStep =>
-    new ParameterizedStep(params, (): string => {
+  (params?: IOptStepArgs<{}, string>) =>
+    new Step(params, (): string => {
       return browser.getTitle()
     }),
   "success":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
       const html = browser.element('//div[@id="asdfasdfasdf"]').getHTML()
     }),
   "failure":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
       browser.getUrl()
     }),
   "google %{term}":
-  (params?: IStepArgs<{term: string}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, ({term}): void => {
+  (params?: IStepArgs<{term: string}, void>) =>
+    new Step(params, ({term}): void => {
       pages.google.input.setValue(term)
       browser.buttonDown()
     }),
   "successful step":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
     }),
   "failing step":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
     }),
   "broken step":
-  (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-    new ParameterizedStep(params, (): void => {
+  (params?: IOptStepArgs<{}, void>) =>
+    new Step(params, (): void => {
       // const el = core.stores.pageElement.Element('//div[@id="asdf"]')
       // el.click()
 
       pages.google.selectNonExisting()
     }),
   "test chaining functionality":
-    (params?: IOptStepArgs<{}, void>): IParameterizedStep =>
-      new ParameterizedStep(params, (): void => {
+    (params?: IOptStepArgs<{}, void>) =>
+      new Step(params, (): void => {
         const logo = pages.google.logo
 
         console.log("logo", logo.getText())
