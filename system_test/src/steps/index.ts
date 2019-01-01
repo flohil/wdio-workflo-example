@@ -10,15 +10,11 @@ import ToolsQAPageSteps from '?/steps/toolsqa.step'
 
 // create a single steps object that merges all single step definitions
 
-const Steps:
-  typeof HomePageSteps &
-  typeof DemoPageSteps &
-  typeof ToolsQAPageSteps
-= Object.assign(
-  HomePageSteps,
-  DemoPageSteps,
-  ToolsQAPageSteps
-)
+const Steps = {
+  ...HomePageSteps,
+  ...DemoPageSteps,
+  ...ToolsQAPageSteps
+}
 
 ////////////////////////////////////////////////////////////////////////
 

@@ -24,7 +24,7 @@ suite("Mixin", {}, () => {
           expectElement(pages.demo.dynamicControls.removeButton).toHaveAnyText()
           expectElement(pages.demo.dynamicControls.searchInput).not.toHaveAnyText()
 
-          expectElement(pages.demo.dynamicControls.searchInput).toHaveAnyText()
+          expect(pages.demo.dynamicControls.searchInput.currently.hasAnyText()).toBe(false)
         })
       }
     }))
