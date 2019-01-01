@@ -35,6 +35,10 @@ export class InputCurrently<
     return super.printBooleanStr() + 'asdf'
   }
 
+  hasAnyText() {
+    return super.hasAnyText()
+  }
+
   get not() {
     return {...super.not,
       printBooleanStr: () => {

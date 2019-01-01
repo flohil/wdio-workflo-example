@@ -52,6 +52,10 @@ export class PageElementCurrently<
     return 'true'
   }
 
+  hasAnyText() {
+    return super.hasAnyText()
+  }
+
   get not() {
     return {...super.not,
       printBooleanStr: () => {

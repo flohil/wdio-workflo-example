@@ -80,6 +80,10 @@ implements core.elements.ValuePageElementCurrently<Store, PageElementType, Value
 
   printBooleanStr: () => string
 
+  hasAnyText() {
+    return super.hasAnyText()
+  }
+
   readonly not: core.elements.ValuePageElementCurrently<Store, PageElementType, ValueType>['not'] &
     PageElementCurrently<Store, PageElementType>['not']
 }
