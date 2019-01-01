@@ -1,4 +1,4 @@
-import steps from '?/steps'
+import { steps } from '?/steps'
 import { pages } from '?/page_objects'
 
 const textStr = "This example demonstrates when elements (e.g., checkbox, input field, etc.) are changed asynchronously."

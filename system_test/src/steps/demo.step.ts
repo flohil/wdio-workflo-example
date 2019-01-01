@@ -1,17 +1,17 @@
-import { Step, IOptStepArgs, IStepArgs } from 'wdio-workflo'
+import { defineSteps, Step, IOptStepParams, IStepParams } from 'wdio-workflo'
 import { pages } from '?/page_objects'
 
-const DemoPageSteps = {
+const demoPageSteps = defineSteps({
   "open demopage %{path}":
-  (params: IStepArgs<{path: string}, void>) =>
+  (params: IStepParams<{path: string}, void>) =>
     new Step(params, ({path}): void => {
       pages.demo.base.open({path})
     }),
   "enable input in demopage":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
       pages.demo.dynamicControls.enableButton.click()
     })
-}
+})
 
-export default DemoPageSteps
+export { demoPageSteps }

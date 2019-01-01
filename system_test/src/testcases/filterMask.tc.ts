@@ -1,4 +1,4 @@
-import steps from '?/steps'
+import { steps } from '?/steps'
 import { pages } from '?/page_objects'
 import { pageObjects } from 'wdio-workflo'
 

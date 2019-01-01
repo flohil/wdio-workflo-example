@@ -1,4 +1,4 @@
-import steps from '?/steps'
+import { steps } from '?/steps'
 import { pages, stores, elements } from '?/page_objects'
 
 suite("New Matchers", {}, () => {

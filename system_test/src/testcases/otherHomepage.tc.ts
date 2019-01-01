@@ -1,4 +1,4 @@
-import steps from '?/steps'
+import { steps } from '?/steps'
 
 suite("Homepage Suite 2", {}, () => {
   testcase("visit homepage 2", {}, () => {

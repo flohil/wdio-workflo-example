@@ -1,26 +1,23 @@
-import { stepsGetter, stepsSetter } from 'wdio-workflo'
+import {defineSteps, proxifySteps} from 'wdio-workflo'
 
-////////////////////////////////////////////////////////////////////////
-// EDIT THIS AREA IN ORDER FOR INTELLISENSE TO SUGGEST STEPS BY NAMES
-////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// EDIT THIS AREA TO CREATE A MERGED STEP DEFINITIONS OBJECT
+////////////////////////////////////////////////////////////
 
-import HomePageSteps from '?/steps/homepage.step'
-import DemoPageSteps from '?/steps/demo.step'
-import ToolsQAPageSteps from '?/steps/toolsqa.step'
+// IMPORT YOUR STEP DEFINITIONS
+import { homePageSteps } from '?/steps/homepage.step'
+import { demoPageSteps } from '?/steps/demo.step'
+import { toolsQAPageSteps } from '?/steps/toolsqa.step'
 
-// create a single steps object that merges all single step definitions
-
-const Steps = {
-  ...HomePageSteps,
-  ...DemoPageSteps,
-  ...ToolsQAPageSteps
-}
-
-////////////////////////////////////////////////////////////////////////
-
-const steps = new Proxy(Steps, {
-  get: (target, name, receiver) => stepsGetter(target, name, receiver),
-  set: (target, name, value) => stepsSetter(target, name, value)
+// MERGE ALL STEP DEFINITIONS IN ONE OBJECT AS SHOWN BELOW
+const stepDefinitions = defineSteps({
+  ...homePageSteps,
+  ...demoPageSteps,
+  ...toolsQAPageSteps
 })
 
-export default steps
+////////////////////////////////////////////////////////////
+
+const steps = proxifySteps(stepDefinitions)
+
+export {steps }

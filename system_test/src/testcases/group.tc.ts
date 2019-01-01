@@ -1,4 +1,4 @@
-import steps from '?/steps'
+import { steps } from '?/steps'
 
 suite("Group", {}, () => {
   testcase("get and set value", {testId: '6'}, () => {

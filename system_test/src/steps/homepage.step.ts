@@ -1,49 +1,49 @@
-import { Step, IOptStepArgs, IStepArgs } from 'wdio-workflo'
+import { defineSteps, Step, IOptStepParams, IStepParams } from 'wdio-workflo'
 import { pages } from '?/page_objects'
 
-const HomePageSteps = {
+const homePageSteps = defineSteps({
   "open url %{url}":
-  (params: IStepArgs<{url: string}, void>) =>
+  (params: IStepParams<{url: string}, void>) =>
     new Step(params, ({url}): void => {
       browser.url(url)
       browser.pause(2000)
     }),
   "open homepage":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
       browser.url('/')
     }),
   "get title":
-  (params?: IOptStepArgs<{}, string>) =>
+  (params?: IOptStepParams<{}, string>) =>
     new Step(params, (): string => {
       return browser.getTitle()
     }),
   "success":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
       const html = browser.element('//div[@id="asdfasdfasdf"]').getHTML()
     }),
   "failure":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
       browser.getUrl()
     }),
   "google %{term}":
-  (params?: IStepArgs<{term: string}, void>) =>
+  (params?: IStepParams<{term: string}, void>) =>
     new Step(params, ({term}): void => {
       pages.google.input.setValue(term)
       browser.buttonDown()
     }),
   "successful step":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
     }),
   "failing step":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
     }),
   "broken step":
-  (params?: IOptStepArgs<{}, void>) =>
+  (params?: IOptStepParams<{}, void>) =>
     new Step(params, (): void => {
       // const el = core.stores.pageElement.Element('//div[@id="asdf"]')
       // el.click()
@@ -51,7 +51,7 @@ const HomePageSteps = {
       pages.google.selectNonExisting()
     }),
   "test chaining functionality":
-    (params?: IOptStepArgs<{}, void>) =>
+    (params?: IOptStepParams<{}, void>) =>
       new Step(params, (): void => {
         const logo = pages.google.logo
 
@@ -109,6 +109,6 @@ const HomePageSteps = {
         //   }
         // })
       }),
-}
+})
 
-export default HomePageSteps
+export { homePageSteps }

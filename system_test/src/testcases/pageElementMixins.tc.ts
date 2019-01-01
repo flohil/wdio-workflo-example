@@ -1,5 +1,5 @@
-import steps from '?/steps'
-import { pages, stores, elements } from '?/page_objects'
+import { steps } from '?/steps'
+import { pages } from '?/page_objects'
 
 suite("Mixin", {}, () => {
   testcase("test page element mixins", {}, () => {
