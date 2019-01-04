@@ -1,7 +1,7 @@
 import { PageElementStore } from '../stores'
-import { Page, IPageArgs } from './Page'
+import { Page, IPageOpts } from './Page'
 
-export interface IBaseFragmentPageArgs<Store extends PageElementStore> extends IPageArgs<Store> {
+export interface IBaseFragmentPageOpts<Store extends PageElementStore> extends IPageOpts<Store> {
   containerSelector: string
 }
 
@@ -9,7 +9,7 @@ export class BaseFragment<Store extends PageElementStore> extends Page<Store> {
 
   protected _containerSelector: string
 
-  constructor(args: IBaseFragmentPageArgs<Store>) {
+  constructor(args: IBaseFragmentPageOpts<Store>) {
     super(args)
 
     this._containerSelector = args.containerSelector

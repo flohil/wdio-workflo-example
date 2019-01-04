@@ -1,14 +1,14 @@
-import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoAppPage'
+import { HerukoAppPage, IHerukoAppPageOpts } from './HerukoAppPage'
 import { stores } from '?/page_objects'
 
-export interface ILoginPageArgs extends IHerukoAppPageArgs {
+export interface ILoginPageOpts extends IHerukoAppPageOpts {
 
 }
 
 export class LoginPage extends HerukoAppPage {
 
-  constructor(args: ILoginPageArgs = {}) {
-    super(Object.assign(args, {basePath: 'dynamic_controls', elementStore: stores.demo}))
+  constructor(opts: ILoginPageOpts = {}) {
+    super(Object.assign(opts, {basePath: 'dynamic_controls', elementStore: stores.demo}))
   }
 
   get usernameByName() {

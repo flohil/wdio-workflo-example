@@ -1,13 +1,13 @@
 import { BasePage } from '../BasePage'
 import { stores } from '?/page_objects'
 
-export interface IHerukoAppPageArgs {
+export interface IHerukoAppPageOpts {
 
 }
 
 export class HerukoAppPage extends BasePage<stores.DemoStore> {
 
-  constructor(args: IHerukoAppPageArgs = {}) {
+  constructor(args: IHerukoAppPageOpts = {}) {
     super({...args, basePath: '', store: stores.demo})
   }
 

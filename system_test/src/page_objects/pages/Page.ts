@@ -4,12 +4,12 @@ import { pageObjects as core } from 'wdio-workflo'
 import { PageElementStore } from '../stores'
 
 /**
- * This interface can be used to extend wdio-workflo's IPageArgs interface.
- * It is supposed to serve as the base IPageArgs interface throughout your project.
+ * This interface can be used to extend wdio-workflo's IPageOpts interface.
+ * It is supposed to serve as the base IPageOpts interface throughout your project.
  */
-export interface IPageArgs<
+export interface IPageOpts<
   Store extends PageElementStore
-> extends core.pages.IPageArgs<Store> {}
+> extends core.pages.IPageOpts<Store> {}
 
 /**
  * This class can be used to extend or customize the functionality provided by wdio-workflo's Page class.
@@ -21,7 +21,7 @@ export abstract class Page<
   IsClosedOpts = IsOpenOpts
 > extends core.pages.Page<Store, IsOpenOpts, IsClosedOpts> {
 
-  constructor(args: IPageArgs<Store>) {
-    super(args)
+  constructor(opts: IPageOpts<Store>) {
+    super(opts)
   }
 }

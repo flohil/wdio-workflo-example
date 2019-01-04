@@ -1,14 +1,14 @@
-import { IHerukoAppPageArgs } from './HerukoAppPage'
+import { IHerukoAppPageOpts } from './HerukoAppPage'
 import { stores } from '?/page_objects'
 import { DynamicControlsPage } from './DynamicControlsPage';
 
-export interface IDynamicControlsOpenPageArgs extends IHerukoAppPageArgs {
+export interface IDynamicControlsOpenPageOpts extends IHerukoAppPageOpts {
 
 }
 
 export class DynamicControlsOpenPage extends DynamicControlsPage {
 
-  constructor(args: IDynamicControlsOpenPageArgs = {}) {
+  constructor(args: IDynamicControlsOpenPageOpts = {}) {
     super(Object.assign(args, {basePath: 'dynamic_controls', elementStore: stores.demo}))
   }
 

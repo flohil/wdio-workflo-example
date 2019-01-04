@@ -1,13 +1,13 @@
 import { BasePage } from './BasePage'
 import { stores } from '?/page_objects'
 
-export interface IToolsQAPageArgs {
+export interface IToolsQAPageOpts {
 
 }
 
 export class ToolsQAPage extends BasePage<stores.DemoStore> {
 
-  constructor(args: IToolsQAPageArgs = {}) {
+  constructor(args: IToolsQAPageOpts = {}) {
     super({...args, basePath: '', store: stores.demo})
   }
 

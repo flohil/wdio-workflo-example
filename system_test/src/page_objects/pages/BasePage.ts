@@ -1,7 +1,7 @@
 import { PageElementStore } from '../stores'
-import { Page, IPageArgs } from './Page'
+import { Page, IPageOpts } from './Page'
 
-export interface IBasePageArgs<Store extends PageElementStore> extends IPageArgs<Store> {
+export interface IBasePageOpts<Store extends PageElementStore> extends IPageOpts<Store> {
   basePath: string
 }
 
@@ -14,7 +14,7 @@ export class BasePage<
 
   protected basePath: string
 
-  constructor(args: IBasePageArgs<Store>) {
+  constructor(args: IBasePageOpts<Store>) {
     super(args)
 
     this.basePath = args.basePath || ''

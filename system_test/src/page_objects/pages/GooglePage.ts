@@ -1,13 +1,13 @@
 import { BasePage } from './BasePage'
 import { stores } from '?/page_objects'
 
-export interface IGooglePageArgs {
+export interface IGooglePageOpts {
 
 }
 
 export class GooglePage extends BasePage<stores.DemoStore> {
 
-  constructor(args: IGooglePageArgs = {}) {
+  constructor(args: IGooglePageOpts = {}) {
     super({...args, basePath: '', store: stores.demo})
   }
 

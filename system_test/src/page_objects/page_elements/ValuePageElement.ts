@@ -98,9 +98,9 @@ export class ValuePageElementWait<
   ValueType
 > extends PageElementWait<Store, PageElementType>
 implements core.elements.ValuePageElementWait<Store, PageElementType, ValueType> {
-  hasValue: (value: ValueType, opts?: Workflo.IWDIOParamsReverseInterval) => PageElementType
-  hasAnyValue: (opts?: Workflo.IWDIOParamsReverseInterval) => PageElementType
-  containsValue: (value: ValueType, opts?: Workflo.IWDIOParamsReverseInterval) => PageElementType
+  hasValue: (value: ValueType, opts?: Workflo.ITimeoutReverseInterval) => PageElementType
+  hasAnyValue: (opts?: Workflo.ITimeoutReverseInterval) => PageElementType
+  containsValue: (value: ValueType, opts?: Workflo.ITimeoutReverseInterval) => PageElementType
 
   readonly not: core.elements.ValuePageElementWait<Store, PageElementType, ValueType>['not'] &
     PageElementWait<Store, PageElementType>['not']
@@ -116,9 +116,9 @@ export class ValuePageElementEventually<
   ValueType
 > extends PageElementEventually<Store, PageElementType>
 implements core.elements.ValuePageElementEventually<Store, PageElementType, ValueType> {
-  hasValue: (value: ValueType, opts?: Workflo.IWDIOParamsInterval) => boolean
-  hasAnyValue: (opts?: Workflo.IWDIOParamsInterval) => boolean
-  containsValue: (value: ValueType, opts?: Workflo.IWDIOParamsInterval) => boolean
+  hasValue: (value: ValueType, opts?: Workflo.ITimeoutInterval) => boolean
+  hasAnyValue: (opts?: Workflo.ITimeoutInterval) => boolean
+  containsValue: (value: ValueType, opts?: Workflo.ITimeoutInterval) => boolean
 
   readonly not: core.elements.ValuePageElementEventually<Store, PageElementType, ValueType>['not'] &
     PageElementEventually<Store, PageElementType>['not']

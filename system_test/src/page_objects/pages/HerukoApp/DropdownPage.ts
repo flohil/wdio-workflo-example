@@ -1,13 +1,13 @@
-import { HerukoAppPage, IHerukoAppPageArgs } from './HerukoAppPage'
+import { HerukoAppPage, IHerukoAppPageOpts } from './HerukoAppPage'
 import { stores } from '?/page_objects'
 
-export interface IDropdownPageArgs extends IHerukoAppPageArgs {
+export interface IDropdownPageOpts extends IHerukoAppPageOpts {
 
 }
 
 export class DropdownPage extends HerukoAppPage {
 
-  constructor(args: IDropdownPageArgs = {}) {
+  constructor(args: IDropdownPageOpts = {}) {
     super(Object.assign(args, {basePath: 'dropdown', elementStore: stores.demo}))
   }
 
