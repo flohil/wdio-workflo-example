@@ -30,14 +30,14 @@ export class DemoStore extends PageElementStore {
         string
       >,
       "waitType" | "timeout" | "disableCache" | "identifier",
-      "elementOptions"
+      "elementOpts"
     >
   ) {
     return this.ValueList(
       selector,
       {
         elementStoreFunc: this.Input,
-        elementOptions: {},
+        elementOpts: {},
         ...options
       }
     )
@@ -50,14 +50,14 @@ export class DemoStore extends PageElementStore {
         this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>, string
       >,
       "identifier",
-      "elementOptions"
+      "elementOpts"
     >
   ) {
     return this.ValueMap(
       selector,
       {
         elementStoreFunc: this.Input,
-        elementOptions: {},
+        elementOpts: {},
         ...options
       }
     )
@@ -96,14 +96,14 @@ export class DemoStore extends PageElementStore {
     options?: Workflo.PickPartial<
       core.elements.IPageElementListOpts<this, Checkbox<this>, CheckboxOpts<this>>,
       "waitType" | "timeout" | "disableCache" | "identifier",
-      "elementOptions"
+      "elementOpts"
     >
   ) {
     return this.List(
       selector,
       {
         elementStoreFunc: this.Checkbox,
-        elementOptions: {},
+        elementOpts: {},
         ...options
       }
     )
@@ -173,13 +173,13 @@ export class DemoStore extends PageElementStore {
 //         this, Input<this>, Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>, string
 //       >,
 //       "waitType" | "timeout" | "disableCache" | "identifier",
-//       "elementOptions"
+//       "elementOpts"
 //     >
 //   ) {
 //     return this.ValueList(
 //       selector,
 //       {
-//         elementOptions: {},
+//         elementOpts: {},
 //         elementStoreFunc: this.Input,
 //         ...options
 //       }
@@ -198,7 +198,7 @@ export class DemoStore extends PageElementStore {
 //       selector,
 //       {
 //         elementStoreFunc: this.Input,
-//         elementOptions: {},
+//         elementOpts: {},
 //         ...options
 //       }
 //     )
