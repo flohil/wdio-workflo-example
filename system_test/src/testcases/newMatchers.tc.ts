@@ -79,39 +79,37 @@ suite("New Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"1.2": [1]}, () => {
-          // expectElement(pages.demo.dynamicControls.removeButton).not.toExist()
-          // expectList(pages.demo.dynamicControls.buttonList).not.toExist()
-          // expectMap(pages.demo.dynamicControls.buttonMap).not.toExist()
-          // expectGroup(pages.demo.dynamicControls.buttonGroup).not.toExist()
-          // expectGroup(pages.demo.dynamicControls.superGroup).not.toExist()
+          expectElement(pages.demo.dynamicControls.removeButton).not.toExist()
+          expectList(pages.demo.dynamicControls.buttonList).not.toExist()
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toExist()
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toExist()
+          expectGroup(pages.demo.dynamicControls.superGroup).not.toExist()
 
-           // expectList(pages.demo.dynamicControls.buttonList).toExist()
-          // expectList(pages.demo.dynamicControls.buttonList).toExist(true)
-          // expectList(pages.demo.dynamicControls.buttonList).toExist(false)
+          expectList(pages.demo.dynamicControls.buttonList).toExist()
+          expectList(pages.demo.dynamicControls.buttonList).toExist(true)
+          expectList(pages.demo.dynamicControls.buttonList).toExist(false)
 
-          // expectList(pages.demo.dynamicControls.buttonList).not.toExist()
-          // expectList(pages.demo.dynamicControls.buttonList).not.toExist(true)
-          // expectList(pages.demo.dynamicControls.buttonList).not.toExist(false)
+          expectList(pages.demo.dynamicControls.buttonList).not.toExist()
+          expectList(pages.demo.dynamicControls.buttonList).not.toExist(true)
+          expectList(pages.demo.dynamicControls.buttonList).not.toExist(false)
 
-          // pages.demo.dynamicControls.buttonList.wait.exists()
-          // pages.demo.dynamicControls.buttonList.wait.exists({filterMask: true})
-          // pages.demo.dynamicControls.buttonList.wait.exists({filterMask: false})
+          pages.demo.dynamicControls.buttonList.wait.exists()
+          pages.demo.dynamicControls.buttonList.wait.exists({filterMask: true})
+          pages.demo.dynamicControls.buttonList.wait.exists({filterMask: false})
 
-          // pages.demo.dynamicControls.buttonList.wait.not.exists()
-          // pages.demo.dynamicControls.buttonList.wait.not.exists({filterMask: true})
-          // pages.demo.dynamicControls.buttonList.wait.not.exists({filterMask: false})
+          pages.demo.dynamicControls.buttonList.wait.not.exists()
+          pages.demo.dynamicControls.buttonList.wait.not.exists({filterMask: true})
+          pages.demo.dynamicControls.buttonList.wait.not.exists({filterMask: false})
 
-          // expectGroup(pages.demo.dynamicControls.buttonGroup).not.toExist({
-          //   filterMask: {
-          //     // enableButton: true,
-          //     // removeButton: true,
-          //     buttonList: false,
-          //     // buttonMap: {
-          //     //   enable: true,
-          //     //   remove: true
-          //     // }
-          //   }
-          // })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toExist({
+            enableButton: true,
+            removeButton: true,
+            buttonList: false,
+            buttonMap: {
+              enable: true,
+              remove: true
+            }
+          })
 
           expectGroup(pages.demo.dynamicControls.superGroup).not.toExist({
             checkbox: true
@@ -126,26 +124,26 @@ suite("New Matchers", {}, () => {
       arg: {path: 'dynamic_controls'},
       cb: () => {
         validate({"1.2": [1]}, () => {
-          // expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyExist({timeout: 500})
-          // expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({timeout: 500})
+          expectElement(pages.demo.dynamicControls.removeButton).not.toEventuallyExist({timeout: 500})
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({timeout: 500})
 
-          // expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist()
-          // expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist({filterMask: true})
-          // expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist({filterMask: false})
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist()
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist({filterMask: true})
+          expectList(pages.demo.dynamicControls.buttonList).toEventuallyExist({filterMask: false})
 
-          // pages.demo.dynamicControls.buttonList.wait.exists()
+          pages.demo.dynamicControls.buttonList.wait.exists()
 
-          // expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist()
-          // expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: true})
-          // expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: false})
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist()
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: true})
+          expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: false})
 
-          // expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500})
-          // expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500, filterMask: {
-          //   enable: true,
-          //   remove: true
-          // }})
-          // expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyExist({timeout: 500})
-          // expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyExist({timeout: 500})
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500})
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500, filterMask: {
+            enable: true,
+            remove: true
+          }})
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyExist({timeout: 500})
+          expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyExist({timeout: 500})
           expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyExist({timeout: 500, filterMask: {
             checkbox: true,
             buttons: {
@@ -157,7 +155,7 @@ suite("New Matchers", {}, () => {
             }
           }})
 
-          // expectElement(pages.demo.dynamicControls.nonExistingDiv).toEventuallyExist({timeout: 500})
+          expectElement(pages.demo.dynamicControls.nonExistingDiv).toEventuallyExist({timeout: 500})
         })
       }
     }))
