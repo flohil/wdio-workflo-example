@@ -91,7 +91,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
           mappingObject: {
             "austria": "Österreich"
           },
-          func: (element) => element.getText()
+          mappingFunc: (element) => element.getText()
         }
       }
     )
@@ -105,7 +105,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
             logo: 'logo-subtext',
             logo2: 'logo-subtext'
           },
-          func: (mapSelector, mappingValue) => xpath(mapSelector).classContains(mappingValue)
+          mappingFunc: (mapSelector, mappingValue) => xpath(mapSelector).classContains(mappingValue)
         }
       }
     )
@@ -142,7 +142,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
         mappingObject: {
           search: 'Suche',
         },
-        func: (element) => element.getAttribute('title')
+        mappingFunc: (element) => element.getAttribute('title')
       }
     })
   }
@@ -159,7 +159,7 @@ export class GooglePage extends BasePage<stores.DemoStore> {
           mappingObject: {
             search: 'Suche'
           },
-          func: (parentSelector, mappingValue) => xpath(parentSelector).attribute('title', mappingValue)
+          mappingFunc: (parentSelector, mappingValue) => xpath(parentSelector).attribute('title', mappingValue)
         }
       }
     )

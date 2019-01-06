@@ -74,7 +74,7 @@ export class DynamicControlsPage extends HerukoAppPage {
             remove: 'Remove',
             enable: 'Enable'
           },
-          func: (mapSelector, mappingValue) => xpath(mapSelector).text(mappingValue)
+          mappingFunc: (mapSelector, mappingValue) => xpath(mapSelector).text(mappingValue)
         }
       }
     )
@@ -146,7 +146,7 @@ export class DynamicControlsPage extends HerukoAppPage {
           checkbox: 'checkbox-example',
           search: 'input-example'
         },
-        func: (mapSelector, mappingValue) => xpath('//form').id(mappingValue).append('//input')
+        mappingFunc: (mapSelector, mappingValue) => xpath('//form').id(mappingValue).append('//input')
       }
     })
   }
