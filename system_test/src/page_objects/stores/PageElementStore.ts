@@ -1,5 +1,5 @@
 import { pageObjects as core } from 'wdio-workflo'
-import { IPageElementOpts, PageElement } from '../page_elements';
+import { IPageElementOpts, PageElement, IInputOpts, Input } from '../page_elements';
 
 /**
  * This class can be used to extend or customize the functionality provided by wdio-workflo's PageElementStore class.
@@ -36,6 +36,20 @@ export class PageElementStore extends core.stores.PageElementStore {
       selector,
       {
         waitType: Workflo.WaitType.exist,
+        ...options
+      }
+    )
+  }
+
+  Input(
+    selector: Workflo.XPath,
+    options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
+  ) {
+    return this._getElement<Input<this>, IInputOpts<this>>(
+      selector,
+      Input,
+      {
+        store: this,
         ...options
       }
     )

@@ -358,6 +358,15 @@ suite("New Matchers", {}, () => {
               remove: 'Remove',
               enable: 'Enable'
             }
+          })
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyHaveText({
+            removeButton: 'Remove',
+            enableButton: 'Enable',
+            buttonList: ['Remove', 'Enable'],
+            buttonMap: {
+              remove: 'Remove',
+              enable: 'Enable'
+            }
           }, {timeout: 1111})
           expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyHaveText({
             checkbox: '',

@@ -1,9 +1,15 @@
-import { DemoStore } from '../stores'
+import { PageElementStore } from '../stores'
 import { ValuePageElement, ValuePageElementCurrently, IValuePageElementOpts } from './ValuePageElement'
 
-export interface IInputOpts<Store extends DemoStore> extends IValuePageElementOpts<Store> {}
+export interface IInputOpts<
+ Store extends PageElementStore
+> extends IValuePageElementOpts<Store> {}
 
-export class Input<Store extends DemoStore> extends ValuePageElement<Store, string> {
+export class Input<Store extends PageElementStore> extends ValuePageElement<Store, string> {
+
+  constructor(selector: string, opts: IInputOpts<Store>) {
+    super(selector, opts)
+  }
 
   readonly currently = new InputCurrently(this)
 
@@ -12,41 +18,14 @@ export class Input<Store extends DemoStore> extends ValuePageElement<Store, stri
 
     return this
   }
-
-  printTestValue = () => {
-    return super.printTestValue() + 'testValue in Input'
-  }
-
-  printValueTestValue() {
-    return super.printValueTestValue() + 'valueTestValue in Input'
-  }
 }
 
 export class InputCurrently<
-  Store extends DemoStore,
+  Store extends PageElementStore,
   PageElementType extends Input<Store>
 > extends ValuePageElementCurrently<Store, PageElementType, string> {
 
   getValue(): string {
     return this.element.getValue()
-  }
-
-  printBooleanStr = () => {
-    return super.printBooleanStr() + 'asdf'
-  }
-
-  hasAnyText() {
-    return super.hasAnyText()
-  }
-
-  get not() {
-    return {...super.not,
-      printBooleanStr: () => {
-        return 'not' + super.printBooleanStr()
-      },
-      hasAnyText: () => {
-        return super.not.hasAnyText()
-      }
-    }
   }
 }

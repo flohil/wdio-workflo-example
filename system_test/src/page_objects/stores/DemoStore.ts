@@ -1,18 +1,18 @@
 import { pageObjects as core } from 'wdio-workflo'
 
 import { PageElementStore } from './PageElementStore';
-import { Dropdown, IDropdownOpts, Checkbox, ICheckboxOpts, IInputOpts, Input } from '../page_elements'
+import { Dropdown, IDropdownOpts, Checkbox, ICheckboxOpts, IDemoInputOpts, DemoInput } from '../page_elements'
 
 type CheckboxOpts<Store extends DemoStore> = Pick<ICheckboxOpts<Store>, Workflo.Store.ElementPublicKeys>
 
 export class DemoStore extends PageElementStore {
   Input(
     selector: Workflo.XPath,
-    options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>
+    options?: Pick<IDemoInputOpts<this>, 'timeout' | 'waitType'>
   ) {
-    return this._getElement<Input<this>, IInputOpts<this>>(
+    return this._getElement<DemoInput<this>, IDemoInputOpts<this>>(
       selector,
-      Input,
+      DemoInput,
       {
         store: this,
         ...options
@@ -25,8 +25,8 @@ export class DemoStore extends PageElementStore {
     options?: Workflo.PickPartial<
       core.elements.IValuePageElementListOpts<
         this,
-        Input<this>,
-        IInputOpts<this>,
+        DemoInput<this>,
+        IDemoInputOpts<this>,
         string
       >,
       "waitType" | "timeout" | "disableCache" | "identifier",
@@ -47,7 +47,7 @@ export class DemoStore extends PageElementStore {
     selector: Workflo.XPath,
     options: Workflo.PickPartial<
       core.elements.IValuePageElementMapOpts<
-        this, K, Input<this>, Pick<IInputOpts<this>, 'timeout' | 'waitType'>, string
+        this, K, DemoInput<this>, Pick<IDemoInputOpts<this>, 'timeout' | 'waitType'>, string
       >,
       "identifier",
       "elementOpts"

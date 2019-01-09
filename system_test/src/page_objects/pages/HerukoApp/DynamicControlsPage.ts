@@ -37,7 +37,7 @@ export class DynamicControlsPage extends HerukoAppPage {
 
   get removeButton() {
     return this.container.$.Element(
-      xpath('//button').text('Remove')
+      xpath('//button').text('Remove'), {timeout: 777}
     )
   }
 
