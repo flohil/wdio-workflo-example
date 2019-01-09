@@ -137,11 +137,13 @@ suite("New Matchers", {}, () => {
           expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: true})
           expectList(pages.demo.dynamicControls.buttonList).not.toEventuallyExist({filterMask: false})
 
+          expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist()
           expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500})
           expectMap(pages.demo.dynamicControls.buttonMap).not.toEventuallyExist({timeout: 500, filterMask: {
             enable: true,
             remove: true
           }})
+          expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyExist()
           expectGroup(pages.demo.dynamicControls.buttonGroup).not.toEventuallyExist({timeout: 500})
           expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyExist({timeout: 500})
           expectGroup(pages.demo.dynamicControls.superGroup).not.toEventuallyExist({timeout: 500, filterMask: {
@@ -155,6 +157,7 @@ suite("New Matchers", {}, () => {
             }
           }})
 
+          expectElement(pages.demo.dynamicControls.nonExistingDiv).toEventuallyExist()
           expectElement(pages.demo.dynamicControls.nonExistingDiv).toEventuallyExist({timeout: 500})
         })
       }
