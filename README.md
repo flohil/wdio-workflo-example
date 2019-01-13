@@ -1,5 +1,5 @@
 # wdio-workflo-example
-This repository provides code examples for the usage of wdio-workflo.
+This repository provides code examples for the usage of wdio-workflo (https://github.com/flohil/wdio-workflo).
 
 ## Setup
 Run ```npm install``` on the project directory.
