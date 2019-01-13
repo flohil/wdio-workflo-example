@@ -1,12 +1,12 @@
-import { PageElementStore } from '../stores'
+import { PageNodeStore } from '../stores'
 import { ValuePageElement, ValuePageElementCurrently, IValuePageElementOpts } from './ValuePageElement'
 
 // Add opts parameter properties which need to be passed to Input's constructor here
 export interface IInputOpts<
- Store extends PageElementStore
+ Store extends PageNodeStore
 > extends IValuePageElementOpts<Store> {}
 
-export class Input<Store extends PageElementStore> extends ValuePageElement<Store, string> {
+export class Input<Store extends PageNodeStore> extends ValuePageElement<Store, string> {
 
   // The parameters of a PageNode constructor are always the same:
   // 1st param is XPath selector, 2nd param is opts parameter
@@ -30,7 +30,7 @@ export class Input<Store extends PageElementStore> extends ValuePageElement<Stor
 }
 
 export class InputCurrently<
-  Store extends PageElementStore,
+  Store extends PageNodeStore,
   PageElementType extends Input<Store>
 > extends ValuePageElementCurrently<Store, PageElementType, string> {
 
