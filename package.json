@@ -1,7 +1,7 @@
 {
   "name": "wdio-workflo-example",
   "version": "0.0.7",
-  "description": "An example project for wdio-workflo",
+  "description": "Code examples for wdio-workflo",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flohil/wdio-workflo-example.git"
