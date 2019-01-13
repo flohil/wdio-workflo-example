@@ -1,12 +1,7 @@
 {
   "name": "wdio-workflo-example",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An example project for wdio-workflo",
-  "scripts": {
-    "devTest": "cd node_modules/wdio-workflo && npm run-script devTest",
-    "test": "cd node_modules/wdio-workflo && npm run-script test",
-    "report": "cd node_modules/wdio-workflo && npm run-script latest_report"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flohil/wdio-workflo-example.git"
@@ -21,6 +16,6 @@
   },
   "homepage": "https://github.com/flohil/wdio-workflo-example#readme",
   "devDependencies": {
-    "wdio-workflo": "^0.2.34"
+    "wdio-workflo": "^0.2.37"
   }
 }
