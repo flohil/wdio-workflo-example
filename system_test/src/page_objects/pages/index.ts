@@ -1,11 +1,6 @@
 export * from './Page'
+export * from './NpmJsPage'
 
-import { GooglePage } from './GooglePage'
-import * as demo from './HerukoApp'
-import { ToolsQAPage } from './ToolsQAPage'
+import { NpmJsPage } from './NpmJsPage'
 
-export * from './GooglePage'
-
-export const google = new GooglePage()
-export const toolsQa = new ToolsQAPage()
-export { demo }
+export const npmJs = new NpmJsPage()

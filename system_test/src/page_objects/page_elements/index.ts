@@ -1,6 +1,3 @@
 export * from './PageElement'
 export * from './ValuePageElement'
 export * from './Input'
-export * from './DemoInput'
-export * from './Dropdown'
-export * from './Checkbox'
