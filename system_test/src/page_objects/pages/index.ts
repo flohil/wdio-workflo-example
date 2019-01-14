@@ -1,6 +1,6 @@
-export * from './Page'
-export * from './NpmJsPage'
+export * from './Page';
+export * from './NpmJsPage';
 
-import { NpmJsPage } from './NpmJsPage'
+import { NpmJsPage } from './NpmJsPage';
 
-export const npmJs = new NpmJsPage()
+export const npmJs = new NpmJsPage();

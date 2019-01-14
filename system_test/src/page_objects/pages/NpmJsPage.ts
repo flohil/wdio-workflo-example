@@ -1,5 +1,5 @@
-import { Page, IPageOpts } from './Page'
-import { stores } from '?/page_objects'
+import { stores } from '?/page_objects';
+import { IPageOpts, Page } from './Page';
 
 export interface IBasePageOpts<
   Store extends stores.PageNodeStore
@@ -8,44 +8,44 @@ export interface IBasePageOpts<
 export class NpmJsPage extends Page<stores.PageNodeStore> {
 
   constructor() {
-    super({store: stores.pageElement})
+    super({ store: stores.pageElement });
   }
 
   get container() {
     return this._store.Element(
-      xpath('//div').id('app')
-    )
+      xpath('//div').id('app'),
+    );
   }
 
   get searchButton() {
     return this.container.$.Element(
-      xpath('//button').textContains('Search')
-    )
+      xpath('//button').textContains('Search'),
+    );
   }
 
   get searchInputField() {
     return this.container.$.Input(
-      xpath('//input').typeContains('search')
-    )
+      xpath('//input').typeContains('search'),
+    );
   }
 
   get packageListContainer() {
     return this.container.$.Element(
-      xpath('//div').classContains('packageList')
-    )
+      xpath('//div').classContains('packageList'),
+    );
   }
 
   get packageNamesList() {
     return this.packageListContainer.$.ElementList(
-      xpath('//h3')
-    )
+      xpath('//h3'),
+    );
   }
 
   isOpen(): boolean {
-    return this.container.currently.isVisible()
+    return this.container.currently.isVisible();
   }
 
   isClosed(): boolean {
-    return this.container.currently.not.isVisible()
+    return this.container.currently.not.isVisible();
   }
 }

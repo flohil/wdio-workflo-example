@@ -1,3 +1,3 @@
-export * from './PageElement'
-export * from './ValuePageElement'
-export * from './Input'
+export * from './PageElement';
+export * from './ValuePageElement';
+export * from './Input';

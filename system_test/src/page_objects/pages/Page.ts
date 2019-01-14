@@ -1,7 +1,7 @@
 
-import { pageObjects as core } from 'wdio-workflo'
+import { pageObjects as core } from 'wdio-workflo';
 
-import { PageNodeStore } from '../stores'
+import { PageNodeStore } from '../stores';
 
 /**
  * This interface can be used to extend wdio-workflo's IPageOpts interface.
@@ -22,6 +22,6 @@ export abstract class Page<
 > extends core.pages.Page<Store, IsOpenOpts, IsClosedOpts> {
 
   constructor(opts: IPageOpts<Store>) {
-    super(opts)
+    super(opts);
   }
 }

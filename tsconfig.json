@@ -9,6 +9,13 @@
         "paths": {
             "~/*": ["./*"],
             "?/*": ["./system_test/src/*"]
-        }
+        },
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "plugins": [
+            {
+              "name": "typescript-tslint-plugin"
+            }
+        ]
     }
 }

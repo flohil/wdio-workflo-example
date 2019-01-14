@@ -1,6 +1,6 @@
-import { pageObjects as core } from 'wdio-workflo'
+import { pageObjects as core } from 'wdio-workflo';
 
-import { PageNodeStore } from '../stores'
+import { PageNodeStore } from '../stores';
 
 /**
  * This interface can be used to extend wdio-workflo's IPageElementOpts interface.
@@ -52,9 +52,9 @@ export interface IPageElementOpts<
  */
 export class PageElement<Store extends PageNodeStore> extends core.elements.PageElement<Store> {
 
-  readonly currently: PageElementCurrently<Store, this>
-  readonly wait: PageElementWait<Store, this>
-  readonly eventually: PageElementEventually<Store, this>
+  readonly currently: PageElementCurrently<Store, this>;
+  readonly wait: PageElementWait<Store, this>;
+  readonly eventually: PageElementEventually<Store, this>;
 
  /**
   * PageElement serves as the main building block for all page objects.
@@ -67,8 +67,8 @@ export class PageElement<Store extends PageNodeStore> extends core.elements.Page
   * with them.
   *
   * A big pitfall of scripted browser testing is that a website and its building blocks need to be loaded and rendered
-  * before they can be interacted with and all of this takes time. Therefore, browser based tests constantly need to wait
-  * for elements of a page to be loaded and rendered or for certain conditions to be met.
+  * before they can be interacted with and all of this takes time. Therefore, browser based tests constantly need to
+  * wait for elements of a page to be loaded and rendered or for certain conditions to be met.
   *
   * PageElements try to overcome these hurdles be performing an "initial waiting condition" before interacting with
   * elements on the page. The supported initial wait conditions include:
@@ -92,11 +92,11 @@ export class PageElement<Store extends PageNodeStore> extends core.elements.Page
   * @param opts the options used to configure PageElement
   */
   constructor(selector: string, opts?: IPageElementOpts<Store>) {
-    super(selector, opts)
+    super(selector, opts);
 
-    this.currently = new PageElementCurrently(this)
-    this.wait = new PageElementWait(this)
-    this.eventually = new PageElementEventually(this)
+    this.currently = new PageElementCurrently(this);
+    this.wait = new PageElementWait(this);
+    this.eventually = new PageElementEventually(this);
   }
 }
 
