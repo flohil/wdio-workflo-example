@@ -8,7 +8,7 @@ export interface IBasePageOpts<
 export class NpmJsPage extends Page<stores.PageNodeStore> {
 
   constructor() {
-    super({ store: stores.pageElement });
+    super({ store: stores.pageNode });
   }
 
   get container() {

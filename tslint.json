@@ -10,7 +10,6 @@
         "no-duplicate-variable": [true, "check-parameters"],
         "no-empty": true,
         "no-for-in-array": true,
-        "switch-default": true,
         "class-name": true,
         "match-default-export-name": true,
         "no-irregular-whitespace": true,
@@ -33,18 +32,19 @@
             ]
         },
         "import-name": false,
-        "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
-        "function-name": [true, {
-            "method-regex": "^([A-Z]|[a-z])[\\w\\d]+$",
-            "private-method-regex": "^(_|[a-z])?[a-z][\\w\\d]+$",
-            "protected-method-regex": "^(_|[a-z])?[a-z][\\w\\d]+$",
-            "static-method-regex": "^[A-Z_\\d]+$",
-            "function-regex": "^([A-Z]|[a-z])[\\w\\d]+$"
-        }],
+        "variable-name": [false],
+        "function-name": [false],
         "ter-arrow-parens": false,
         "no-else-after-return": false,
         "no-increment-decrement": false,
-        "no-this-assignment": false
+        "no-this-assignment": false,
+        "no-parameter-reassignment": false,
+        "switch-default": false,
+        "ter-func-call-spacing": false,
+        "no-conditional-assignment": false,
+        "align": false,
+        "object-literal-key-quotes": false,
+        "ordered-imports": false,
     },
     "jsRules": {
         "max-line-length": {

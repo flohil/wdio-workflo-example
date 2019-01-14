@@ -7,11 +7,11 @@ suite('npmjs', {}, () => {
     .when(steps['search for the npm package %{packageName}']({
       arg: { packageName: 'wdio-workflo' },
       cb: () => {
-        validate({ 1.1: [1] }, () => {
+        validate({ '1.1': [1] }, () => {
           expectList(pages.npmJs.packageNamesList).not.toEventuallyBeEmpty();
         });
 
-        validate({ 1.1: [2] }, () => {
+        validate({ '1.1': [2] }, () => {
           expectElement(pages.npmJs.packageNamesList.first).toEventuallyHaveText('wdio-workflo');
         });
       },
