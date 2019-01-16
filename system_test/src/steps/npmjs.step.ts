@@ -2,7 +2,7 @@ import { pages } from '?/page_objects';
 import { defineSteps, IOptStepParams, IStepParams, Step } from 'wdio-workflo';
 
 const npmJsSteps = defineSteps({
-  'open npmJs page':
+  "open npmJs page":
   (params?: IOptStepParams<{path?: string}, void>) =>
     new Step(params, ({ path }): void => {
       const _path = path || '';
@@ -11,7 +11,7 @@ const npmJsSteps = defineSteps({
       browser.url(`${_path}`);
     }),
 
-  'search for the npm package %{packageName}':
+  "search for the npm package %{packageName}":
   (params?: IStepParams<{packageName: string}, void>) =>
     new Step(params, ({ packageName }): void => {
       pages.npmJs.searchInputField.setValue(packageName);
