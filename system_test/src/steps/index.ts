@@ -7,7 +7,7 @@ import { defineSteps, proxifySteps } from 'wdio-workflo';
 // IMPORT YOUR STEP DEFINITIONS
 import { npmJsSteps } from '?/steps/npmjs.step';
 
-// MERGE ALL STEP DEFINITIONS IN ONE OBJECT AS SHOWN BELOW
+// MERGE ALL STEP DEFINITIONS INTO ONE OBJECT AS SHOWN BELOW
 const stepDefinitions = defineSteps({
   ...npmJsSteps,
 });

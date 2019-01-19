@@ -43,12 +43,14 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
   Input(
     selector: Workflo.XPath,
-    options?: Pick<IInputOpts<this>, 'timeout' | 'waitType'>,
+    // pick the properties of the `opts` parameter of Input's constructor which can be passed to the factory method
+    options?: Pick<IInputOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<Input<this>, IInputOpts<this>>(
       selector,
       Input,
       {
+        // add pre-configured properties to the `opts` parameter of Input's constructor
         store: this,
         ...options,
       },
