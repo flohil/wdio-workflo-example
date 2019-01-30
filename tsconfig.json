@@ -5,6 +5,7 @@
         "sourceMap": true,
         "allowJs": true,
         "outDir": "./tsOut",
+        "keyofStringsOnly": true,
         "baseUrl": ".",
         "paths": {
             "~/*": ["./*"],

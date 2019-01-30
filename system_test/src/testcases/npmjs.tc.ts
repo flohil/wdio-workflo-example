@@ -7,8 +7,8 @@ suite("npmjs", {}, () => {
   testcase("search for the npm package wdio-workflo", { bugs: ['NPMJS-387'], severity: 'blocker' }, () => {
     given(steps["open npmjs page"]({
       // the result value of the step is passed as single parameter to the step's callback function
-      cb: (url) => {
-        console.log(`opened the npmjs website at ${url}`);
+      cb: (path) => {
+        console.log(`opened the npmjs website at ${path}`);
       }
     }))
     // wdio-workflo uses %{} to perform string interpolation of step arguments in a step's description

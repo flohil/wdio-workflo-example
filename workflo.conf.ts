@@ -1,9 +1,9 @@
-import { IWorkfloConfig } from 'wdio-workflo'
+import { IWorkfloConfig } from 'wdio-workflo';
 
-const testDir = __dirname + '/system_test'
+const testDir = `${__dirname}/system_test`;
 
 const workfloConfig: IWorkfloConfig = {
-  testDir: testDir,
+  testDir,
   baseUrl: 'https://www.npmjs.com/',
   width: 1280,
   height: 800,
@@ -19,7 +19,8 @@ const workfloConfig: IWorkfloConfig = {
   allure: {
     issueTrackerPattern: 'http://example.com/issues/%s',
     testManagementPattern: 'http://example.com/tms/%s',
-  }
-}
+  },
+  consoleLogLevel: 'steps'
+};
 
-export default workfloConfig
+export default workfloConfig;

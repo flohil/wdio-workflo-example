@@ -19,7 +19,9 @@
     "tslint": "^5.12.1",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.2",
-    "typescript-tslint-plugin": "^0.2.1",
-    "wdio-workflo": "^0.2.44"
+    "typescript-tslint-plugin": "^0.2.1"
+  },
+  "dependencies": {
+    "wdio-workflo": "^0.2.48"
   }
 }
