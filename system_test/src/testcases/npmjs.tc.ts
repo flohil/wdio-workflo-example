@@ -14,7 +14,7 @@ suite("npmjs", {}, () => {
     // wdio-workflo uses %{} to perform string interpolation of step arguments in a step's description
     // in the test reports, %{packageName} will be replaced with "wdio-workflo"
     .when(steps["search for the npm package %{packageName}"]({
-      arg: { packageName: 'wdio-workflo' },
+      args: { packageName: 'wdio-workflo' },
       cb: () => {
         validate({ '1.1': [1] }, () => {
           // This function provides custom expectation matchers for PageElementLists.
