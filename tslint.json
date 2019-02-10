@@ -4,7 +4,7 @@
     "rules": {
         "no-debugger": true,
         "max-line-length": {
-            "options": [120]
+            "options": [100]
         },
         "one-variable-per-declaration": false,
         "no-duplicate-variable": [true, "check-parameters"],
@@ -44,11 +44,12 @@
         "object-literal-key-quotes": false,
         "ordered-imports": false,
         "trailing-comma": false,
-        "quotemark": false
+        "quotemark": false,
+        "ter-prefer-arrow-callback": false
     },
     "jsRules": {
         "max-line-length": {
-            "options": [120]
+            "options": [100]
         }
     }
 }

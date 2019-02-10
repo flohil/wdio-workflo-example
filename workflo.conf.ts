@@ -2,9 +2,9 @@ import { IWorkfloConfig } from 'wdio-workflo';
 
 const testDir = `${__dirname}/system_test`;
 
-const workfloConfig: IWorkfloConfig = {
+export const workfloConfig: IWorkfloConfig = {
   testDir,
-  baseUrl: 'https://www.npmjs.com/',
+  baseUrl: 'https://www.npmjs.com',
   width: 1280,
   height: 800,
   capabilities: {

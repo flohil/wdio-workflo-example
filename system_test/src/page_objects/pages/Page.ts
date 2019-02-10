@@ -12,8 +12,8 @@ export interface IPageOpts<
 > extends core.pages.IPageOpts<Store> {}
 
 /**
- * This class can be used to extend or customize the functionality provided by wdio-workflo's Page class.
- * It is supposed to serve as the base Page class throughout your project.
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's Page
+ * class. It is supposed to serve as the base Page class throughout your project.
  */
 export abstract class Page<
   Store extends PageNodeStore,

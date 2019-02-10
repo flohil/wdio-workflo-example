@@ -22,10 +22,12 @@ export interface IValuePageElementOpts<
 > extends core.elements.IValuePageElementOpts<Store>, IPageElementOpts<Store> {}
 
 /**
- * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElement class.
- * It is supposed to serve as the base ValuePageElement class throughout your project.
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's
+ * ValuePageElement class. It is supposed to serve as the base ValuePageElement class throughout
+ * your project.
  *
- * ValuePageElement extends PageElement with the possibility to set, retrieve and check a PageElement's value.
+ * ValuePageElement extends PageElement with the possibility to set, retrieve and check a
+ * PageElement's value.
  *
  * It also adds another initial waiting condition:
  *
@@ -60,14 +62,15 @@ implements core.elements.ValuePageElement<Store, ValueType> {
 }
 
 /**
- * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElementCurrently
- * class. It is supposed to serve as the base ValuePageElementCurrently class throughout your project.
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's
+ * ValuePageElementCurrently class. It is supposed to serve as the base ValuePageElementCurrently
+ * class throughout your project.
  *
  * ValuePageElementCurrently defines all `currently` functions of ValuePageElement.
  *
  * @template Store type of the PageNodeStore instance which can be used to retrieve/create PageNodes
- * @template PageElementType type of the ValuePageElement for which ValuePageElementCurrently defines all `currently`
- * functions
+ * @template PageElementType type of the ValuePageElement for which ValuePageElementCurrently
+ * defines all `currently` functions
  * @template ValueType the type of ValuePageElement's value
  */
 export abstract class ValuePageElementCurrently<
@@ -90,14 +93,15 @@ implements core.elements.ValuePageElementCurrently<Store, PageElementType, Value
 }
 
 /**
- * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElementWait
- * class. It is supposed to serve as the base ValuePageElementWait class throughout your project.
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's
+ * ValuePageElementWait class. It is supposed to serve as the base ValuePageElementWait class
+ * throughout your project.
  *
  * ValuePageElementWait defines all `wait` functions of ValuePageElement.
  *
  * @template Store type of the PageNodeStore instance which can be used to retrieve/create PageNodes
- * @template PageElementType type of the ValuePageElement for which ValuePageElementWait defines all `wait`
- * functions
+ * @template PageElementType type of the ValuePageElement for which ValuePageElementWait defines all
+ *  `wait` functions
  * @template ValueType the type of ValuePageElement's value
  */
 export class ValuePageElementWait<
@@ -116,14 +120,15 @@ implements core.elements.ValuePageElementWait<Store, PageElementType, ValueType>
 }
 
 /**
- * This class can be used to extend or customize the functionality provided by wdio-workflo's ValuePageElementEventually
- * class. It is supposed to serve as the base ValuePageElementEventually class throughout your project.
+ * This class can be used to extend or customize the functionality provided by wdio-workflo's
+ * ValuePageElementEventually class. It is supposed to serve as the base ValuePageElementEventually
+ * class throughout your project.
  *
  * ValuePageElementEventually defines all `eventually` functions of ValuePageElement.
  *
  * @template Store type of the PageNodeStore instance which can be used to retrieve/create PageNodes
- * @template PageElementType type of the ValuePageElement for which ValuePageElementEventually defines all `eventually`
- * functions
+ * @template PageElementType type of the ValuePageElement for which ValuePageElementEventually
+ * defines all `eventually` functions
  * @template ValueType the type of ValuePageElement's value
  */
 export class ValuePageElementEventually<
@@ -147,4 +152,6 @@ implements core.elements.ValuePageElementEventually<Store, PageElementType, Valu
 helpers.applyMixins(ValuePageElement, [core.elements.ValuePageElement], ['not']);
 helpers.applyMixins(ValuePageElementCurrently, [core.elements.ValuePageElementCurrently], ['not']);
 helpers.applyMixins(ValuePageElementWait, [core.elements.ValuePageElementWait], ['not']);
-helpers.applyMixins(ValuePageElementEventually, [core.elements.ValuePageElementEventually], ['not']);
+helpers.applyMixins(
+  ValuePageElementEventually, [core.elements.ValuePageElementEventually], ['not']
+);
