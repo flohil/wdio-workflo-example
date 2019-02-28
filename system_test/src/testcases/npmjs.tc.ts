@@ -50,11 +50,6 @@ suite("npmjs", {}, () => {
     .and(steps["fill in the signup form"]({
       args: { formData },
       cb: () => {
-        // the extracted properties are readonly by default, so we need to create a new object
-        const { ...expectedFormData } = formData;
-
-        expectedFormData.password = '****';
-
         validate({ "1.2": [1] }, () => {
           expectGroup(pages.signup.signupForm).toHaveValue(formData);
         });
@@ -82,7 +77,7 @@ suite("npmjs", {}, () => {
     .and(steps["fill in the contact form on the support page"]({
       args: { formData },
       cb: () => {
-        validate({ "1.2": [1] }, () => {
+        validate({ "1.3": [1] }, () => {
           expectGroup(pages.support.contactForm).toHaveValue(formData);
         });
       }

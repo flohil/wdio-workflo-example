@@ -32,24 +32,6 @@ export class Checkbox<
 
     return this;
   }
-
-  __typeToString(value: any) {
-    if (typeof value === 'boolean') {
-      if (value) {
-        return 'true';
-      } else {
-        return 'false';
-      }
-    }
-
-    return super.__typeToString(value);
-  }
-
-  __equals(actual: any, expected: any) {
-    if (typeof actual === 'boolean') {
-      return actual === expected;
-    }
-  }
 }
 
 export class CheckboxCurrently<
