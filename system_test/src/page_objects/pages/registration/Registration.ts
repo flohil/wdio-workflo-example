@@ -1,20 +1,20 @@
 import { stores } from '?/page_objects';
 import { BasePage } from '../BasePage';
 
-export class SignUpPage extends BasePage<stores.PageNodeStore> {
+export class Registration extends BasePage<stores.PageNodeStore> {
 
   constructor() {
     super({
       store: stores.pageNode,
-      pageName: 'signup'
+      pageName: 'registration'
     });
   }
 
-  get signupForm() {
+  get form() {
     const $ = this.container.$;
 
     return this._store.ValueGroup({
-      get fullname() {
+      get username() {
         return $.Input(
           xpath('//input').id('signup_fullname')
         );
@@ -24,28 +24,29 @@ export class SignUpPage extends BasePage<stores.PageNodeStore> {
           xpath('//input').id('signup_email')
         );
       },
-      get username() {
+      get password() {
         return $.Input(
           xpath('//input').id('signup_name')
         );
       },
-      get password() {
+      get country() {
         return $.Input(
           xpath('//input').id('signup_password')
         );
       },
-      get checkWeekly() {
+      get acceptTerms() {
         return $.Checkbox(
           xpath('//input').id('signup_npmweekly')
         );
       },
-      get checkLicense() {
-        return $.Checkbox(
-          xpath('//input').id('signup_eula-agreement')
-        );
-      }
     });
+  }
+
+  get submitButton() {
+    return this.container.$.Element(
+      xpath('//button').text('Submit')
+    );
   }
 }
 
-export const signup = new SignUpPage();
+export const registration = new Registration();

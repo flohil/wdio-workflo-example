@@ -4,7 +4,7 @@ const testDir = `${__dirname}/system_test`;
 
 export const workfloConfig: IWorkfloConfig = {
   testDir,
-  baseUrl: 'https://www.npmjs.com',
+  baseUrl: 'http://localhost:3000/demo',
   width: 1280,
   height: 800,
   capabilities: {
