@@ -4,10 +4,12 @@ import {
   Input,
   IPageElementOpts,
   PageElement,
-  RadioButton,
-  IRadioButtonOpts,
+  Textfield,
+  ITextfieldOpts,
   ICheckboxOpts,
-  Checkbox
+  Checkbox,
+  Dropdown,
+  IDropdownOpts
 } from '../page_elements';
 
 /**
@@ -68,15 +70,13 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     );
   }
 
-  RadioButton<
-    OptionKeys extends string
-  >(
+  Textfield(
     selector: Workflo.XPath,
-    options: Pick<IRadioButtonOpts<this, OptionKeys>, Workflo.Store.BaseKeys | 'texts'>,
+    options?: Pick<ITextfieldOpts<this>, Workflo.Store.BaseKeys>,
   ) {
-    return this._getElement<RadioButton<this, OptionKeys>, IRadioButtonOpts<this, OptionKeys>>(
+    return this._getElement<Textfield<this>, ITextfieldOpts<this>>(
       selector,
-      RadioButton,
+      Textfield,
       {
         store: this,
         ...options,
@@ -91,6 +91,20 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     return this._getElement<Checkbox<this>, ICheckboxOpts<this>>(
       selector,
       Checkbox,
+      {
+        store: this,
+        ...options,
+      },
+    );
+  }
+
+  Dropdown(
+    selector: Workflo.XPath,
+    options?: Pick<IDropdownOpts<this>, Workflo.Store.BaseKeys>,
+  ) {
+    return this._getElement<Dropdown<this>, IDropdownOpts<this>>(
+      selector,
+      Dropdown,
       {
         store: this,
         ...options,

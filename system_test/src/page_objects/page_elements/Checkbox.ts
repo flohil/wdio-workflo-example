@@ -19,15 +19,15 @@ export class Checkbox<
     super(selector, opts);
   }
 
-  setValue(value: boolean): this {
-    const currentValue = this.currently.getValue();
+  get label() {
+    return this.$.Element(
+      xpath('//span').classContains('ms-Checkbox-text')
+    );
+  }
 
-    if (value !== currentValue) {
-      this.click({
-        // We can define a postCondition for a successful click - if the click did not work
-        // on the first try, it will be repeated until postCondition is met or a timeout is reached.
-        postCondition: () => this.currently.isChecked() === !currentValue
-      });
+  setValue(value: boolean): this {
+    if (this.currently.getValue() !== value) {
+      this.label.click();
     }
 
     return this;
@@ -36,19 +36,10 @@ export class Checkbox<
 
 export class CheckboxCurrently<
   Store extends PageNodeStore,
-  PageElementType extends Checkbox<Store>,
+  PageElementType extends Checkbox<Store>
 > extends ValuePageElementCurrently<Store, PageElementType, boolean> {
 
   getValue() {
-    // Unfortunately the npmjs site doesn't show the "checked" HTML attribute for inputs in the DOM.
-    // So we need to read the "checked" property of the corresponding HTMLInputElement.
-    // !!! If possible, such a solution should be avoided because it is brittle and slow.
-    // Instead, try to detect a "checked" HTML attribute via xpath if possible.
-    return browser.selectorExecute(
-      this._node.getSelector(), function (inputs: HTMLInputElement[]) {
-        if (inputs.length > 0) {
-          return inputs[0].checked;
-        }
-      }
-    ) as boolean;
-  }}
+    return this._node.currently.containsClass('is-checked');
+  }
+}

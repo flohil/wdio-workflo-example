@@ -15,28 +15,38 @@ export class Registration extends BasePage<stores.PageNodeStore> {
 
     return this._store.ValueGroup({
       get username() {
-        return $.Input(
-          xpath('//input').id('signup_fullname')
+        return $.Textfield(
+          xpath('//div').classContains('ms-TextField').hasChild(
+            '//label', xpath => xpath.text('Username')
+          )
         );
       },
       get email() {
-        return $.Input(
-          xpath('//input').id('signup_email')
+        return $.Textfield(
+          xpath('//div').classContains('ms-TextField').hasChild(
+            '//label', xpath => xpath.text('Email')
+          )
         );
       },
       get password() {
-        return $.Input(
-          xpath('//input').id('signup_name')
+        return $.Textfield(
+          xpath('//div').classContains('ms-TextField').hasChild(
+            '//label', xpath => xpath.text('Password')
+          )
         );
       },
       get country() {
-        return $.Input(
-          xpath('//input').id('signup_password')
+        return $.Dropdown(
+          xpath('//div').classContains('ms-Dropdown-container').hasChild(
+            '//label', xpath => xpath.text('Country')
+          )
         );
       },
       get acceptTerms() {
         return $.Checkbox(
-          xpath('//input').id('signup_npmweekly')
+          xpath('//div').classContains('ms-Checkbox').hasChild(
+            '//span', xpath => xpath.classContains('ms-Checkbox-text').text('Accept terms')
+          )
         );
       },
     });
@@ -45,6 +55,12 @@ export class Registration extends BasePage<stores.PageNodeStore> {
   get submitButton() {
     return this.container.$.Element(
       xpath('//button').text('Submit')
+    );
+  }
+
+  get feedbackField() {
+    return this.container.$.Element(
+      xpath('//div').classContains('Registration-thanks')
     );
   }
 }

@@ -3,13 +3,53 @@ import { steps } from '?/steps';
 
 suite("demo", {}, () => {
 
-  testcase("switch pages", {}, () => {
+  testcase("submit complete registration", {}, () => {
+    const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
+      username: 'johnDoe',
+      email: 'john.doe@example.com',
+      password: '1234',
+      country: 'Germany',
+      acceptTerms: true
+    };
+    const expectedFeedback = 'Thanks for your registration!';
+
     given(steps["open the demo website"]())
-    .when(steps["open the '%{page}' page"]({
-      args: { page: pages.feed }
-    }))
     .and(steps["open the '%{page}' page"]({
       args: { page: pages.registration }
+    }))
+    .when(steps["fill in the registration form"]({
+      args: { formData }
+    }))
+    .and(steps["submit registration form"]({
+      cb: () => {
+        validate({ "2.1": [1] }, () => {
+          expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
+        });
+      }
+    }));
+  });
+
+  testcase("submit incomplete registration", {}, () => {
+    const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
+      username: 'johnDoe',
+      email: 'john.doe@example.com',
+      password: '1234',
+    };
+    const expectedFeedback = 'Please fill in all fields!';
+
+    given(steps["open the demo website"]())
+    .and(steps["open the '%{page}' page"]({
+      args: { page: pages.registration }
+    }))
+    .when(steps["fill in the registration form"]({
+      args: { formData }
+    }))
+    .and(steps["submit registration form"]({
+      cb: () => {
+        validate({ "2.1": [2] }, () => {
+          expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
+        });
+      }
     }));
   });
 

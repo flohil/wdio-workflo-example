@@ -28,6 +28,12 @@ export abstract class BasePage<
     );
   }
 
+  get heading() {
+    return this.container.$.Element(
+      xpath('//h1')
+    );
+  }
+
   // check if pathname section of current browser url starts with our page's name
   private _doesUrlMatchPageName() {
     const pathName = browser.getUrl().replace(workfloConfig.baseUrl, '');
@@ -39,11 +45,15 @@ export abstract class BasePage<
   }
 
   isOpen(): boolean {
-    return this._doesUrlMatchPageName() && this.container.currently.isVisible();
+    return this._doesUrlMatchPageName() &&
+      this.heading.currently.isVisible() &&
+      this.heading.currently.getText().toLowerCase() === this.pageName;
   }
 
   isClosed(): boolean {
-    return !this._doesUrlMatchPageName() || this.container.currently.not.isVisible();
+    return !this._doesUrlMatchPageName() ||
+      this.heading.currently.not.isVisible() ||
+      this.heading.currently.getText().toLowerCase() !== this.pageName;
   }
 
   // used to interpolate the page name in the step "open the '%{page}' page"

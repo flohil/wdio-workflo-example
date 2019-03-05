@@ -25,6 +25,20 @@ const demoSteps = defineSteps({
       page.wait.isOpen();
     }),
 
+  "fill in the registration form":
+  (params: IStepParams<
+    {formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> }, void
+  >) =>
+    new Step(params, ({ formData }): void => {
+      pages.registration.form.setValue(formData);
+    }),
+
+  "submit registration form":
+  (params?: IOptStepParams<{}, void>) =>
+    new Step(params, (): void => {
+      pages.registration.submitButton.click();
+    }),
+
   // "search for the package %{packageName}":
   // (params: IStepParams<{packageName: string}, void>) =>
   //   new Step(params, ({ packageName }): void => {
