@@ -3,6 +3,43 @@ import { steps } from '?/steps';
 
 suite("demo", {}, () => {
 
+  testcase("open framework link", {}, () => {
+    const frameworkUrl = 'https://flohil.github.io/wdio-workflo/';
+
+    given(steps["open demo website"]())
+    .when(steps["open framework link in footer"]({
+      cb: () => {
+        validate({ "1.1": [1] }, () => {
+          const url = browser.getUrl();
+
+          expect(url).toEqual(frameworkUrl);
+        });
+      }
+    }));
+  });
+
+  testcase("filter feed items", {}, () => {
+    const filterTerm = 'cat';
+    const filteredTitles = ['Cat', 'Cattle'];
+
+    given(steps["open demo website"]())
+    .and(steps["open page '%{page}'"]({
+      args: { page: pages.feed }
+    }))
+    .when(steps["filter feet items by term %{term}"]({
+      args: { term: filterTerm },
+      cb: () => {
+        validate({ "2.1": [1] }, () => {
+          pages.feed.feedList.wait.hasLength(2);
+
+          const titles = pages.feed.feedList.all.map(feedItem => feedItem.title.getText());
+
+          expect(titles).toEqual(filteredTitles);
+        });
+      }
+    }));
+  });
+
   testcase("submit complete registration", {}, () => {
     const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
       username: 'johnDoe',
@@ -13,16 +50,16 @@ suite("demo", {}, () => {
     };
     const expectedFeedback = 'Thanks for your registration!';
 
-    given(steps["open the demo website"]())
-    .and(steps["open the '%{page}' page"]({
+    given(steps["open demo website"]())
+    .and(steps["open page '%{page}'"]({
       args: { page: pages.registration }
     }))
-    .when(steps["fill in the registration form"]({
+    .when(steps["fill in registration form"]({
       args: { formData }
     }))
     .and(steps["submit registration form"]({
       cb: () => {
-        validate({ "2.1": [1] }, () => {
+        validate({ "3.1": [1] }, () => {
           expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
         });
       }
@@ -37,16 +74,16 @@ suite("demo", {}, () => {
     };
     const expectedFeedback = 'Please fill in all fields!';
 
-    given(steps["open the demo website"]())
-    .and(steps["open the '%{page}' page"]({
+    given(steps["open demo website"]())
+    .and(steps["open page '%{page}'"]({
       args: { page: pages.registration }
     }))
-    .when(steps["fill in the registration form"]({
+    .when(steps["fill in registration form"]({
       args: { formData }
     }))
     .and(steps["submit registration form"]({
       cb: () => {
-        validate({ "2.1": [2] }, () => {
+        validate({ "3.1": [2] }, () => {
           expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
         });
       }

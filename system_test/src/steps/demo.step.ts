@@ -1,31 +1,36 @@
 import { pages } from '?/page_objects';
 import { defineSteps, IOptStepParams, IStepParams, Step } from 'wdio-workflo';
+import { workfloConfig } from '~/workflo.conf';
 
 const demoSteps = defineSteps({
-  "open the demo website":
-  // use IOptStepParams if all of the step's arguments are optional
-  // the first template parameter of IOptStepParams is the type of the step's arguments object
-  // the second template parameter defines the return type of the step
-  (params?: IOptStepParams<{path?: string}, string>) =>
-    new Step(params, ({ path }): string => {
-      const _path = path || '';
-
-      // the baseUrl defined in workflo.conf.ts is prepended automatically
-      browser.url(`${_path}`);
-
-      // the return value is passed to the step's callback function as a single parameter
-      return _path;
+  "open demo website":
+  (params?: IOptStepParams<Workflo.EmptyObject, void>) =>
+    new Step(params, (): void => {
+      // When not providing a protocol, the url is resolved relative to the baseUrl.
+      browser.url('');
+      pages.common.footer.wait.isOpen();
     }),
 
-  "open the '%{page}' page":
-  // use IStepParams if at least one of the step's arguments is mandatory
+  "open framework link in footer":
+  (params?: IOptStepParams<Workflo.EmptyObject, void>) =>
+    new Step(params, ({}): void => {
+      pages.common.footer.frameworkLink.click();
+    }),
+
+  "open page '%{page}'":
   (params: IStepParams<{page: pages.BasePage<any>}, void>) =>
     new Step(params, ({ page }): void => {
       pages.common.header.linkMap.$[page.pageName].click();
       page.wait.isOpen();
     }),
 
-  "fill in the registration form":
+  "filter feet items by term %{term}":
+  (params: IStepParams<{term: string}, void>) =>
+    new Step(params, ({ term }): void => {
+      pages.feed.filterBox.setValue(term);
+    }),
+
+  "fill in registration form":
   (params: IStepParams<
     {formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> }, void
   >) =>
@@ -34,33 +39,26 @@ const demoSteps = defineSteps({
     }),
 
   "submit registration form":
-  (params?: IOptStepParams<{}, void>) =>
+  (params?: IOptStepParams<Workflo.EmptyObject, void>) =>
     new Step(params, (): void => {
       pages.registration.submitButton.click();
     }),
 
-  // "search for the package %{packageName}":
-  // (params: IStepParams<{packageName: string}, void>) =>
-  //   new Step(params, ({ packageName }): void => {
-  //     pages.common.header.searchInputField.setValue(packageName);
-  //     pages.common.header.searchButton.click();
-  //   }),
+  // use IOptStepParams if all of the step's arguments are optional
+  // the first template parameter of IOptStepParams is the type of the step's arguments object
+  // the second template parameter defines the return type of the step
 
-  // "fill in the signup form":
-  // (params: IStepParams<
-  //   {formData: Workflo.PageNode.ExtractValue<pages.SignUpPage['signupForm']['$']> }, void >
-  // ) =>
-  //   new Step(params, ({ formData }): void => {
-  //     pages.signup.signupForm.setValue(formData);
-  //   }),
+  // use IStepParams if at least one of the step's arguments is mandatory
 
-  // "fill in the contact form on the support page":
-  // (params: IStepParams<
-  //   {formData: Workflo.PageNode.ExtractValue<pages.SupportPage['contactForm']['$']> }, void >
-  // ) =>
-  //   new Step(params, ({ formData }): void => {
-  //     pages.support.contactForm.setValue(formData);
-  //   }),
+  "open path on demo website and return resulting url":
+  (params: IStepParams<{path: string}, string>) =>
+    new Step(params, ({ path }): string => {
+      // the baseUrl defined in workflo.conf.ts is prepended automatically
+      browser.url(path);
+
+      // the return value is passed to the step's callback function as a single parameter
+      return `${workfloConfig.baseUrl}/${path}`;
+    }),
 });
 
 export { demoSteps };

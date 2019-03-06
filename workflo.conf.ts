@@ -11,7 +11,7 @@ export const workfloConfig: IWorkfloConfig = {
     browserName: 'chrome',
   },
   timeouts: {
-    default: 3000
+    default: 6000
   },
   intervals: {
     default: 300

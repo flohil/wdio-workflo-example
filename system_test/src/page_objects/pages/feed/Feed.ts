@@ -10,16 +10,19 @@ export class Feed extends BasePage<stores.PageNodeStore> {
     });
   }
 
-  get packageListContainer() {
-    return this.container.$.Element(
-      xpath('//div').classContains('packageList'),
+  get filterBox() {
+    return this.container.$.Textfield(
+      xpath('//div').classContains('ms-TextField').hasChild(
+        '//label', xpath => xpath.text('Filter by name')
+      )
     );
   }
 
-  // the packages names returned by the search are represented as level-3 HTML headings
-  get packageNamesList() {
-    return this.packageListContainer.$.ElementList(
-      xpath('//h3'),
+  get feedList() {
+    return this.container.$.FeedItemList(
+      xpath('//div').attribute('role', 'listitem').hasChild(
+        '//div', xpath => xpath.classContains('Feed-itemCell')
+      ),
     );
   }
 }

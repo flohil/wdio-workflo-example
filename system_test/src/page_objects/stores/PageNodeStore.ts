@@ -9,7 +9,9 @@ import {
   ICheckboxOpts,
   Checkbox,
   Dropdown,
-  IDropdownOpts
+  IDropdownOpts,
+  FeedItem,
+  IFeedItemOpts
 } from '../page_elements';
 
 /**
@@ -98,6 +100,20 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     );
   }
 
+  FeedItem(
+    selector: Workflo.XPath,
+    options?: Pick<IFeedItemOpts<this>, Workflo.Store.BaseKeys>,
+  ) {
+    return this._getElement<FeedItem<this>, IFeedItemOpts<this>>(
+      selector,
+      FeedItem,
+      {
+        store: this,
+        ...options,
+      },
+    );
+  }
+
   Dropdown(
     selector: Workflo.XPath,
     options?: Pick<IDropdownOpts<this>, Workflo.Store.BaseKeys>,
@@ -150,6 +166,26 @@ export class PageNodeStore extends core.stores.PageNodeStore {
         elementOpts: {},
         elementStoreFunc: this.ExistElement,
         waitType: Workflo.WaitType.exist,
+        ...options,
+      },
+    );
+  }
+
+  FeedItemList(
+    selector: Workflo.XPath,
+    options?: Workflo.PickPartial<
+      core.elements.IPageElementListOpts<
+        this, FeedItem<this>, Pick<IFeedItemOpts<this>, Workflo.Store.ElementPublicKeys>
+      >,
+      Workflo.Store.ListPublicKeys,
+      Workflo.Store.ListPublicPartialKeys
+    >,
+  ) {
+    return this.List(
+      selector,
+      {
+        elementOpts: {},
+        elementStoreFunc: this.FeedItem,
         ...options,
       },
     );
