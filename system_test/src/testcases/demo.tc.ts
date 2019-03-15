@@ -60,6 +60,7 @@ suite("demo", {}, () => {
     .and(steps["submit registration form"]({
       cb: () => {
         validate({ "3.1": [1] }, () => {
+          // client side validation: immediate feedback
           expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
         });
       }
@@ -84,7 +85,8 @@ suite("demo", {}, () => {
     .and(steps["submit registration form"]({
       cb: () => {
         validate({ "3.1": [2] }, () => {
-          expectElement(pages.registration.feedbackField).toHaveText(expectedFeedback);
+          // server side validation - need to wait for feedback
+          expectElement(pages.registration.feedbackField).toEventuallyHaveText(expectedFeedback);
         });
       }
     }));
