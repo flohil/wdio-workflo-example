@@ -22,6 +22,6 @@
     "typescript-tslint-plugin": "^0.2.1"
   },
   "dependencies": {
-    "wdio-workflo": "^0.2.63"
+    "wdio-workflo": "^0.2.66"
   }
 }
