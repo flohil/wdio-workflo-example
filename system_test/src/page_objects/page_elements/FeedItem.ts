@@ -1,9 +1,5 @@
 import { PageNodeStore } from '../stores';
-import {
-  IPageElementOpts,
-  PageElement,
-  PageElementCurrently
-} from './PageElement';
+import { IPageElementOpts, PageElement } from './PageElement';
 
 export interface IFeedItemOpts<
  Store extends PageNodeStore

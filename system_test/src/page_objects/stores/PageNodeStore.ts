@@ -23,107 +23,99 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
 // ELEMENTS
 
-  /**
-   *
-   * @param selector
-   * @param options
-   */
   Element(
     selector: Workflo.XPath,
-    options?: Pick<IPageElementOpts<this>, Workflo.Store.ElementPublicKeys>,
+    opts?: Pick<IPageElementOpts<this>, Workflo.Store.ElementPublicKeys>,
   ) {
     return this._getElement<PageElement<this>, IPageElementOpts<this>>(
       selector,
       PageElement,
       {
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
 
   ExistElement(
     selector: Workflo.XPath,
-    options?: Pick<IPageElementOpts<this>, Exclude<Workflo.Store.ElementPublicKeys, 'waitType'>>,
+    opts?: Pick<IPageElementOpts<this>, Exclude<Workflo.Store.ElementPublicKeys, 'waitType'>>,
   ) {
     return this.Element(
       selector,
       {
         waitType: Workflo.WaitType.exist,
-        ...options,
+        ...opts,
       },
     );
   }
 
   Input(
     selector: Workflo.XPath,
-    // pick the properties of the `opts` parameter of Input's constructor which can be passed to the
-    // factory method
-    options?: Pick<IInputOpts<this>, Workflo.Store.BaseKeys>,
+    opts?: Pick<IInputOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<Input<this>, IInputOpts<this>>(
       selector,
       Input,
       {
-        // add pre-configured properties to the `opts` parameter of Input's constructor
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
 
   Textfield(
     selector: Workflo.XPath,
-    options?: Pick<ITextfieldOpts<this>, Workflo.Store.BaseKeys>,
+    opts?: Pick<ITextfieldOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<Textfield<this>, ITextfieldOpts<this>>(
       selector,
       Textfield,
       {
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
 
   Checkbox(
     selector: Workflo.XPath,
-    options?: Pick<ICheckboxOpts<this>, Workflo.Store.BaseKeys>,
+    opts?: Pick<ICheckboxOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<Checkbox<this>, ICheckboxOpts<this>>(
       selector,
       Checkbox,
       {
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
 
   FeedItem(
     selector: Workflo.XPath,
-    options?: Pick<IFeedItemOpts<this>, Workflo.Store.BaseKeys>,
+    opts?: Pick<IFeedItemOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<FeedItem<this>, IFeedItemOpts<this>>(
       selector,
       FeedItem,
       {
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
 
   Dropdown(
     selector: Workflo.XPath,
-    options?: Pick<IDropdownOpts<this>, Workflo.Store.BaseKeys>,
+    opts?: Pick<IDropdownOpts<this>, Workflo.Store.BaseKeys>,
   ) {
     return this._getElement<Dropdown<this>, IDropdownOpts<this>>(
       selector,
       Dropdown,
       {
         store: this,
-        ...options,
+        ...opts,
       },
     );
   }
@@ -132,7 +124,7 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
   ElementList(
     selector: Workflo.XPath,
-    options?: Workflo.PickPartial<
+    opts?: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, PageElement<this>, Pick<IPageElementOpts<this>, Workflo.Store.ElementPublicKeys>
       >,
@@ -145,14 +137,14 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       {
         elementOpts: {},
         elementStoreFunc: this.Element,
-        ...options,
+        ...opts,
       },
     );
   }
 
   ExistElementList(
     selector: Workflo.XPath,
-    options?: Workflo.PickPartial<
+    opts?: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, PageElement<this>, Pick<IPageElementOpts<this>, 'timeout'>
       >,
@@ -166,14 +158,14 @@ export class PageNodeStore extends core.stores.PageNodeStore {
         elementOpts: {},
         elementStoreFunc: this.ExistElement,
         waitType: Workflo.WaitType.exist,
-        ...options,
+        ...opts,
       },
     );
   }
 
   FeedItemList(
     selector: Workflo.XPath,
-    options?: Workflo.PickPartial<
+    opts?: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, FeedItem<this>, Pick<IFeedItemOpts<this>, Workflo.Store.ElementPublicKeys>
       >,
@@ -186,7 +178,7 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       {
         elementOpts: {},
         elementStoreFunc: this.FeedItem,
-        ...options,
+        ...opts,
       },
     );
   }
@@ -195,7 +187,7 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
   ElementMap<K extends string>(
     selector: Workflo.XPath,
-    options: Workflo.PickPartial<
+    opts: Workflo.PickPartial<
       core.elements.IPageElementMapOpts<
         this, K, PageElement<this>, Pick<IPageElementOpts<this>, Workflo.Store.ElementPublicKeys>
       >,
@@ -208,14 +200,14 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       {
         elementStoreFunc: this.Element,
         elementOpts: {},
-        ...options,
+        ...opts,
       },
     );
   }
 
   ExistElementMap<K extends string>(
     selector: Workflo.XPath,
-    options: Workflo.PickPartial<
+    opts: Workflo.PickPartial<
       core.elements.IPageElementMapOpts<
         this, K, PageElement<this>, Pick<
           IPageElementOpts<this>, Exclude<Workflo.Store.ElementPublicKeys, 'waitType'>
@@ -230,7 +222,7 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       {
         elementStoreFunc: this.ExistElement,
         elementOpts: {},
-        ...options,
+        ...opts,
       },
     );
   }

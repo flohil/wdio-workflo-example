@@ -9,6 +9,9 @@ export const workfloConfig: IWorkfloConfig = {
   height: 800,
   capabilities: {
     browserName: 'chrome',
+    chromeOptions: {
+      args: ["headless", "disable-gpu"]
+    }
   },
   timeouts: {
     default: 6000
