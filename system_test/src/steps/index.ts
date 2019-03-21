@@ -5,7 +5,7 @@ import { defineSteps, proxifySteps } from 'wdio-workflo';
 ////////////////////////////////////////////////////////////
 
 // IMPORT YOUR STEP DEFINITIONS
-import { demoSteps } from '~/system_test/src/steps/demo.step';
+import { demoSteps } from './demo.step';
 
 // MERGE ALL STEP DEFINITIONS INTO ONE OBJECT AS SHOWN BELOW
 const stepDefinitions = defineSteps({
