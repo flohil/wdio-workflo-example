@@ -11,7 +11,9 @@ import {
   Dropdown,
   IDropdownOpts,
   FeedItem,
-  IFeedItemOpts
+  IFeedItemOpts,
+  SearchableFeedItemList,
+  ISearchableFeedItemListOpts
 } from '../page_elements';
 
 /**
@@ -165,19 +167,45 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
   FeedItemList(
     selector: Workflo.XPath,
-    opts?: Workflo.PickPartial<
+    opts: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, FeedItem<this>, Pick<IFeedItemOpts<this>, Workflo.Store.ElementPublicKeys>
       >,
       Workflo.Store.ListPublicKeys,
       Workflo.Store.ListPublicPartialKeys
-    >,
+    > = {},
   ) {
     return this.List(
       selector,
       {
-        elementOpts: {},
+        elementOpts: { ...opts.elementOpts },
         elementStoreFunc: this.FeedItem,
+        ...opts,
+      },
+    );
+  }
+
+  SearchableFeedItemList(
+    selector: Workflo.XPath,
+    opts: Workflo.PickPartial<
+      ISearchableFeedItemListOpts<this>,
+      Workflo.Store.ListPublicKeys,
+      Workflo.Store.ListPublicPartialKeys
+    > = {},
+  ) {
+    return this._getList<
+      SearchableFeedItemList<this>,
+      ISearchableFeedItemListOpts<this>
+    >(
+      selector,
+      SearchableFeedItemList,
+      {
+        elementOpts: {
+          store: this,
+          ...opts.elementOpts
+        },
+        elementStoreFunc: this.FeedItem,
+        store: this,
         ...opts,
       },
     );

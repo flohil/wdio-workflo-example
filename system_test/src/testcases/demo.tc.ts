@@ -19,7 +19,7 @@ suite("demo", {}, () => {
   });
 
   testcase("filter feed items", {}, () => {
-    const filterTerm = 'cat';
+    const filterTerm = 'ca';
     const filteredTitles = ['Cat', 'Cattle'];
 
     given(steps["open demo website"]())
@@ -35,6 +35,12 @@ suite("demo", {}, () => {
           const titles = pages.feed.feedList.all.map(feedItem => feedItem.title.getText());
 
           expect(titles).toEqual(filteredTitles);
+        });
+
+        validate({ "2.1": [2] }, () => {
+          const catItem = pages.feed.searchableFeedList.getByTitle('Cat');
+
+          expectElement(catItem).toEventuallyBeVisible();
         });
       }
     }));

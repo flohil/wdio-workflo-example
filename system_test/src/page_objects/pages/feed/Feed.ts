@@ -25,6 +25,16 @@ export class Feed extends BasePage<stores.PageNodeStore> {
       ),
     );
   }
+
+  // usually we would not need `feedList` above and just use `searchableFeedList`
+  // using both is only for demonstration purposes of wdio-workflo's customizing guides
+  get searchableFeedList() {
+    return this.container.$.SearchableFeedItemList(
+      xpath('//div').attribute('role', 'listitem').hasChild(
+        '//div', xpath => xpath.classContains('Feed-itemCell')
+      ),
+    );
+  }
 }
 
 export const feed = new Feed();
