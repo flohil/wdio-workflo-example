@@ -44,12 +44,6 @@ const demoSteps = defineSteps({
       pages.registration.submitButton.click();
     }),
 
-  // use IOptStepParams if all of the step's arguments are optional
-  // the first template parameter of IOptStepParams is the type of the step's arguments object
-  // the second template parameter defines the return type of the step
-
-  // use IStepParams if at least one of the step's arguments is mandatory
-
   "open path on demo website and return resulting url":
   (params: IStepParams<{path: string}, string>) =>
     new Step(params, ({ path }): string => {

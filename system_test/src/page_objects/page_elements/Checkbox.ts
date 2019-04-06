@@ -40,6 +40,20 @@ export class CheckboxCurrently<
 > extends ValuePageElementCurrently<Store, PageElementType, boolean> {
 
   getValue() {
-    return this._node.currently.containsClass('is-checked');
+    return this.not.isChecked();
+  }
+
+  isChecked() {
+    return this.containsClass('is-checked');
+  }
+
+  get not() {
+    return {
+      ...super.not,
+      isChecked: () => {
+        // we use an arrow function so that `this` is CheckboxCurrently instead of the `not` object
+        return this.not.containsClass('is-checked');
+      }
+    };
   }
 }
