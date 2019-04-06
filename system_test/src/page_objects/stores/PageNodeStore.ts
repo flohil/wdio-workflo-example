@@ -13,7 +13,9 @@ import {
   FeedItem,
   IFeedItemOpts,
   SearchableFeedItemList,
-  ISearchableFeedItemListOpts
+  ISearchableFeedItemListOpts,
+  ILinkOpts,
+  Link
 } from '../page_elements';
 
 /**
@@ -122,22 +124,36 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     );
   }
 
+  Link(
+    selector: Workflo.XPath,
+    opts?: Pick<ILinkOpts<this>, Workflo.Store.BaseKeys>,
+  ) {
+    return this._getElement<Link<this>, ILinkOpts<this>>(
+      selector,
+      Link,
+      {
+        store: this,
+        ...opts,
+      },
+    );
+  }
+
 // LISTS
 
   ElementList(
     selector: Workflo.XPath,
-    opts?: Workflo.PickPartial<
+    opts: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, PageElement<this>, Pick<IPageElementOpts<this>, Workflo.Store.ElementPublicKeys>
       >,
       Workflo.Store.ListPublicKeys,
       Workflo.Store.ListPublicPartialKeys
-    >,
+    > = {},
   ) {
     return this.List(
       selector,
       {
-        elementOpts: {},
+        elementOpts: { ...opts.elementOpts },
         elementStoreFunc: this.Element,
         ...opts,
       },
@@ -146,18 +162,18 @@ export class PageNodeStore extends core.stores.PageNodeStore {
 
   ExistElementList(
     selector: Workflo.XPath,
-    opts?: Workflo.PickPartial<
+    opts: Workflo.PickPartial<
       core.elements.IPageElementListOpts<
         this, PageElement<this>, Pick<IPageElementOpts<this>, 'timeout'>
       >,
       Exclude<Workflo.Store.ListPublicKeys, 'waitType'>,
       Workflo.Store.ListPublicPartialKeys
-    >,
+    > = {},
   ) {
     return this.List(
       selector,
       {
-        elementOpts: {},
+        elementOpts: { ...opts.elementOpts },
         elementStoreFunc: this.ExistElement,
         waitType: Workflo.WaitType.exist,
         ...opts,
@@ -227,7 +243,7 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       selector,
       {
         elementStoreFunc: this.Element,
-        elementOpts: {},
+        elementOpts: { ...opts.elementOpts },
         ...opts,
       },
     );
@@ -249,7 +265,27 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       selector,
       {
         elementStoreFunc: this.ExistElement,
-        elementOpts: {},
+        elementOpts: { ...opts.elementOpts },
+        ...opts,
+      },
+    );
+  }
+
+  LinkMap<K extends string>(
+    selector: Workflo.XPath,
+    opts: Workflo.PickPartial<
+      core.elements.IPageElementMapOpts<
+        this, K, Link<this>, Pick<ILinkOpts<this>, Workflo.Store.ElementPublicKeys>
+      >,
+      Workflo.Store.MapPublicKeys,
+      Workflo.Store.MapPublicPartialKeys
+    >,
+  ) {
+    return this.Map(
+      selector,
+      {
+        elementStoreFunc: this.Link,
+        elementOpts: { ...opts.elementOpts },
         ...opts,
       },
     );

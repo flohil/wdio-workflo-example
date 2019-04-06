@@ -7,3 +7,4 @@ export * from './Input';
 export * from './Textfield';
 export * from './FeedItem';
 export * from './SearchableFeedItemList';
+export * from './Link';
