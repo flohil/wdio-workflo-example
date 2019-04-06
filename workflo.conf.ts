@@ -23,6 +23,7 @@ export const workfloConfig: IWorkfloConfig = {
     issueTrackerPattern: 'http://example.com/issues/%s',
     testManagementPattern: 'http://example.com/tms/%s',
   },
+  debug: false,
   consoleLogLevel: 'steps'
 };
 

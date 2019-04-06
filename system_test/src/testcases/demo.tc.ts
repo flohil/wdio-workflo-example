@@ -4,7 +4,7 @@ import { steps } from '?/steps';
 suite("demo", {}, () => {
 
   testcase("open framework link", {}, () => {
-    const frameworkUrl = 'https://flohil.github.io/wdio-workflo/';
+    const frameworkUrl = 'https://flohil.github.io/wdio-workflo/FAILURE';
 
     given(steps["open demo website"]())
     .when(steps["open framework link in footer"]({
@@ -67,7 +67,7 @@ suite("demo", {}, () => {
     }));
   });
 
-  testcase("submit incomplete registration", {}, () => {
+  xtestcase("submit incomplete registration", {}, () => {
     const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
       username: 'johnDoe',
       email: 'john.doe@example.com',

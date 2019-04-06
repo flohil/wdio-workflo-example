@@ -54,7 +54,7 @@ export class Registration extends BasePage<stores.PageNodeStore> {
 
   get submitButton() {
     return this.container.$.Element(
-      xpath('//button').text('Submit')
+      xpath('//button').text('Submitttt')
     );
   }
 
