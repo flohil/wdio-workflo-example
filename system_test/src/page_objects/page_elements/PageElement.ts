@@ -102,6 +102,10 @@ export class PageElement<Store extends PageNodeStore> extends core.elements.Page
     this.wait = new PageElementWait(this);
     this.eventually = new PageElementEventually(this);
   }
+
+  getType() {
+    this._executeAfterInitialWait(() => this.currently.getType());
+  }
 }
 
 /**
@@ -118,7 +122,33 @@ export class PageElement<Store extends PageNodeStore> extends core.elements.Page
 export class PageElementCurrently<
   Store extends PageNodeStore,
   PageElementType extends PageElement<Store>
-> extends core.elements.PageElementCurrently<Store, PageElementType> {}
+> extends core.elements.PageElementCurrently<Store, PageElementType> {
+
+  getType() {
+    return this.getAttribute('type');
+  }
+
+  hasType(type: string) {
+    return this._compareHas(type, this.getType());
+  }
+
+  containsType(type: string) {
+    return this._compareContains(type, this.getType());
+  }
+
+  hasAnyType() {
+    return this._compareHasAny(this.getType());
+  }
+
+  get not() {
+    return {
+      ...super.not,
+      hasType: (type: string) => !this.hasType(type),
+      containsType: (type: string) => !this.containsType(type),
+      hasAnyType: () => !this.hasAnyType()
+    };
+  }
+}
 
 /**
  * This class can be used to extend or customize the functionality provided by wdio-workflo's
@@ -134,7 +164,41 @@ export class PageElementCurrently<
 export class PageElementWait<
   Store extends PageNodeStore,
   PageElementType extends PageElement<Store>
-> extends core.elements.PageElementWait<Store, PageElementType> {}
+> extends core.elements.PageElementWait<Store, PageElementType> {
+
+  hasType(type: string, opts?: Workflo.ITimeoutReverseInterval) {
+    return this._waitHasProperty(
+      'type', type, () => this._node.currently.hasType(type), opts
+    );
+  }
+
+  containsType(type: string, opts?: Workflo.ITimeoutReverseInterval) {
+    return this._waitContainsProperty(
+      'type', type, () => this._node.currently.containsType(type), opts
+    );
+  }
+
+  hasAnyType(opts?: Workflo.ITimeoutReverseInterval) {
+    return this._waitHasAnyProperty(
+      'type', () => this._node.currently.hasAnyType(), opts,
+    );
+  }
+
+  get not() {
+    return {
+      ...super.not,
+      hasType: (type: string, opts?: Workflo.ITimeoutInterval) => {
+        return this.hasType(type, this._makeReverseParams(opts));
+      },
+      containsType: (type: string, opts?: Workflo.ITimeoutInterval) => {
+        return this.containsType(type, this._makeReverseParams(opts));
+      },
+      hasAnyType: (opts?: Workflo.ITimeoutInterval) => {
+        return this.hasAnyType(this._makeReverseParams(opts));
+      }
+    };
+  }
+}
 
 /**
  * This class can be used to extend or customize the functionality provided by wdio-workflo's
@@ -150,4 +214,32 @@ export class PageElementWait<
 export class PageElementEventually<
   Store extends PageNodeStore,
   PageElementType extends PageElement<Store>
-> extends core.elements.PageElementEventually<Store, PageElementType> {}
+> extends core.elements.PageElementEventually<Store, PageElementType> {
+
+  hasType(type: string, opts?: Workflo.ITimeoutInterval) {
+    return this._node.__eventually(() => this._node.wait.hasType(type, opts));
+  }
+
+  containsType(type: string, opts?: Workflo.ITimeoutInterval) {
+    return this._node.__eventually(() => this._node.wait.containsType(type, opts));
+  }
+
+  hasAnyType(opts?: Workflo.ITimeoutInterval) {
+    return this._node.__eventually(() => this._node.wait.hasAnyType(opts));
+  }
+
+  get not() {
+    return {
+      ...super.not,
+      hasType: (type: string, opts?: Workflo.ITimeoutInterval) => {
+        return this._node.__eventually(() => this._node.wait.not.hasType(type, opts));
+      },
+      containsType: (type: string, opts?: Workflo.ITimeoutInterval) => {
+        return this._node.__eventually(() => this._node.wait.not.containsType(type, opts));
+      },
+      hasAnyType: (opts?: Workflo.ITimeoutInterval) => {
+        return this._node.__eventually(() => this._node.wait.not.hasAnyType(opts));
+      }
+    };
+  }
+}
