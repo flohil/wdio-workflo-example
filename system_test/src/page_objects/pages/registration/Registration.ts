@@ -1,6 +1,8 @@
 import { stores } from '?/page_objects';
 import { BasePage } from '../BasePage';
 
+export type RegistrationFormData = Workflo.PageNode.ExtractValue<Registration['form']['$']>;
+
 export class Registration extends BasePage<stores.PageNodeStore> {
 
   constructor() {

@@ -3,9 +3,7 @@ import { defineSteps, IOptStepParams, IStepParams, Step } from 'wdio-workflo';
 
 const registrationSteps = defineSteps({
   "fill in registration form":
-  (params: IStepParams<
-    {formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> }, void
-  >) =>
+  (params: IStepParams<{formData: pages.RegistrationFormData }, void>) =>
     new Step(params, ({ formData }): void => {
       pages.registration.form.setValue(formData);
     }),
