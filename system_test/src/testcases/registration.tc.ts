@@ -1,7 +1,7 @@
 import { pages } from '?/page_objects';
 import { steps } from '?/steps';
 
-suite("demo", {}, () => {
+suite("registration", {}, () => {
   testcase("submit complete registration", {}, () => {
     const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
       username: 'johnDoe',
