@@ -19,6 +19,7 @@ export const workfloConfig: IWorkfloConfig = {
   intervals: {
     default: 300
   },
+  services: [],
   allure: {
     issueTrackerPattern: 'http://example.com/issues/%s',
     testManagementPattern: 'http://example.com/tms/%s',
