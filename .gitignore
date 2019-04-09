@@ -3,4 +3,5 @@ tsOut
 system_test/results
 system_test/logs
 system_test/testinfo.json
+system_test/data/uidStore.json
 workflo.conf.js

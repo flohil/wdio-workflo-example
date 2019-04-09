@@ -8,10 +8,7 @@ export const workfloConfig: IWorkfloConfig = {
   width: 1280,
   height: 800,
   capabilities: {
-    browserName: 'chrome',
-    chromeOptions: {
-      args: ["headless", "disable-gpu"]
-    }
+    browserName: 'chrome'
   },
   timeouts: {
     default: 6000
@@ -19,7 +16,6 @@ export const workfloConfig: IWorkfloConfig = {
   intervals: {
     default: 300
   },
-  services: [],
   allure: {
     issueTrackerPattern: 'http://example.com/issues/%s',
     testManagementPattern: 'http://example.com/tms/%s',
