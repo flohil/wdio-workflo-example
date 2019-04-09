@@ -40,7 +40,7 @@ export class CheckboxCurrently<
 > extends ValuePageElementCurrently<Store, PageElementType, boolean> {
 
   getValue() {
-    return this.not.isChecked();
+    return this.isChecked();
   }
 
   isChecked() {
