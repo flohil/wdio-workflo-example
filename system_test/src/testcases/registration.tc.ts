@@ -2,7 +2,15 @@ import { pages } from '?/page_objects';
 import { steps } from '?/steps';
 
 suite("registration", {}, () => {
-  testcase("submit complete registration", {}, () => {
+
+  testcase("open registration page", {}, () => {
+    given(steps["open demo website"]())
+    .when(steps["navigate to page '%{pageName}'"]({
+      args: { pageName: 'registration' }
+    }));
+  });
+
+  testcase("submit complete registration", { bugs: ["DEMO-BUG-7"], testId: "A37" }, () => {
     const formData: pages.RegistrationFormData = {
       username: 'johnDoe',
       email: 'john.doe@example.com',

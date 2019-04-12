@@ -18,14 +18,20 @@ const commonSteps = defineSteps({
       page.wait.isOpen();
     }),
 
-  "open path on demo website and return resulting url":
+  "navigate to page '%{pageName}'":
+  (params: IStepParams<{pageName: DemoApp.PageName}, void>) =>
+    new Step(params, ({ pageName }): void => {
+      pages.common.header.linkMap.$[pageName].click();
+    }),
+
+  "open path %{path} on demo website and return resulting url":
   (params: IStepParams<{path: string}, string>) =>
     new Step(params, ({ path }): string => {
       // the baseUrl defined in workflo.conf.ts is prepended automatically
       browser.url(path);
 
       // the return value is passed to the step's callback function as a single parameter
-      return `${workfloConfig.baseUrl}/${path}`;
+      return browser.getUrl();
     }),
 });
 

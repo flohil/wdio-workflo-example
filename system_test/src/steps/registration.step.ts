@@ -1,5 +1,6 @@
-import { pages } from '?/page_objects';
 import { defineSteps, IOptStepParams, IStepParams, Step } from 'wdio-workflo';
+
+import { pages } from '?/page_objects';
 
 const registrationSteps = defineSteps({
   "fill in registration form":

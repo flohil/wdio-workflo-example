@@ -10,7 +10,7 @@ import { footerSteps } from './footer.step';
 import { feedSteps } from './feed.step';
 import { registrationSteps } from './registration.step';
 
-// MERGE ALL STEP DEFINITIONS INTO ONE OBJECT AS SHOWN BELOW
+// MERGE ALL STEP DEFINITIONS INTO ONE OBJECT
 const stepDefinitions = defineSteps({
   ...commonSteps,
   ...footerSteps,
