@@ -1,0 +1,1 @@
+Don't delete this folder - it is required to store the `uidStore.json` file!

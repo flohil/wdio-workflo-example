@@ -38,7 +38,7 @@ suite("registration", {}, () => {
   });
 
   testcase("submit incomplete registration", {}, () => {
-    const formData: Workflo.PageNode.ExtractValue<pages.Registration['form']['$']> = {
+    const formData: Workflo.PageNode.ExtractValue<pages.RegistrationPage['form']['$']> = {
       username: 'johnDoe',
       email: 'john.doe@example.com',
       password: '1234',

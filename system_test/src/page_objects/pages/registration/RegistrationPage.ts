@@ -1,9 +1,9 @@
 import { stores } from '?/page_objects';
 import { BasePage } from '../BasePage';
 
-export type RegistrationFormData = Workflo.PageNode.ExtractValue<Registration['form']['$']>;
+export type RegistrationFormData = Workflo.PageNode.ExtractValue<RegistrationPage['form']['$']>;
 
-export class Registration extends BasePage<stores.PageNodeStore> {
+export class RegistrationPage extends BasePage<stores.PageNodeStore> {
 
   constructor() {
     super({
@@ -67,4 +67,4 @@ export class Registration extends BasePage<stores.PageNodeStore> {
   }
 }
 
-export const registration = new Registration();
+export const registration = new RegistrationPage();
