@@ -3,7 +3,7 @@ import { Page, IPageOpts } from './Page';
 
 import { workfloConfig } from '~/workflo.conf';
 
-interface IBasePageOpts<
+export interface IBasePageOpts<
   Store extends stores.PageNodeStore
 > extends IPageOpts<Store> {
   pageName: DemoApp.PageName;

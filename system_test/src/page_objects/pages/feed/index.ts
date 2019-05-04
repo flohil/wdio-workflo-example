@@ -1,1 +1,1 @@
-export * from './FeedsPage';
+export * from './FeedPage';

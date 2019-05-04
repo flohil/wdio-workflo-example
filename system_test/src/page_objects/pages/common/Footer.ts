@@ -9,7 +9,7 @@ export class Footer extends Page<stores.PageNodeStore> {
 
   get container() {
     return this._store.Element(
-      xpath('//footer')
+      xpath('//footer'),
     );
   }
 

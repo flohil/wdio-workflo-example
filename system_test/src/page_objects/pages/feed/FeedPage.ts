@@ -1,7 +1,7 @@
 import { stores } from '?/page_objects';
 import { BasePage } from '../BasePage';
 
-export class FeedsPage extends BasePage<stores.FeedStore> {
+export class FeedPage extends BasePage<stores.FeedStore> {
 
   constructor() {
     super({
@@ -37,4 +37,4 @@ export class FeedsPage extends BasePage<stores.FeedStore> {
   }
 }
 
-export const feed = new FeedsPage();
+export const feed = new FeedPage();

@@ -164,6 +164,26 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     );
   }
 
+  InputList(
+    selector: Workflo.XPath,
+    opts: Workflo.PickPartial<
+      core.elements.IValuePageElementListOpts<
+        this, Input<this>, Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>, string
+      >,
+      Workflo.Store.ListPublicKeys,
+      Workflo.Store.ListPublicPartialKeys
+    > = {},
+  ) {
+    return this.ValueList(
+      selector,
+      {
+        elementOpts: { ...opts.elementOpts },
+        elementStoreFunc: this.Input,
+        ...opts,
+      },
+    );
+  }
+
 // MAPS
 
   ElementMap<K extends string>(
