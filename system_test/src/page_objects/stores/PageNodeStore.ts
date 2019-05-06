@@ -143,27 +143,6 @@ export class PageNodeStore extends core.stores.PageNodeStore {
     );
   }
 
-  ExistElementList(
-    selector: Workflo.XPath,
-    opts: Workflo.PickPartial<
-      core.elements.IPageElementListOpts<
-        this, PageElement<this>, Pick<IPageElementOpts<this>, 'timeout'>
-      >,
-      Exclude<Workflo.Store.ListPublicKeys, 'waitType'>,
-      Workflo.Store.ListPublicPartialKeys
-    > = {},
-  ) {
-    return this.List(
-      selector,
-      {
-        elementOpts: { ...opts.elementOpts },
-        elementStoreFunc: this.ExistElement,
-        waitType: Workflo.WaitType.exist,
-        ...opts,
-      },
-    );
-  }
-
   InputList(
     selector: Workflo.XPath,
     opts: Workflo.PickPartial<
