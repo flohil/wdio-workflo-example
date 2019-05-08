@@ -13,7 +13,7 @@ export class Dropdown<
   Store extends PageNodeStore
 > extends ValuePageElement<Store, string> {
 
-  readonly currently = new DropdownCurrently(this);
+  readonly currently: DropdownCurrently<Store, this> = new DropdownCurrently(this);
 
   constructor(selector: string, opts: IDropdownOpts<Store>) {
     super(selector, opts);

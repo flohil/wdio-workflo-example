@@ -13,7 +13,7 @@ export class Textfield<
   Store extends PageNodeStore
 > extends ValuePageElement<Store, string> {
 
-  readonly currently = new TextfieldCurrently(this);
+  readonly currently: TextfieldCurrently<Store, this> = new TextfieldCurrently(this);
 
   constructor(selector: string, opts: ITextfieldOpts<Store>) {
     super(selector, opts);

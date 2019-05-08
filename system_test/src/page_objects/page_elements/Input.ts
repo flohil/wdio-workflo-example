@@ -13,7 +13,7 @@ export class Input<
   Store extends PageNodeStore
 > extends ValuePageElement<Store, string> {
 
-  readonly currently = new InputCurrently(this);
+  readonly currently: InputCurrently<Store, this> = new InputCurrently(this);
 
   constructor(selector: string, opts: IInputOpts<Store>) {
     super(selector, opts);

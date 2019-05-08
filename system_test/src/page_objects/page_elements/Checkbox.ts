@@ -13,7 +13,7 @@ export class Checkbox<
   Store extends PageNodeStore
 > extends ValuePageElement<Store, boolean> {
 
-  readonly currently = new CheckboxCurrently(this);
+  readonly currently: CheckboxCurrently<Store, this> = new CheckboxCurrently(this);
 
   constructor(selector: string, opts: ICheckboxOpts<Store>) {
     super(selector, opts);
