@@ -153,6 +153,11 @@ export class RegistrationPage extends BasePage<stores.PageNodeStore> {
           )
         );
       },
+      get label() {
+        return $.Element(
+          xpath('//div')
+        );
+      },
       get inputList() {
         return $.InputList(
           xpath('//input')
@@ -192,6 +197,11 @@ export class RegistrationPage extends BasePage<stores.PageNodeStore> {
               xpath('//div').classContains('ms-Checkbox').hasChild(
                 '//span', xpath => xpath.classContains('ms-Checkbox-text').text('Accept terms')
               )
+            );
+          },
+          get label() {
+            return $.Element(
+              xpath('//div')
             );
           },
           get inputList() {
@@ -284,9 +294,48 @@ export class RegistrationPage extends BasePage<stores.PageNodeStore> {
       }
     );
   }
+
+  get listForm() {
+    const $ = this.container.$;
+
+    return this._store.ValueGroup({
+      get inputList() {
+        return $.InputList(
+          xpath('//input')
+        );
+      },
+    });
+  }
 }
 
 export const registration = new RegistrationPage();
+
+
+const listValues = registration.listForm.$.inputList.getValue();
+
+
+
+const currentListValues = registration.listForm.getValue();
+
+currentListValues.inputList = 'string';
+
+const currentIsEnbaled = registration.listForm.getIsEnabled();
+
+currentIsEnbaled.inputList = true;
+
+const currentHasText = registration.listForm.getHasText({
+  inputList: 'asdf'
+});
+
+currentHasText.inputList = [true];
+
+currentIsEnbaled.inputList = [true];
+
+
+registration.listForm.getHasValue({
+  inputList: ['asdf']
+});
+
 
 const hasMapValues = registration.form2.$.inputMap.currently.hasValue({
   input1: 'asdf',
@@ -358,6 +407,8 @@ const hasValues2 = registration.form2.currently.hasValue({
 });
 
 const values2 = registration.form2.currently.getValue();
+const listValues2 = registration.form2.$.inputList.getValue();
+
 
 const values2WithMask = registration.form2.currently.getValue({
   acceptTerms: true,
@@ -391,16 +442,18 @@ const hasValues3 = registration.form3.currently.hasValue({
   country: 'Germany',
   email: 'a@b.com',
   acceptTerms: true,
-  inputList: ['jodel', 'dodel'],
+  inputList: 'asdf',
   inputMap: {
     input1: 'asdf',
     input2: 'jodel'
   },
+  label: 'asdf',
   innerGroup: {
     acceptTerms: false,
     country: 'China',
     password: 'adsf',
-    inputList: 'bla',
+    inputList: 'asdf',
+    label: 'asdf',
     inputMap: {
       input1: 'input1',
       input2: 'input2'
@@ -416,24 +469,22 @@ const values3WithMask = registration.form3.currently.getValue({
   email: false,
   password: true,
   username: true,
-  inputList: true,
+  inputList: [false],
   inputMap: {
     input1: true,
     input2: true
   },
+  label: 'asdf',
   innerGroup: {
+    label: 'asdf',
     acceptTerms: true,
     country: false,
     password: true,
-    inputList: false,
+    inputList: true,
     inputMap: {
       input1: true,
       input2: false
     }
   }
-});
-
-expectGroup(registration.form3).toHaveValue({
-
 });
 
