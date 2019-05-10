@@ -226,6 +226,26 @@ export class PageNodeStore extends core.stores.PageNodeStore {
       },
     );
   }
+
+  InputMap<K extends string>(
+    selector: Workflo.XPath,
+    opts: Workflo.PickPartial<
+      core.elements.IValuePageElementMapOpts<
+        this, K, Input<this>, Pick<IInputOpts<this>, Workflo.Store.ElementPublicKeys>, string
+      >,
+      Workflo.Store.MapPublicKeys,
+      Workflo.Store.MapPublicPartialKeys
+    >,
+  ) {
+    return this.ValueMap(
+      selector,
+      {
+        elementStoreFunc: this.Input,
+        elementOpts: { ...opts.elementOpts },
+        ...opts,
+      },
+    );
+  }
 }
 
 export const pageNode = new PageNodeStore();

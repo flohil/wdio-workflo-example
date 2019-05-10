@@ -35,6 +35,40 @@ export class FeedPage extends BasePage<stores.FeedStore> {
       ),
     );
   }
+
+  get inputMap() {
+    return this.container.$.InputMap(
+      xpath('//input'), {
+        identifier: {
+          mappingObject: {
+            input1: 'Input1',
+            input2: 'Input2'
+          },
+          mappingFunc: (baseSelector, value) => xpath(baseSelector).text(value)
+        }
+      }
+    );
+  }
+
+  get inputList() {
+    return this.container.$.InputList(
+      xpath('//input')
+    );
+  }
 }
 
 export const feed = new FeedPage();
+
+const listAreEnabled = feed.inputList.currently.isEnabled([false, true]);
+
+expectList(feed.inputList).toBeEnabled(true);
+
+const mapAreEnabled = feed.inputMap.currently.isEnabled({
+  input1: true,
+});
+
+expectMap(feed.inputMap).toBeEnabled({
+  input1: true,
+
+
+});
