@@ -1,6 +1,6 @@
 {
   "name": "wdio-workflo-example",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "Code examples for wdio-workflo",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.2",
     "typescript-tslint-plugin": "^0.2.1",
-    "wdio-workflo": "^0.2.80"
+    "wdio-workflo": "^0.2.81"
   },
   "dependencies": {}
 }
