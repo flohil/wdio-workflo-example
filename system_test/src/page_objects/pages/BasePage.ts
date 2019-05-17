@@ -3,6 +3,10 @@ import { Page, IPageOpts } from './Page';
 
 import { workfloConfig } from '~/workflo.conf';
 
+interface IPagePath {
+  subPath?: string;
+}
+
 export interface IBasePageOpts<
   Store extends stores.PageNodeStore
 > extends IPageOpts<Store> {
@@ -10,8 +14,10 @@ export interface IBasePageOpts<
 }
 
 export abstract class BasePage<
-  Store extends stores.PageNodeStore
-> extends Page<Store> {
+  Store extends stores.PageNodeStore,
+  IsOpenOpts extends IPagePath = IPagePath,
+  IsClosedOpts extends IPagePath = IsOpenOpts
+> extends Page<Store, IsOpenOpts | IPagePath, IsClosedOpts | IPagePath> {
 
   pageName: DemoApp.PageName;
 
@@ -34,24 +40,48 @@ export abstract class BasePage<
     );
   }
 
-  // check if pathname section of current browser url starts with our page's name
-  private _doesUrlMatchPageName() {
-    const pathName = browser.getUrl().replace(workfloConfig.baseUrl, '');
+  // check if path section of current browser url starts with our page's name
+  private _doesUrlMatchPageName(subPath?: string) {
+    const path = browser.getUrl().replace(workfloConfig.baseUrl, '');
 
     // we need to double escape backslashes because they are interpreted as a string first
     const pageNameRegex = new RegExp(`^\\/${this.pageName}(\\?|\\/)*`);
 
-    return pageNameRegex.test(pathName);
+    const matchesPath = (typeof subPath !== 'undefined') ? path.startsWith(subPath) : true;
+
+    return pageNameRegex.test(path) && matchesPath;
   }
 
-  isOpen(): boolean {
-    return this._doesUrlMatchPageName() &&
+  /**
+   * Open the page.
+   *
+   * Optionally, you can pass a subpath for the page's url.
+   */
+  open(subPath?: string) {
+
+    let pathAppendix = '';
+
+    if (subPath) {
+      if (subPath.charAt(0) === '/') {
+        pathAppendix = subPath;
+      } else {
+        pathAppendix = `/${subPath}`;
+      }
+    }
+
+    browser.url(`${this.pageName}${pathAppendix}`);
+
+    this.wait.isOpen({ subPath, timeout: 10000 });
+  }
+
+  isOpen(opts: IsOpenOpts | IPagePath = {}): boolean {
+    return this._doesUrlMatchPageName(opts.subPath) &&
       this.heading.currently.isVisible() &&
       this.heading.currently.getText().toLowerCase() === this.pageName;
   }
 
-  isClosed(): boolean {
-    return !this._doesUrlMatchPageName() ||
+  isClosed(opts: IsClosedOpts | IPagePath = {}): boolean {
+    return !this._doesUrlMatchPageName(opts.subPath) ||
       this.heading.currently.not.isVisible() ||
       this.heading.currently.getText().toLowerCase() !== this.pageName;
   }
